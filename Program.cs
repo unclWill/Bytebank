@@ -1,4 +1,10 @@
 ﻿using System;
+using Bytebank.Utils;
+
+/* Classe  : Program
+ * Objetivo: Ponto de entrada do prograna.
+ * Data    : 21/06/2023 (Criação) | última edição: MM/DD/AAAA
+ */
 
 namespace Bytebank
 {
@@ -6,29 +12,38 @@ namespace Bytebank
     {
         public static void Main()
         {
+            ExibirLogo();
 
-            Console.WriteLine("Pressione qualquer tecla para finalizar...");
+            ImprimirTextoColorido.Vermelho("Pressione qualquer tecla para finalizar...");
             Console.ReadKey();
         }
 
         public static void ExecutarComandos()
         {
+
         }
 
-        public static void MenuInicial()
+        public static void ExibirLogo()
         {
-            Console.WriteLine("Boas vindas ao Terminal do Bytebank!");
+            DateTime dataHoraAtual = DateTime.Now;
+            string bytebankLogo = @"
+       ______                  _                 _     
+      (____  \       _        | |               | |    
+       ____)  )_   _| |_  ____| | _   ____ ____ | |  _ 
+      |  __  (| | | |  _)/ _  ) || \ / _  |  _ \| | / )
+      | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
+      |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
+              (____/";
+            ImprimirTextoColorido.Verde(bytebankLogo); //Exibe o 'logo' do Bytebank em ASCII Art
+            Console.Write("\n\n");
+            Console.Write("            Boas vindas ao Terminal do Bytebank!\n");
+            Console.Write($"              Acesso em: {dataHoraAtual}\n\n");
+        }
+
+        public static void ExibirMenuInicial()
+        {
 
         }
 
-    }
-
-    public static class CorDoTexto
-    {
-        public static void Amarelo() { Console.ForegroundColor = ConsoleColor.DarkYellow; }
-        public static void Azul() { Console.ForegroundColor = ConsoleColor.DarkBlue; }
-        public static void Cinza() { Console.ForegroundColor = ConsoleColor.DarkGray; }
-        public static void Verde() { Console.ForegroundColor = ConsoleColor.DarkGreen; }
-        public static void Vermelho() { Console.ForegroundColor = ConsoleColor.DarkRed; }
     }
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\3.0_Usando herança e implementando interfaces\\Bytebank\\Bytebank.csproj",
+      "projectUniqueName": "D:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank\\Bytebank.csproj",
       "projectName": "Bytebank",
-      "projectPath": "D:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\3.0_Usando herança e implementando interfaces\\Bytebank\\Bytebank.csproj",
+      "projectPath": "D:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank\\Bytebank.csproj",
       "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-      "outputPath": "D:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\3.0_Usando herança e implementando interfaces\\Bytebank\\obj\\",
+      "outputPath": "D:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config",
