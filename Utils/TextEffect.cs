@@ -2,12 +2,12 @@ using System;
 
 namespace Bytebank.Utils
 {
-    /* Classe  : TextEffect
+    /* Classe  : TextEffects
      * Objetivo: Aplica um caractere, definido pelo desenvolvedor, em torno do texto dando um efeito de destaque.
      * Autor   : unclWill (williamsilvajdf@gmail.com) 
      * Data    : 21/06/2023 (Criação) | Modificação: DD/MM/AAAA
      */
-    internal static class TextEffect
+    internal static class TextEffects
     {
         public static void ApplyEffect(string texto, char caractere)
         {

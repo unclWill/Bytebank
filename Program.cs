@@ -13,13 +13,13 @@ namespace Bytebank
     {
         public static void Main()
         {
-            ExibirLogo();
+            ShowBytebankLogo();
 
             PrintColorText.Red("Pressione qualquer tecla para finalizar...");
             Console.ReadKey();
         }
 
-        public static void ExibirLogo()
+        public static void ShowBytebankLogo()
         {
             DateTime dataHoraAtual = DateTime.Now;
             string bytebankLogo = @"
@@ -36,12 +36,12 @@ namespace Bytebank
             PrintColorText.White($"              Acesso em: {dataHoraAtual}\n\n");
         }
 
-        public static void ExibirMenuInicial()
+        public static void ShowMainMenu()
         {
 
         }
 
-        public static void ExecutarComandos()
+        public static void ExecuteCommands()
         {
 
         }
