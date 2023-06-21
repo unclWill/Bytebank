@@ -13,9 +13,9 @@ namespace Bytebank.Utils
         {
             int qtdCaracteres = texto.Length;
             string efeito = string.Empty.PadLeft(qtdCaracteres, caractere);
-            PrintColorText.Yellow(efeito);
-            PrintColorText.DarkGray(texto);
-            PrintColorText.Yellow(efeito);
+            PrintColorText.Yellow(efeito, 1);
+            PrintColorText.DarkGray(texto, 1);
+            PrintColorText.Yellow(efeito, 1);
         }
     }
 }

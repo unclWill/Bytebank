@@ -9,39 +9,101 @@ namespace Bytebank.Utils
      */
     internal static class PrintColorText
     {
-        public static void Yellow(string texto)
+        public static void Yellow(string text, sbyte lineBreak)
         {
-            Console.WriteLine(texto, Console.ForegroundColor = ConsoleColor.DarkYellow); //Aplica a cor na string texto.
-            Console.ForegroundColor = ConsoleColor.Gray;                                 //Reseta o console para a cor cinza (padrão).
+            switch (lineBreak)
+            {
+                case 1:
+                    Console.WriteLine(text, Console.ForegroundColor = ConsoleColor.DarkYellow);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                default:
+                    Console.Write(text, Console.ForegroundColor = ConsoleColor.DarkYellow);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+            }
         }
-        public static void Blue(string texto)
+        public static void Blue(string text, sbyte lineBreak)
         {
-            Console.WriteLine(texto, Console.ForegroundColor = ConsoleColor.DarkBlue);
-            Console.ForegroundColor = ConsoleColor.Gray;
+            switch (lineBreak)
+            {
+                case 1:
+                    Console.WriteLine(text, Console.ForegroundColor = ConsoleColor.DarkBlue);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                default:
+                    Console.Write(text, Console.ForegroundColor = ConsoleColor.DarkBlue);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+            }
         }
-        public static void White(string texto)
+        public static void White(string text, sbyte lineBreak)
         {
-            Console.WriteLine(texto, Console.ForegroundColor = ConsoleColor.White);
-            Console.ForegroundColor = ConsoleColor.Gray;
+            switch (lineBreak)
+            {
+                case 1:
+                    Console.WriteLine(text, Console.ForegroundColor = ConsoleColor.White);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                default:
+                    Console.Write(text, Console.ForegroundColor = ConsoleColor.White);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+            }
         }
-        public static void Gray(string texto)
+        public static void Gray(string text, sbyte lineBreak)
         {
-            Console.WriteLine(texto, Console.ForegroundColor = ConsoleColor.Gray);
+            switch (lineBreak)
+            {
+                case 1:
+                    Console.WriteLine(text, Console.ForegroundColor = ConsoleColor.Gray);
+                    break;
+                default:
+                    Console.Write(text, Console.ForegroundColor = ConsoleColor.Gray);
+                    break;
+            }
         }
-        public static void DarkGray(string texto)
+        public static void DarkGray(string text, sbyte lineBreak)
         {
-            Console.WriteLine(texto, Console.ForegroundColor = ConsoleColor.DarkGray);
-            Console.ForegroundColor = ConsoleColor.Gray;
+            switch (lineBreak)
+            {
+                case 1:
+                    Console.WriteLine(text, Console.ForegroundColor = ConsoleColor.DarkGray);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                default:
+                    Console.Write(text, Console.ForegroundColor = ConsoleColor.DarkGray);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+            }
         }
-        public static void Green(string texto)
+        public static void Green(string text, sbyte lineBreak)
         {
-            Console.WriteLine(texto, Console.ForegroundColor = ConsoleColor.DarkGreen);
-            Console.ForegroundColor = ConsoleColor.Gray;
+            switch (lineBreak)
+            {
+                case 1:
+                    Console.WriteLine(text, Console.ForegroundColor = ConsoleColor.DarkGreen);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                default:
+                    Console.Write(text, Console.ForegroundColor = ConsoleColor.DarkGreen);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+            }
         }
-        public static void Red(string texto)
+        public static void Red(string text, sbyte lineBreak)
         {
-            Console.WriteLine(texto, Console.ForegroundColor = ConsoleColor.DarkRed);
-            Console.ForegroundColor = ConsoleColor.Gray;
+            switch (lineBreak)
+            {
+                case 1:
+                    Console.WriteLine(text, Console.ForegroundColor = ConsoleColor.DarkRed);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                default:
+                    Console.Write(text, Console.ForegroundColor = ConsoleColor.DarkRed);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+            }
         }
     }
 }
