@@ -2,7 +2,8 @@
 using Bytebank.Utils;
 
 /* Classe  : Program
- * Objetivo: Ponto de entrada do prograna.
+ * Objetivo: Ponto de entrada do programa.
+ * Autor   : unclWill (williamsilvajdf@gmail.com)
  * Data    : 21/06/2023 (Criação) | última edição: MM/DD/AAAA
  */
 
@@ -14,13 +15,8 @@ namespace Bytebank
         {
             ExibirLogo();
 
-            ImprimirTextoColorido.Vermelho("Pressione qualquer tecla para finalizar...");
+            PrintColorText.Red("Pressione qualquer tecla para finalizar...");
             Console.ReadKey();
-        }
-
-        public static void ExecutarComandos()
-        {
-
         }
 
         public static void ExibirLogo()
@@ -34,13 +30,18 @@ namespace Bytebank
       | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
       |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
               (____/";
-            ImprimirTextoColorido.Verde(bytebankLogo); //Exibe o 'logo' do Bytebank em ASCII Art
+            PrintColorText.Green(bytebankLogo);
             Console.Write("\n\n");
             Console.Write("            Boas vindas ao Terminal do Bytebank!\n");
-            Console.Write($"              Acesso em: {dataHoraAtual}\n\n");
+            PrintColorText.White($"              Acesso em: {dataHoraAtual}\n\n");
         }
 
         public static void ExibirMenuInicial()
+        {
+
+        }
+
+        public static void ExecutarComandos()
         {
 
         }
