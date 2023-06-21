@@ -7,7 +7,7 @@ namespace Bytebank.Utils
      * Autor   : unclWill (williamsilvajdf@gmail.com) 
      * Data    : 21/06/2023 (Criação) | Modificação: DD/MM/AAAA
      */
-    internal static class TextEffects
+    readonly internal struct TextEffects
     {
         public static void ApplyEffect(string texto, char caractere)
         {

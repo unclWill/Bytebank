@@ -7,8 +7,18 @@ namespace Bytebank.Utils
      * Autor   : unclWill (williamsilvajdf@gmail.com)
      * Data    : 21/06/2023 (Criação) | Modificação: DD/MM/AAAA
      */
-    internal static class PrintColorText
+
+    /// <summary>
+    /// Struct PrintColorText, contém os métodos que definem a cor do texto.
+    /// Exemplo de uso: PrintColorText.Azul();
+    /// </summary>
+    readonly internal struct PrintColorText
     {
+        /// <summary>
+        /// Método Yellow. Define a cor do texto como Amarelo.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="lineBreak"></param>
         public static void Yellow(string text, sbyte lineBreak)
         {
             switch (lineBreak)
