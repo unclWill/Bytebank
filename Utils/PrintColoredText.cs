@@ -12,7 +12,7 @@ namespace Bytebank.Utils
     /// Struct PrintColorText, contém os métodos que definem a cor do texto.
     /// Exemplo de uso: PrintColorText.Azul();
     /// </summary>
-    readonly internal struct PrintColorText
+    readonly internal struct PrintColoredText
     {
         /// <summary>
         /// Método Yellow. Define a cor do texto como Amarelo.
