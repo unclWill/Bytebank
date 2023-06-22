@@ -118,9 +118,9 @@ namespace Bytebank.Utils
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);
-            PrintText.ColorizeText(textEffect, PrintText.TextColor.Yellow, 1);
-            PrintText.ColorizeText(text, PrintText.TextColor.DarkGray, 0);
-            PrintText.ColorizeText(textEffect, PrintText.TextColor.Yellow, 1);
+            PrintText.ColorizeText(textEffect, PrintText.TextColor.DarkGray, 1);
+            PrintText.ColorizeText(text, PrintText.TextColor.White, 1);
+            PrintText.ColorizeText(textEffect, PrintText.TextColor.DarkGray, 1);
         }
     }
 }

@@ -32,31 +32,36 @@ namespace Bytebank.Utils
         {
             DateTime dateTimeNow = DateTime.Now;
             string bytebankLogo = @"
-       ______                  _                 _     
-      (____  \       _        | |               | |    
-       ____)  )_   _| |_  ____| | _   ____ ____ | |  _ 
-      |  __  (| | | |  _)/ _  ) || \ / _  |  _ \| | / )
-      | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
-      |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
-              (____/";
+ ______                  _                 _     
+(____  \       _        | |               | |    
+ ____)  )_   _| |_  ____| | _   ____ ____ | |  _ 
+|  __  (| | | |  _)/ _  ) || \ / _  |  _ \| | / )
+| |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
+|______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
+        (____/";
             PrintText.ColorizeText(bytebankLogo, PrintText.TextColor.Green, 0);
             Console.Write("\n\n");
-            Console.Write("            Boas vindas ao Terminal do Bytebank!\n");
-            Console.Write($"              Acesso em: {dateTimeNow}\n\n");
+            Console.Write("  Boas vindas ao Terminal do Bytebank!\n");
+            Console.Write($"  Acesso em: {dateTimeNow}\n\n");
         }
-
-        protected internal static void ShowCustomerServiceOptions()
-        {
-        }
-
 
         protected internal static void ShowAuthenticationDialog()
         {
-            PrintText.ColorizeText("", PrintText.TextColor.DarkGray, 1);
+
         }
 
         /// <summary>
-        /// Exibe o diálogo "Pressione qualquer tecla para finalizar".
+        /// Exibe o diálogo responsável por Iniciar o atendimento ou finalizar o terminal.
+        /// </summary>
+        protected internal static void ShowStartServiceAtTerminalDialog()
+        {
+            PrintText.HighlightTitleText(" Digite |1| para iniciar o seu atendimento", '-');
+            PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
+            PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen, 1);
+        }
+
+        /// <summary>
+        /// Exibe o diálogo responsável por finalizar a execução do sistema.
         /// </summary>
         protected internal static void ShowPressKeyToEndDialog()
         {
