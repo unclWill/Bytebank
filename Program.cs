@@ -13,33 +13,11 @@ namespace Bytebank
     {
         public static void Main()
         {
-            PrintText.ApplicationWindowTitle();
             //
-            ShowBytebankLogo();
+            StartScreenComponents.ShowApplicationWindowTitle();
+            StartScreenComponents.ShowBytebankLogo();
+            StartScreenComponents.ShowPressKeyToEndDialog();
             //
-            PrintText.ColorizeText("Pressione qualquer tecla para finalizar...", PrintText.TextColor.Red, 0);
-            Console.ReadKey();
-        }
-
-        public static void ShowBytebankLogo()
-        {
-            DateTime dataHoraAtual = DateTime.Now;
-            string bytebankLogo = @"
-       ______                  _                 _     
-      (____  \       _        | |               | |    
-       ____)  )_   _| |_  ____| | _   ____ ____ | |  _ 
-      |  __  (| | | |  _)/ _  ) || \ / _  |  _ \| | / )
-      | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
-      |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
-              (____/";
-            PrintText.ColorizeText(bytebankLogo, PrintText.TextColor.Green, 0);
-            Console.Write("\n\n");
-            Console.Write("            Boas vindas ao Terminal do Bytebank!\n");
-            PrintText.ColorizeText($"              Acesso em: {dataHoraAtual}\n\n", PrintText.TextColor.White, 0);
-        }
-
-        public static void ShowMainMenu()
-        {
 
         }
 
