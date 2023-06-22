@@ -13,9 +13,11 @@ namespace Bytebank
     {
         public static void Main()
         {
+            PrintText.ApplicationWindowTitle();
+            //
             ShowBytebankLogo();
-
-            PrintColoredText.Red("Pressione qualquer tecla para finalizar...", 0);
+            //
+            PrintText.ColorizeText("Pressione qualquer tecla para finalizar...", PrintText.TextColor.Red, 0);
             Console.ReadKey();
         }
 
@@ -30,10 +32,10 @@ namespace Bytebank
       | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
       |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
               (____/";
-            PrintColoredText.Green(bytebankLogo, 1);
+            PrintText.ColorizeText(bytebankLogo, PrintText.TextColor.Green, 1);
             Console.Write("\n\n");
             Console.Write("            Boas vindas ao Terminal do Bytebank!\n");
-            PrintColoredText.White($"              Acesso em: {dataHoraAtual}\n\n", 0);
+            PrintText.ColorizeText($"              Acesso em: {dataHoraAtual}\n\n", PrintText.TextColor.White, 0);
         }
 
         public static void ShowMainMenu()
