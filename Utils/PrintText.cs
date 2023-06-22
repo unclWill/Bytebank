@@ -93,7 +93,7 @@ namespace Bytebank.Utils
             ResetTextColor();
         }
         #endregion
-        protected internal static void HighlightTitleText(string? text, char character)
+        protected internal static void HighlightTitleText(string text, char character)
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);
