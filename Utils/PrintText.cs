@@ -14,6 +14,15 @@ namespace Bytebank.Utils
     /// </summary>
     internal class PrintText
     {
+        /// <summary>
+        /// Exibe o título da janela.
+        /// </summary>
+        internal static void ApplicationWindowTitle()
+        {
+            Console.Title = "Bytebank Terminal";
+        }
+
+        #region ColorizeText -- definições responsáveis por definir a cor do texto.
         public enum TextColor
         {
             Blue,
@@ -23,14 +32,6 @@ namespace Bytebank.Utils
             Red,
             White,
             Yellow
-        }
-
-        /// <summary>
-        /// Exibe o título da janela.
-        /// </summary>
-        internal static void ApplicationWindowTitle()
-        {
-            Console.Title = "Bytebank Terminal";
         }
         private static void SetTextColor(ConsoleColor color)
         {
@@ -91,7 +92,7 @@ namespace Bytebank.Utils
 
             ResetTextColor();
         }
-
+        #endregion
         public static void HighlightTitleText(string text, char character)
         {
             int charCount = text.Length;
