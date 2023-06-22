@@ -16,7 +16,7 @@ namespace Bytebank.Authentication
         /// </summary>
         protected internal static void ShowMainMenu()
         {
-            PrintText.HighlightTitleText("MENU", '-');
+            PrintText.DecorateTitleText("MENU", '-');
             PrintText.ColorizeText("Operações disponíveis neste terminal", PrintText.TextColor.DarkGray, 1);
         }
     }

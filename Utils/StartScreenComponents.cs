@@ -61,7 +61,7 @@ namespace Bytebank.Utils
         /// </summary>
         protected internal static void ShowStartServiceAtTerminalDialog()
         {
-            PrintText.HighlightTitleText(" Digite |1| para iniciar o seu atendimento", '-');
+            PrintText.DecorateTitleText(" Digite |1| para iniciar o seu atendimento", '-');
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen, 1);
             int selectedOption;
@@ -82,11 +82,7 @@ namespace Bytebank.Utils
             else if (selectedOption == 2)
             {
                 Console.Write("[>] Liberando terminal");
-                for (int i = 0; i < 3; i++)
-                {
-                    Thread.Sleep(420);
-                    PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
-                }
+                PrintText.TreeDotsAnimationText();
                 Console.Write("\n\n[>] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
                 ShowPressKeyToEndDialog();
             }

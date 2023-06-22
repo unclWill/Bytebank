@@ -114,13 +114,34 @@ namespace Bytebank.Utils
             ResetTextColor();
         }
         #endregion
-        protected internal static void HighlightTitleText(string text, char character)
+
+        /// <summary>
+        /// Método <code>DecorateTitleText</code>
+        /// Insere uma decoração em volta do texto que é passado como um argumento do tipo char.
+        /// </summary>
+        /// <param name="text">String que será exibida.</param>
+        /// <param name="character">Caractere que será utilizado para criar a decoração entorno do texto.</param>
+        protected internal static void DecorateTitleText(string text, char character)
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);
             PrintText.ColorizeText(textEffect, PrintText.TextColor.DarkGray, 1);
             PrintText.ColorizeText(text, PrintText.TextColor.White, 1);
             PrintText.ColorizeText(textEffect, PrintText.TextColor.DarkGray, 1);
+        }
+
+        /// <summary>
+        /// Método <code>TreeDotsAnimationText</code>
+        /// Insere três pontos que vão sendo adicionados após um determinado texto, dando a impressão de que algo está sendio processado.
+        /// </summary>
+        protected internal static void TreeDotsAnimationText()
+        {
+            const int millissecondsTimer = 420;
+            for (int i = 0; i < 3; i++)
+            {
+                Thread.Sleep(millissecondsTimer);
+                PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
+            }
         }
     }
 }
