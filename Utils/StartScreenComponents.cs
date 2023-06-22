@@ -5,9 +5,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bytebank.Utils
 {
@@ -24,14 +21,15 @@ namespace Bytebank.Utils
         {
             Console.Clear();
             ShowApplicationWindowTitle();
-            ShowBytebankLogo();
+            ShowProductOwnerBrand();
+            ShowGreetingAndDateTime();
             ShowStartServiceAtTerminalDialog();
         }
 
         /// <summary>
         /// Exibe o título da janela.
         /// </summary>
-        protected internal static void ShowApplicationWindowTitle()
+        private static void ShowApplicationWindowTitle()
         {
             Console.Title = "Bytebank Terminal";
         }
@@ -39,10 +37,9 @@ namespace Bytebank.Utils
         /// <summary>
         /// Exibe o logo do Bytebank estilizado com caracteres ASCII.
         /// </summary>
-        protected internal static void ShowBytebankLogo()
+        private static void ShowProductOwnerBrand()
         {
-            DateTime dateTimeNow = DateTime.Now;
-            string bytebankLogo = @"
+            string productOwnerBrand = @"
  ______                  _                 _     
 (____  \       _        | |               | |    
  ____)  )_   _| |_  ____| | _   ____ ____ | |  _ 
@@ -50,20 +47,29 @@ namespace Bytebank.Utils
 | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
 |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
         (____/";
-            PrintText.ColorizeText(bytebankLogo, PrintText.TextColor.Green, 0);
-            Console.Write("\n\n");
-            Console.Write("  Boas vindas ao Terminal do Bytebank!\n");
-            Console.Write($"  Acesso em: {dateTimeNow}\n\n");
+            PrintText.ColorizeText(productOwnerBrand, PrintText.TextColor.DarkMagenta, 0);
+        }
+
+        /// <summary>
+        /// Método <code>ShowGreetingAndDateTime</code>
+        /// Exibe uma saudação e informa data e hora de entrada do usuário no sistema
+        /// </summary>
+        private static void ShowGreetingAndDateTime()
+        {
+            DateTime dateTimeNow = DateTime.Now;
+            Console.Write("\n\n  Boas vindas ao Terminal do Bytebank!\n");
+            Console.Write($"     Acesso em: {dateTimeNow}\n\n");
         }
 
         /// <summary>
         /// Exibe o diálogo responsável por Iniciar o atendimento ou finalizar o terminal.
         /// </summary>
-        protected internal static void ShowStartServiceAtTerminalDialog()
+        private static void ShowStartServiceAtTerminalDialog()
         {
             PrintText.DecorateTitleText(" Digite |1| para iniciar o seu atendimento", '-');
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen, 1);
+            PrintText.UserInteractionIndicator();
             int selectedOption;
             //Lê e valida o campo operacaoSelecionada, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
             while (!int.TryParse(Console.ReadLine(), out selectedOption))
@@ -81,9 +87,9 @@ namespace Bytebank.Utils
             }
             else if (selectedOption == 2)
             {
-                Console.Write("[>] Liberando terminal");
+                Console.Write("\n[i] Liberando terminal");
                 PrintText.TreeDotsAnimationText();
-                Console.Write("\n\n[>] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
+                Console.Write("\n\n[i] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
                 ShowPressKeyToEndDialog();
             }
         }

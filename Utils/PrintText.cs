@@ -143,5 +143,13 @@ namespace Bytebank.Utils
                 PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected internal static void UserInteractionIndicator()
+        {
+            PrintText.ColorizeText("[>] ", PrintText.TextColor.DarkGray, 0);
+        }
     }
 }
