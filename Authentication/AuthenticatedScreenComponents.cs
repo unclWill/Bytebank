@@ -1,14 +1,17 @@
+/* Classe  : AuthenticatedScreenComponents
+ * Objetivo: Concentra os métodos personalizados utilizados na área logada do sistema.
+ * Autor   : unclWill (williamsilvajdf@gmail.com)
+ * Data    : 22/06/2023 (Criação) | Modificação: DD/MM/AAAA
+ */
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bytebank.Utils
 {
     public class AuthenticatedScreenComponents
     {
         /// <summary>
-        /// Exibe o menu da tela inicial.
+        /// Exibe o menu da área logada do sistema.
         /// </summary>
         protected internal static void ShowMainMenu()
         {
