@@ -17,7 +17,7 @@ namespace Bytebank.Utils
         /// <summary>
         /// Exibe o título da janela.
         /// </summary>
-        internal static void ApplicationWindowTitle()
+        protected internal static void ApplicationWindowTitle()
         {
             Console.Title = "Bytebank Terminal";
         }
@@ -51,7 +51,7 @@ namespace Bytebank.Utils
         /// <param name="text">String quew será manipulada e impresso.</param>
         /// <param name="color">Cor na qual o texto será impresso.</param>
         /// <param name="lineBreak">Indica se o texto será impresso com ou sem quebra de linha.</param>
-        public static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
+        protected internal static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
         {
             switch (color)
             {
@@ -93,7 +93,7 @@ namespace Bytebank.Utils
             ResetTextColor();
         }
         #endregion
-        internal static void HighlightTitleText(string text, char character)
+        protected internal static void HighlightTitleText(string? text, char character)
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);
