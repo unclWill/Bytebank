@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace Bytebank.Utils
 {
+    /// <summary>
+    /// Classe <code>StartScreenComponents</code>
+    /// Concentra os métodos personalizados utilizados na tela inicial do sistema.
+    /// </summary>
     public class StartScreenComponents
     {
         /// <summary>

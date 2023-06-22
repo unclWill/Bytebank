@@ -9,8 +9,8 @@ using System;
 namespace Bytebank.Utils
 {
     /// <summary>
-    /// Classe <c>PrintText</c>, contém os métodos que definem a cor do texto.
-    /// Exemplo de uso: PrintText.ColorizeText("String", PrintText.TextColor.Color, 1);
+    /// Classe <code>PrintText</code>
+    /// Contém métodos que permitem imprimir textos de forma personalizada.
     /// </summary>
     internal class PrintText
     {
@@ -35,10 +35,11 @@ namespace Bytebank.Utils
         }
 
         /// <summary>
-        /// Método <c>ColorizeText</c>, define a cor do texto e a forma como este texto será impresso na tela.
+        /// Método <code>ColorizeText</code> 
+        /// Define a cor do texto e a forma como este texto será impresso na tela.
         /// <example>Exemplo de uso: PrintText.ColorizeText("String", PrintText.TextColor.Color, 1);</example>
-        /// ---[i] O argumento 1 indica que o texto será impresso utilizando Console.WriteLine (com quebra de linha)
-        /// --- [i] O argumento 0 indica que o texto será impresso utilizando Console.Write (sem quebra de linha).
+        /// <code>O parêmetro 1 indica que o texto será impresso utilizando Console.WriteLine (com quebra de linha)</code>
+        /// <code>O parâmetro 0 indica que o texto será impresso utilizando Console.Write (sem quebra de linha).</code>
         /// </summary>
         /// <param name="text">String quew será manipulada e impresso.</param>
         /// <param name="color">Cor na qual o texto será impresso.</param>
