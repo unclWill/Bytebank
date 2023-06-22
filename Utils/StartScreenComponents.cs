@@ -18,6 +18,17 @@ namespace Bytebank.Utils
     public class StartScreenComponents
     {
         /// <summary>
+        /// Exibe os itens que compõe a tela inicial do sistema.
+        /// </summary>
+        protected internal static void ShowStartScreen()
+        {
+            Console.Clear();
+            ShowApplicationWindowTitle();
+            ShowBytebankLogo();
+            ShowStartServiceAtTerminalDialog();
+        }
+
+        /// <summary>
         /// Exibe o título da janela.
         /// </summary>
         protected internal static void ShowApplicationWindowTitle()
@@ -45,11 +56,6 @@ namespace Bytebank.Utils
             Console.Write($"  Acesso em: {dateTimeNow}\n\n");
         }
 
-        protected internal static void ShowAuthenticationDialog()
-        {
-
-        }
-
         /// <summary>
         /// Exibe o diálogo responsável por Iniciar o atendimento ou finalizar o terminal.
         /// </summary>
@@ -58,6 +64,32 @@ namespace Bytebank.Utils
             PrintText.HighlightTitleText(" Digite |1| para iniciar o seu atendimento", '-');
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen, 1);
+            int selectedOption;
+            //Lê e valida o campo operacaoSelecionada, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
+            while (!int.TryParse(Console.ReadLine(), out selectedOption))
+            {
+                PrintText.ColorizeText("\n[!] Digite uma opção válida! |1| ou |2| \n[>>] ", PrintText.TextColor.DarkRed, 0);
+            }
+
+            if (selectedOption < 1 | selectedOption > 2)
+            {
+                ShowStartScreen();
+            }
+            else if (selectedOption == 1)
+            {
+                //Controla o acesso do usuário ao sistema.
+            }
+            else if (selectedOption == 2)
+            {
+                Console.Write("[>] Liberando terminal");
+                for (int i = 0; i < 3; i++)
+                {
+                    Thread.Sleep(420);
+                    PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
+                }
+                Console.Write("\n\n[>] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
+                ShowPressKeyToEndDialog();
+            }
         }
 
         /// <summary>

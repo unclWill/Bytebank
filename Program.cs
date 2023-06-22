@@ -6,6 +6,7 @@
 
 using System;
 using Bytebank.Utils;
+using Bytebank.Authentication;
 
 namespace Bytebank
 {
@@ -14,13 +15,10 @@ namespace Bytebank
         public static void Main()
         {
             //Diálogos da tela inicial.
-            StartScreenComponents.ShowApplicationWindowTitle();
-            StartScreenComponents.ShowBytebankLogo();
-            StartScreenComponents.ShowStartServiceAtTerminalDialog();
+            StartScreenComponents.ShowStartScreen();
             //Ações para usuário autenticado.
             ExecuteCommands();
             //Finalizar a execução.
-            StartScreenComponents.ShowPressKeyToEndDialog();
         }
 
         public static void ExecuteCommands()

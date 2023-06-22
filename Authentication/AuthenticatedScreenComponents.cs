@@ -5,8 +5,9 @@
  */
 
 using System;
+using Bytebank.Utils;
 
-namespace Bytebank.Utils
+namespace Bytebank.Authentication
 {
     public class AuthenticatedScreenComponents
     {
