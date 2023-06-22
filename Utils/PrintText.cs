@@ -145,7 +145,8 @@ namespace Bytebank.Utils
         }
 
         /// <summary>
-        /// 
+        /// Método <code>UserInteractionIndicator</code>
+        /// Exibe os caracteres [>] indicando que o espaço a seguir é destinado à inserção de dados pelo usuário.
         /// </summary>
         protected internal static void UserInteractionIndicator()
         {
