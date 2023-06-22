@@ -42,15 +42,17 @@ namespace Bytebank.Utils
             PrintText.ColorizeText(bytebankLogo, PrintText.TextColor.Green, 0);
             Console.Write("\n\n");
             Console.Write("            Boas vindas ao Terminal do Bytebank!\n");
-            PrintText.ColorizeText($"              Acesso em: {dateTimeNow}\n\n", PrintText.TextColor.White, 0);
+            Console.Write($"              Acesso em: {dateTimeNow}\n\n");
         }
 
-        /// <summary>
-        /// Exibe o menu da tela inicial.
-        /// </summary>
-        protected internal static void ShowMainMenu()
+        protected internal static void ShowCustomerServiceOptions()
         {
+        }
 
+
+        protected internal static void ShowAuthenticationDialog()
+        {
+            PrintText.ColorizeText("", PrintText.TextColor.DarkGray, 1);
         }
 
         /// <summary>

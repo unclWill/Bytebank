@@ -17,8 +17,15 @@ namespace Bytebank.Utils
         #region ColorizeText -- definições responsáveis por definir a cor do texto.
         public enum TextColor
         {
+            Black,
             Blue,
+            DarkBlue,
+            DarkCyan,
             DarkGray,
+            DarkGreen,
+            DarkMagenta,
+            DarkRed,
+            DarkYellow,
             Gray,
             Green,
             Red,
@@ -48,11 +55,32 @@ namespace Bytebank.Utils
         {
             switch (color)
             {
+                case TextColor.Black:
+                    SetTextColor(ConsoleColor.Black);
+                    break;
                 case TextColor.Blue:
                     SetTextColor(ConsoleColor.Blue);
                     break;
+                case TextColor.DarkBlue:
+                    SetTextColor(ConsoleColor.DarkBlue);
+                    break;
+                case TextColor.DarkCyan:
+                    SetTextColor(ConsoleColor.DarkCyan);
+                    break;
                 case TextColor.DarkGray:
                     SetTextColor(ConsoleColor.DarkGray);
+                    break;
+                case TextColor.DarkGreen:
+                    SetTextColor(ConsoleColor.DarkGreen);
+                    break;
+                case TextColor.DarkMagenta:
+                    SetTextColor(ConsoleColor.DarkMagenta);
+                    break;
+                case TextColor.DarkRed:
+                    SetTextColor(ConsoleColor.DarkRed);
+                    break;
+                case TextColor.DarkYellow:
+                    SetTextColor(ConsoleColor.DarkYellow);
                     break;
                 case TextColor.Gray:
                     SetTextColor(ConsoleColor.Gray);
