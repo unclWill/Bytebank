@@ -50,7 +50,7 @@ namespace Bytebank.Utils
         /// <param name="text">String quew será manipulada e impresso.</param>
         /// <param name="color">Cor na qual o texto será impresso.</param>
         /// <param name="lineBreak">Indica se o texto será impresso com ou sem quebra de linha.</param>
-        public static void ColorizeText(string text, TextColor color, sbyte lineBreak)
+        public static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
         {
             switch (color)
             {
@@ -92,5 +92,13 @@ namespace Bytebank.Utils
             ResetTextColor();
         }
 
+        public static void HighlightTitleText(string text, char character)
+        {
+            int charCount = text.Length;
+            string textEffect = string.Empty.PadLeft(charCount, character);
+            PrintText.ColorizeText(textEffect, PrintText.TextColor.Yellow, 1);
+            PrintText.ColorizeText(text, PrintText.TextColor.DarkGray, 0);
+            PrintText.ColorizeText(textEffect, PrintText.TextColor.Yellow, 1);
+        }
     }
 }
