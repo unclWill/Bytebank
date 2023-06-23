@@ -90,20 +90,7 @@ namespace Bytebank.StartScreenComponents
         }
 
         /// <summary>
-        /// Exibe o diálogo responsável por finalizar a execução do sistema.
-        /// </summary>
-        private static void ShowAppFinalizationDialog()
-        {
-            PrintText.ColorizeText("Finalizando ", PrintText.TextColor.DarkGray, 0);
-            for (int i = 0; i < 20; i++)
-            {
-                Thread.Sleep(500);
-                PrintText.ColorizeText("|||", PrintText.TextColor.Yellow, 0);
-            }
-        }
-
-        /// <summary>
-        /// Exibe o diálogo responsável por Iniciar o atendimento ou finalizar o terminal.
+        /// Exibe o diálogo responsável por iniciar um atendimento.
         /// </summary>
         private static void ShowStartServiceAtTerminalDialog()
         {
@@ -128,12 +115,25 @@ namespace Bytebank.StartScreenComponents
             }
             else if (selectedOption == 2)
             {
-                Console.Write("\n[i] Liberando terminal");
-                PrintText.TreeDotsAnimationText();
-                Console.Write("\n\n[i] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
                 ShowAppFinalizationDialog();
             }
         }
 
+        /// <summary>
+        /// Exibe o diálogo de finalização do sistema.
+        /// </summary>
+        private static void ShowAppFinalizationDialog()
+        {
+            Console.Write("\n[i] Liberando terminal");
+            PrintText.TreeDotsAnimationText();
+            Console.Write("\n\n[i] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
+
+            PrintText.ColorizeText("Finalizando ", PrintText.TextColor.DarkGray, 0);
+            for (int i = 0; i < 15; i++)
+            {
+                Thread.Sleep(500);
+                PrintText.ColorizeText("|||", PrintText.TextColor.DarkMagenta, 0);
+            }
+        }
     }
 }
