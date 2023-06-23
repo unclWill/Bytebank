@@ -29,17 +29,33 @@ namespace Bytebank.StartScreenComponents
         }
 
         /// <summary>
-        /// Exibe o título da janela.
+        /// Diálogo que permite sair da tela atual.
         /// </summary>
-        private static void ShowApplicationWindowTitle()
+        protected internal static void EscapeFromScreenDialog()
         {
-            Console.Title = "Bytebank Terminal";
+            Console.Write("\n[i] Para voltar ao menu inicial pressione ESC\n");
+            PrintText.UserInteractionIndicator();
+            ConsoleKeyInfo pressedKey = Console.ReadKey();
+            if (pressedKey.Key == ConsoleKey.Escape)
+            {
+                StartScreen.ReturningToStartScreenMessage();
+            }
+        }
+
+        /// <summary>
+        /// Exibe uma mensagem que informa que o sistema está retornando a tela inicial.
+        /// </summary>
+        protected internal static void ReturningToStartScreenMessage()
+        {
+            Console.Write("Retornando à tela inicial");
+            PrintText.TreeDotsAnimationText();
+            StartScreen.ShowStartScreen();
         }
 
         /// <summary>
         /// Exibe o logo do Bytebank estilizado com caracteres ASCII.
         /// </summary>
-        private static void ShowProductOwnerBrand()
+        protected internal static void ShowProductOwnerBrand()
         {
             string productOwnerBrand = @"
  ______                  _                 _     
@@ -49,7 +65,15 @@ namespace Bytebank.StartScreenComponents
 | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
 |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
         (____/";
-            PrintText.ColorizeText(productOwnerBrand, PrintText.TextColor.DarkMagenta, 0);
+            PrintText.ColorizeText(productOwnerBrand, PrintText.TextColor.DarkMagenta, 1);
+        }
+
+        /// <summary>
+        /// Exibe o título da janela.
+        /// </summary>
+        private static void ShowApplicationWindowTitle()
+        {
+            Console.Title = "Bytebank Terminal";
         }
 
         /// <summary>
@@ -60,6 +84,15 @@ namespace Bytebank.StartScreenComponents
             DateTime dateTimeNow = DateTime.Now;
             Console.Write("\n\n  Boas vindas ao Terminal do Bytebank!\n");
             Console.Write($"     Acesso em: {dateTimeNow}\n\n");
+        }
+
+        /// <summary>
+        /// Exibe o diálogo responsável por finalizar a execução do sistema.
+        /// </summary>
+        private static void ShowPressKeyToEndDialog()
+        {
+            PrintText.ColorizeText("Pressione qualquer tecla para finalizar...", PrintText.TextColor.DarkGray, 0);
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -84,7 +117,6 @@ namespace Bytebank.StartScreenComponents
             }
             else if (selectedOption == 1)
             {
-                AuthenticationScreen authScreen = new AuthenticationScreen();
                 AuthenticationScreen.ShowAuthenticationDialog();
             }
             else if (selectedOption == 2)
@@ -96,13 +128,5 @@ namespace Bytebank.StartScreenComponents
             }
         }
 
-        /// <summary>
-        /// Exibe o diálogo responsável por finalizar a execução do sistema.
-        /// </summary>
-        private static void ShowPressKeyToEndDialog()
-        {
-            PrintText.ColorizeText("Pressione qualquer tecla para finalizar...", PrintText.TextColor.DarkGray, 0);
-            Console.ReadKey();
-        }
     }
 }

@@ -40,7 +40,6 @@ namespace Bytebank.AuthenticationComponents
                    AuthClientCpf == otherObj.AuthClientCpf &&
                    AuthClientPassword == otherObj.AuthClientPassword;
         }
-
         public override int GetHashCode()
         {
             unchecked // Desabilita o overflow da operação
@@ -56,22 +55,20 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
-        protected internal static void IsAuthenticated(Authentication authInfo)
+        protected internal static void Authenticate(Authentication authInfo)
         {
-            //HARDCODED CLIENT DATA
-            Authentication authClient1 = new Authentication("1020-X", "12345678900", 1234);
+            //DADOS DE CLIENTE HARDCODED
+            Authentication authClient = new Authentication("1020-X", "12345678900", 1234);
 
             //AuthenticationScreen authScreen = new AuthenticationScreen();
-            if (authInfo.Equals(authClient1))
+            if (authInfo.Equals(authClient))
             {
                 AuthenticatedScreen.ShowMainMenu();
             }
             else
             {
                 Console.WriteLine("Dados inválidos!");
-                Console.Write("Retornando à tela inicial");
-                PrintText.TreeDotsAnimationText();
-                StartScreen.ShowStartScreen();
+                StartScreen.ReturningToStartScreenMessage();
             }
         }
 
