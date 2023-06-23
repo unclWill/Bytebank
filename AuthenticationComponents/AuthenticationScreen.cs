@@ -12,23 +12,6 @@ namespace Bytebank.AuthenticationComponents
 {
     internal class AuthenticationScreen
     {
-        protected internal static void ShowAuthenticationDialog()
-        {
-            Console.Clear();
-            StartScreen.ShowProductOwnerBrand();
-            PrintText.DecorateTitleText(" AUTENTICAÇÃO ", '~');
-
-            //Recebendo o número da conta e validando.
-            string clientAccountId = string.Empty;
-            //Recebendo o número do CPF
-            string clientCpf = string.Empty;
-            //Recebendo a senha e validando.
-            int clientPassword = 0;
-
-            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientCpf(clientCpf), RequireClientPassword(clientPassword));
-            Authentication.Authenticate(clientInfo);
-        }
-
         private static string RequireClientId(string clientAccountId)
         {
             while (true)
@@ -75,6 +58,23 @@ namespace Bytebank.AuthenticationComponents
                 Console.WriteLine("Por favor, tente novamente.");
             }
             return clientPassword;
+        }
+
+        protected internal static void ShowAuthenticationDialog()
+        {
+            Console.Clear();
+            StartScreen.ShowProductOwnerBrand();
+            PrintText.DecorateTitleText(" AUTENTICAÇÃO ", '~');
+
+            //Recebendo o número da conta e validando.
+            string clientAccountId = string.Empty;
+            //Recebendo o número do CPF
+            string clientCpf = string.Empty;
+            //Recebendo a senha e validando.
+            int clientPassword = 0;
+
+            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientCpf(clientCpf), RequireClientPassword(clientPassword));
+            Authentication.Authenticate(clientInfo);
         }
     }
 }
