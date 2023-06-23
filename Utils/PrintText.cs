@@ -132,7 +132,7 @@ namespace Bytebank.Utils
 
         /// <summary>
         /// Método <code>TreeDotsAnimationText</code>
-        /// Insere três pontos que vão sendo adicionados após um determinado texto, dando a impressão de que algo está sendio processado.
+        /// Insere três pontos que vão sendo adicionados após um determinado texto, dando a impressão de que algo está sendo processado.
         /// </summary>
         protected internal static void TreeDotsAnimationText()
         {

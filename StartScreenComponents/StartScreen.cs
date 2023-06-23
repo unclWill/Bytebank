@@ -47,8 +47,7 @@ namespace Bytebank.StartScreenComponents
         /// </summary>
         protected internal static void ReturningToStartScreenMessage()
         {
-            PrintText.ColorizeText("\n[i] Retornando a tela inicial", PrintText.TextColor.Yellow, 1);
-            //Console.Write("\n[i] Retornando à tela inicial");
+            PrintText.ColorizeText("\n[i] Retornando à tela inicial", PrintText.TextColor.Yellow, 0);
             PrintText.TreeDotsAnimationText();
             StartScreen.ShowStartScreen();
         }
