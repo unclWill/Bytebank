@@ -31,9 +31,9 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Diálogo que permite sair da tela atual.
         /// </summary>
-        protected internal static void EscapeFromScreenDialog()
+        protected internal static void EscapeFromScreenDialog(string? text)
         {
-            Console.Write("\n[i] Para voltar ao menu inicial pressione ESC\n");
+            Console.Write($"\n[i] Para voltar ao menu inicial pressione ESC {text}\n");
             PrintText.UserInteractionIndicator();
             ConsoleKeyInfo pressedKey = Console.ReadKey();
             if (pressedKey.Key == ConsoleKey.Escape)
@@ -47,7 +47,8 @@ namespace Bytebank.StartScreenComponents
         /// </summary>
         protected internal static void ReturningToStartScreenMessage()
         {
-            Console.Write("Retornando à tela inicial");
+            PrintText.ColorizeText("\n[i] Retornando a tela inicial", PrintText.TextColor.Yellow, 1);
+            //Console.Write("\n[i] Retornando à tela inicial");
             PrintText.TreeDotsAnimationText();
             StartScreen.ShowStartScreen();
         }

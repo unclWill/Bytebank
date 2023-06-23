@@ -30,8 +30,8 @@ namespace Bytebank.AuthenticationComponents
                 }
                 else
                 {
-                    PrintText.ColorizeText("\n[!] Número de conta inválido! O número de conta deve ter a formatação 0000-X.\n[i] Tente novamente \n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog();
+                    PrintText.ColorizeText("\n[!] Número de conta inválido! O número de conta deve ter a formatação 0000-X.\n", PrintText.TextColor.DarkRed, 0);
+                    StartScreen.EscapeFromScreenDialog("ou digite sua conta novamente: ");
                 }
             }
             //Recebendo o número do CPF

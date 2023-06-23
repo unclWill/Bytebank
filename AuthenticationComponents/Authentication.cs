@@ -57,7 +57,7 @@ namespace Bytebank.AuthenticationComponents
 
         protected internal static void Authenticate(Authentication authInfo)
         {
-            //DADOS DE CLIENTE HARDCODED
+            //---DADOS DE CLIENTE HARDCODED
             Authentication authClient = new Authentication("1020-X", "12345678900", 1234);
 
             //AuthenticationScreen authScreen = new AuthenticationScreen();
@@ -67,7 +67,7 @@ namespace Bytebank.AuthenticationComponents
             }
             else
             {
-                Console.WriteLine("Dados inválidos!");
+                PrintText.ColorizeText("\n[!] Dados inválidos!", PrintText.TextColor.DarkRed, 1);
                 StartScreen.ReturningToStartScreenMessage();
             }
         }
