@@ -22,9 +22,10 @@ namespace Bytebank.Authenticated
             PrintText.DecorateTitleText("MENU", '-');
             PrintText.ColorizeText("Operações disponíveis neste terminal", PrintText.TextColor.DarkGray, 1);
 
-            if (StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione ", ConsoleKey.Enter, " ou aguarde.") == ConsoleKey.Enter)
+            ConsoleKey keyPressed = StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione |", ConsoleKey.Enter, "| ou aguarde.");
+            if (keyPressed == ConsoleKey.Enter)
             {
-                StartScreen.ShowStartScreen();
+                StartScreen.ReturningToStartScreenMessage();
             }
             else
             {

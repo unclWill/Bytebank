@@ -43,7 +43,7 @@ namespace Bytebank.AuthenticationComponents
                 else
                 {
                     PrintText.ColorizeText("\n[!] Número de conta inválido! O número de conta deve ter a formatação 0000-X.\n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog("Para retornar à tela inicial pressione", ConsoleKey.Escape, " ou digite sua conta novamente: ");
+                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
                 }
             }
             return clientAccountId;

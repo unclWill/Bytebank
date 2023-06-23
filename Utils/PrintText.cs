@@ -136,10 +136,9 @@ namespace Bytebank.Utils
         /// </summary>
         protected internal static void TreeDotsAnimationText()
         {
-            const int millissecondsTimer = 450;
             for (int i = 0; i < 3; i++)
             {
-                Thread.Sleep(millissecondsTimer);
+                Thread.Sleep(450);
                 PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
             }
         }

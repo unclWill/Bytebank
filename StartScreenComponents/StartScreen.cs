@@ -22,7 +22,7 @@ namespace Bytebank.StartScreenComponents
         protected internal static void ShowStartScreen()
         {
             Console.Clear();
-            ShowApplicationWindowTitle();
+            ShowAppWindowTitle();
             ShowProductOwnerBrand();
             ShowGreetingAndDateTime();
             ShowStartServiceAtTerminalDialog();
@@ -74,7 +74,7 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Exibe o título da janela.
         /// </summary>
-        private static void ShowApplicationWindowTitle()
+        private static void ShowAppWindowTitle()
         {
             Console.Title = "Bytebank Terminal";
         }
@@ -92,10 +92,14 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Exibe o diálogo responsável por finalizar a execução do sistema.
         /// </summary>
-        private static void ShowPressKeyToEndDialog()
+        private static void ShowAppFinalizationDialog()
         {
-            PrintText.ColorizeText("Pressione qualquer tecla para finalizar...", PrintText.TextColor.DarkGray, 0);
-            Console.ReadKey();
+            PrintText.ColorizeText("Finalizando ", PrintText.TextColor.DarkGray, 0);
+            for (int i = 0; i < 20; i++)
+            {
+                Thread.Sleep(500);
+                PrintText.ColorizeText("|||", PrintText.TextColor.Yellow, 0);
+            }
         }
 
         /// <summary>
@@ -127,7 +131,7 @@ namespace Bytebank.StartScreenComponents
                 Console.Write("\n[i] Liberando terminal");
                 PrintText.TreeDotsAnimationText();
                 Console.Write("\n\n[i] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
-                ShowPressKeyToEndDialog();
+                ShowAppFinalizationDialog();
             }
         }
 
