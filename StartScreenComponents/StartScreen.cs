@@ -1,18 +1,20 @@
 /* Classe  : StartScreenComponents
  * Objetivo: Concentra os métodos personalizados utilizados na tela inicial do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: DD/MM/AAAA
+ * Data    : 22/06/2023 (Criação) | Modificação: 23/06/2023
  */
 
 using System;
+using Bytebank.Utils;
+using Bytebank.AuthenticationComponents;
 
-namespace Bytebank.Utils
+namespace Bytebank.StartScreenComponents
 {
     /// <summary>
     /// Classe <code>StartScreenComponents</code>
     /// Concentra os métodos personalizados utilizados na tela inicial do sistema.
     /// </summary>
-    public class StartScreenComponents
+    public class StartScreen
     {
         /// <summary>
         /// Exibe os itens que compõe a tela inicial do sistema.
@@ -51,7 +53,6 @@ namespace Bytebank.Utils
         }
 
         /// <summary>
-        /// Método <code>ShowGreetingAndDateTime</code>
         /// Exibe uma saudação e informa data e hora de entrada do usuário no sistema
         /// </summary>
         private static void ShowGreetingAndDateTime()
@@ -70,8 +71,8 @@ namespace Bytebank.Utils
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen, 1);
             PrintText.UserInteractionIndicator();
-            int selectedOption;
-            //Lê e valida o campo operacaoSelecionada, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
+            int selectedOption = 0;
+            //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
             while (!int.TryParse(Console.ReadLine(), out selectedOption))
             {
                 PrintText.ColorizeText("\n[!] Digite uma opção válida! |1| ou |2| \n[>>] ", PrintText.TextColor.DarkRed, 0);
@@ -83,7 +84,8 @@ namespace Bytebank.Utils
             }
             else if (selectedOption == 1)
             {
-                //Controla o acesso do usuário ao sistema.
+                AuthenticationScreen authScreen = new AuthenticationScreen();
+                AuthenticationScreen.ShowAuthenticationDialog();
             }
             else if (selectedOption == 2)
             {
@@ -97,7 +99,7 @@ namespace Bytebank.Utils
         /// <summary>
         /// Exibe o diálogo responsável por finalizar a execução do sistema.
         /// </summary>
-        protected internal static void ShowPressKeyToEndDialog()
+        private static void ShowPressKeyToEndDialog()
         {
             PrintText.ColorizeText("Pressione qualquer tecla para finalizar...", PrintText.TextColor.DarkGray, 0);
             Console.ReadKey();

@@ -1,12 +1,13 @@
 ﻿/* Classe  : Program
  * Objetivo: Ponto de entrada do programa.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | última edição: 22/06/2023
+ * Data    : 21/06/2023 (Criação) | última edição: 23/06/2023
  */
 
 using System;
 using Bytebank.Utils;
-using Bytebank.Authentication;
+using Bytebank.StartScreenComponents;
+using Bytebank.AuthenticationComponents;
 
 namespace Bytebank
 {
@@ -15,7 +16,7 @@ namespace Bytebank
         public static void Main()
         {
             //Diálogos da tela inicial.
-            StartScreenComponents.ShowStartScreen();
+            StartScreen.ShowStartScreen();
             //Ações para usuário autenticado.
             ExecuteCommands();
             //Finalizar a execução.
