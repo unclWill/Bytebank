@@ -17,8 +17,20 @@ namespace Bytebank.AuthenticationComponents
             Console.Clear();
             StartScreen.ShowProductOwnerBrand();
             PrintText.DecorateTitleText(" AUTENTICAÇÃO ", '~');
+
             //Recebendo o número da conta e validando.
             string clientAccountId = string.Empty;
+            //Recebendo o número do CPF
+            string clientCpf = string.Empty;
+            //Recebendo a senha e validando.
+            int clientPassword = 0;
+
+            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientCpf(clientCpf), RequireClientPassword(clientPassword));
+            Authentication.Authenticate(clientInfo);
+        }
+
+        private static string RequireClientId(string clientAccountId)
+        {
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o número da sua conta   : ", PrintText.TextColor.White, 0);
@@ -31,18 +43,24 @@ namespace Bytebank.AuthenticationComponents
                 else
                 {
                     PrintText.ColorizeText("\n[!] Número de conta inválido! O número de conta deve ter a formatação 0000-X.\n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog("ou digite sua conta novamente: ");
+                    StartScreen.EscapeFromScreenDialog("Para retornar à tela inicial pressione", ConsoleKey.Escape, " ou digite sua conta novamente: ");
                 }
             }
-            //Recebendo o número do CPF
-            PrintText.ColorizeText("\nInforme o seu CPF (Nºs apenas)  : ", PrintText.TextColor.White, 0);
-            string clientCpf = Console.ReadLine()!;
+            return clientAccountId;
+        }
 
-            //Recebendo a senha e validando.
-            int clientPassword = 0;
+        private static string RequireClientCpf(string clientCpf)
+        {
+            PrintText.ColorizeText("\nInforme o seu CPF (Nºs apenas)  : ", PrintText.TextColor.White, 0);
+            clientCpf = Console.ReadLine()!;
+            return clientCpf;
+        }
+
+        private static int RequireClientPassword(int clientPassword)
+        {
             while (true)
             {
-                PrintText.ColorizeText("\nInforme a senha (4 dígitos): ", PrintText.TextColor.White, 0);
+                PrintText.ColorizeText("\nInforme a senha (4 dígitos)     : ", PrintText.TextColor.White, 0);
                 string passwordInput = Console.ReadLine()!;
 
                 if (int.TryParse(passwordInput, out clientPassword) && clientPassword >= 0 && clientPassword <= 9999)
@@ -56,9 +74,7 @@ namespace Bytebank.AuthenticationComponents
                 Console.WriteLine("Senha inválida! A senha deve ter 4 dígitos numéricos.");
                 Console.WriteLine("Por favor, tente novamente.");
             }
-
-            Authentication clientInfo = new Authentication(clientAccountId, clientCpf, clientPassword);
-            Authentication.Authenticate(clientInfo);
+            return clientPassword;
         }
     }
 }

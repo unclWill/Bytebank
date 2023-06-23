@@ -29,17 +29,20 @@ namespace Bytebank.StartScreenComponents
         }
 
         /// <summary>
-        /// Diálogo que permite sair da tela atual.
+        /// Método <code>EscapeFromScreenDialog</code>
+        /// Diálogo que permite voltar à tela inicial ao pressionar uma determinada tecla.
+        /// Retorna uma ConsoleKey para ser usada como controle de execução.
         /// </summary>
-        protected internal static void EscapeFromScreenDialog(string? text)
+        protected internal static ConsoleKey EscapeFromScreenDialog(string? primaryText, ConsoleKey escapeKey, string? secondaryText)
         {
-            Console.Write($"\n[i] Para voltar ao menu inicial pressione ESC {text}\n");
+            Console.Write($"\n[i] {primaryText} {escapeKey} {secondaryText}\n");
             PrintText.UserInteractionIndicator();
             ConsoleKeyInfo pressedKey = Console.ReadKey();
-            if (pressedKey.Key == ConsoleKey.Escape)
+            if (pressedKey.Key == escapeKey)
             {
                 StartScreen.ReturningToStartScreenMessage();
             }
+            return escapeKey;
         }
 
         /// <summary>
