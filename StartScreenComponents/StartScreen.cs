@@ -40,7 +40,7 @@ namespace Bytebank.StartScreenComponents
             ConsoleKeyInfo keyPressed = Console.ReadKey();
             if (keyPressed.Key == escapeKey)
             {
-                StartScreen.ReturningToStartScreenMessage();
+                ReturningToStartScreenMessage();
             }
             return escapeKey;
         }
@@ -52,7 +52,7 @@ namespace Bytebank.StartScreenComponents
         {
             PrintText.ColorizeText("\n[i] Retornando à tela inicial", PrintText.TextColor.Yellow, 0);
             PrintText.TreeDotsAnimationText();
-            StartScreen.ShowStartScreen();
+            ShowStartScreen();
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Bytebank.StartScreenComponents
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen, 1);
             PrintText.UserInteractionIndicator();
-            int selectedOption = 0;
+            int selectedOption;
             //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
             while (!int.TryParse(Console.ReadLine(), out selectedOption))
             {
