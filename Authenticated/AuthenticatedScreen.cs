@@ -4,10 +4,10 @@
  * Data    : 22/06/2023 (Criação) | Modificação: DD/MM/AAAA
  */
 
-using System;
-using Bytebank.Utils;
-using Bytebank.StartScreenComponents;
 using Bytebank.AuthenticationComponents;
+using Bytebank.StartScreenComponents;
+using Bytebank.Utils;
+using System;
 
 namespace Bytebank.Authenticated
 {
