@@ -54,8 +54,8 @@ namespace Bytebank.AuthenticationComponents
                     }
                 }
 
-                Console.WriteLine("Senha inválida! A senha deve ter 4 dígitos numéricos.");
-                Console.WriteLine("Por favor, tente novamente.");
+                PrintText.ColorizeText("\n[i] Senha inválida! A senha deve ter 4 dígitos numéricos.", PrintText.TextColor.DarkRed, 1);
+                Console.WriteLine("[i] Por favor, tente novamente.");
             }
             return clientPassword;
         }
@@ -64,7 +64,9 @@ namespace Bytebank.AuthenticationComponents
         {
             Console.Clear();
             StartScreen.ShowProductOwnerBrand();
-            PrintText.DecorateTitleText(" AUTENTICAÇÃO ", '~');
+            Console.WriteLine();
+            PrintText.DecorateTitleText("           AUTENTICAÇÃO           ", '~');
+            PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray, 1);
 
             //Recebendo o número da conta e validando.
             string clientAccountId = string.Empty;

@@ -12,14 +12,10 @@ namespace Bytebank.AuthenticationComponents
 {
     public class Authentication
     {
-        //Fields
+        public string AuthClientAccountId { get; private set; }
+        public string AuthClientCpf { get; private set; }
+        public int AuthClientPassword { get; private set; }
 
-        //Properties
-        public string AuthClientAccountId { get; set; }
-        public string AuthClientCpf { get; set; }
-        public int AuthClientPassword { get; set; }
-
-        //Constructor
         public Authentication(string clientId, string clientCpf, int clientPassword)
         {
             AuthClientAccountId = clientId;
@@ -27,7 +23,6 @@ namespace Bytebank.AuthenticationComponents
             AuthClientPassword = clientPassword;
         }
 
-        //Methods
         public override bool Equals(object? obj)
         {
             if (obj == null || GetType() != obj.GetType()) //Verifica se o objeto é NULO ou diferente do tipo Authentication
@@ -55,22 +50,43 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
-        protected internal static void Authenticate(Authentication authInfo)
+        protected internal static void Authenticate(Authentication authData)
         {
             //---DADOS DE CLIENTE HARDCODED
             Authentication authClient = new Authentication("1020-X", "12345678900", 1234);
 
             //AuthenticationScreen authScreen = new AuthenticationScreen();
-            if (authInfo.Equals(authClient))
+            if (authData.Equals(authClient))
             {
-                AuthenticatedScreen.ShowMainMenu();
+                ValidClientData();
             }
             else
             {
-                PrintText.ColorizeText("\n[!] Dados inválidos!", PrintText.TextColor.DarkRed, 1);
-                StartScreen.ReturningToStartScreenMessage();
+                InvalidClientData();
             }
         }
 
+        private static void ValidClientData()
+        {
+            PrintText.AcessingSystemAnimationText("Validando os dados da sua conta");
+            AuthenticatedScreen.ShowMainMenu();
+        }
+        private static void InvalidClientData()
+        {
+            PrintText.AcessingSystemAnimationText("Validando os dados da sua conta");
+            PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed, 1);
+            Console.Write("\n[i] Digite |1| para tentar novamente ou |2| para voltar à tela inicial\n");
+            PrintText.UserInteractionIndicator();
+            string readKeyboard = Console.ReadLine()!;
+            if (readKeyboard == "1")
+            {
+                AuthenticationScreen.ShowAuthenticationDialog();
+            }
+            else
+            {
+                StartScreen.ReturningToStartScreenMessage();
+            }
+
+        }
     }
 }

@@ -37,8 +37,8 @@ namespace Bytebank.StartScreenComponents
         {
             Console.Write($"\n[i] {primaryText} {escapeKey} {secondaryText}\n");
             PrintText.UserInteractionIndicator();
-            ConsoleKeyInfo pressedKey = Console.ReadKey();
-            if (pressedKey.Key == escapeKey)
+            ConsoleKeyInfo keyPressed = Console.ReadKey();
+            if (keyPressed.Key == escapeKey)
             {
                 StartScreen.ReturningToStartScreenMessage();
             }

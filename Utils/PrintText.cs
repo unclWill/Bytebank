@@ -143,6 +143,16 @@ namespace Bytebank.Utils
             }
         }
 
+        protected internal static void AcessingSystemAnimationText(string? text)
+        {
+            PrintText.ColorizeText($"\n[i] {text}", PrintText.TextColor.DarkGray, 0);
+            for (int i = 0; i < 5; i++)
+            {
+                Thread.Sleep(450);
+                PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
+            }
+        }
+
         /// <summary>
         /// Método <code>UserInteractionIndicator</code>
         /// Exibe os caracteres [>] indicando que o espaço a seguir é destinado à inserção de dados pelo usuário.
