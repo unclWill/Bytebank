@@ -19,7 +19,7 @@ namespace Bytebank.AuthenticationComponents
                 PrintText.ColorizeText("\nInforme o número da sua conta   : ", PrintText.TextColor.White, 0);
                 clientAccountId = Console.ReadLine()!;
 
-                if (clientAccountId.Length == 6 && clientAccountId.Contains("-") && clientAccountId.EndsWith("X") && int.TryParse(clientAccountId.Substring(0, 4), out _)) // Uso do discard*
+                if (clientAccountId.Length == 6 && clientAccountId.Contains('-') && clientAccountId.EndsWith("X") && int.TryParse(clientAccountId.AsSpan(0, 4), out _)) // Uso do discard*
                 {
                     break;
                 }
