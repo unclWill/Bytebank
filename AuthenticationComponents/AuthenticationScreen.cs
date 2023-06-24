@@ -12,14 +12,14 @@ namespace Bytebank.AuthenticationComponents
 {
     internal class AuthenticationScreen
     {
-        private static string RequireClientId(string clientAccountId)
+        private static string RequireClientId(string clientId)
         {
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o número da sua conta   : ", PrintText.TextColor.White, 0);
-                clientAccountId = Console.ReadLine()!;
+                clientId = Console.ReadLine()!;
 
-                if (clientAccountId.Length == 6 && clientAccountId.Contains('-') && clientAccountId.EndsWith("X") && int.TryParse(clientAccountId.AsSpan(0, 4), out _)) // Uso do discard*
+                if (clientId.Length == 6 && clientId.Contains('-') && clientId.EndsWith("X") && int.TryParse(clientId.AsSpan(0, 4), out _)) // Uso do discard*
                 {
                     break;
                 }
@@ -29,7 +29,7 @@ namespace Bytebank.AuthenticationComponents
                     StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
                 }
             }
-            return clientAccountId;
+            return clientId;
         }
 
         private static string RequireClientCpf(string clientCpf)
@@ -43,7 +43,7 @@ namespace Bytebank.AuthenticationComponents
         {
             while (true)
             {
-                PrintText.ColorizeText("\nInforme a senha (4 dígitos)     : ", PrintText.TextColor.White, 0);
+                PrintText.ColorizeText("\nInforme sua senha (4 dígitos)   : ", PrintText.TextColor.White, 0);
                 string passwordInput = Console.ReadLine()!;
 
                 if (int.TryParse(passwordInput, out clientPassword) && clientPassword >= 0 && clientPassword <= 9999)
