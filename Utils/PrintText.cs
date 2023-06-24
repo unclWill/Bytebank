@@ -125,9 +125,9 @@ namespace Bytebank.Utils
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);
-            PrintText.ColorizeText(textEffect, PrintText.TextColor.DarkGray, 1);
-            PrintText.ColorizeText(text, PrintText.TextColor.White, 1);
-            PrintText.ColorizeText(textEffect, PrintText.TextColor.DarkGray, 1);
+            ColorizeText(textEffect, TextColor.DarkGray, 1);
+            ColorizeText(text, TextColor.White, 1);
+            ColorizeText(textEffect, TextColor.DarkGray, 1);
         }
 
         /// <summary>
@@ -139,17 +139,17 @@ namespace Bytebank.Utils
             for (int i = 0; i < 3; i++)
             {
                 Thread.Sleep(450);
-                PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
+                ColorizeText(".", TextColor.DarkYellow, 0);
             }
         }
 
         protected internal static void AcessingSystemAnimationText(string? text)
         {
-            PrintText.ColorizeText($"\n[i] {text}", PrintText.TextColor.DarkGray, 0);
+            ColorizeText($"\n[i] {text}", TextColor.DarkGray, 0);
             for (int i = 0; i < 5; i++)
             {
                 Thread.Sleep(450);
-                PrintText.ColorizeText(".", PrintText.TextColor.DarkYellow, 0);
+                ColorizeText(".", TextColor.DarkYellow, 0);
             }
         }
 
@@ -159,7 +159,7 @@ namespace Bytebank.Utils
         /// </summary>
         protected internal static void UserInteractionIndicator()
         {
-            PrintText.ColorizeText("[>] ", PrintText.TextColor.DarkGray, 0);
+            ColorizeText("[>] ", TextColor.DarkGray, 0);
         }
     }
 }
