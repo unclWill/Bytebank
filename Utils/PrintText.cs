@@ -1,12 +1,15 @@
 /* Classe  : PrintText
  * Objetivo: Imprime textos na tela. Contém métodos que permitem imprimir textos de forma personalizada utilizando a classe System.Console.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | Modificação: 22/06/2023
+ * Data    : 21/06/2023 (Criação) | Modificação: 25/06/2023
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Bytebank.Utils
+namespace Mainframe.Utils
 {
     /// <summary>
     /// Classe <code>PrintText</code>
@@ -34,11 +37,67 @@ namespace Bytebank.Utils
         }
         private static void SetTextColor(ConsoleColor color)
         {
-            Console.ForegroundColor = color;
+            ConsoleColor consoleColor = ConsoleColor.Gray; // cor padrão, caso não seja reconhecida
+
+            switch (color)
+            {
+                case (ConsoleColor)TextColor.Black:
+                    consoleColor = ConsoleColor.Black;
+                    break;
+                case (ConsoleColor)TextColor.Blue:
+                    consoleColor = ConsoleColor.Blue;
+                    break;
+                case (ConsoleColor)TextColor.DarkBlue:
+                    consoleColor = ConsoleColor.DarkBlue;
+                    break;
+                case (ConsoleColor)TextColor.DarkCyan:
+                    consoleColor = ConsoleColor.DarkCyan;
+                    break;
+                case (ConsoleColor)TextColor.DarkGray:
+                    consoleColor = ConsoleColor.DarkGray;
+                    break;
+                case (ConsoleColor)TextColor.DarkGreen:
+                    consoleColor = ConsoleColor.DarkGreen;
+                    break;
+                case (ConsoleColor)TextColor.DarkMagenta:
+                    consoleColor = ConsoleColor.DarkMagenta;
+                    break;
+                case (ConsoleColor)TextColor.DarkRed:
+                    consoleColor = ConsoleColor.DarkRed;
+                    break;
+                case (ConsoleColor)TextColor.DarkYellow:
+                    consoleColor = ConsoleColor.DarkYellow;
+                    break;
+                case (ConsoleColor)TextColor.Gray:
+                    consoleColor = ConsoleColor.Gray;
+                    break;
+                case (ConsoleColor)TextColor.Green:
+                    consoleColor = ConsoleColor.Green;
+                    break;
+                case (ConsoleColor)TextColor.Red:
+                    consoleColor = ConsoleColor.Red;
+                    break;
+                case (ConsoleColor)TextColor.White:
+                    consoleColor = ConsoleColor.White;
+                    break;
+                case (ConsoleColor)TextColor.Yellow:
+                    consoleColor = ConsoleColor.Yellow;
+                    break;
+            }
+
+            Console.ForegroundColor = consoleColor;
         }
         private static void ResetTextColor()
         {
             Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
+        private static void SetLineBreak(sbyte lineBreak)
+        {
+            for (int i = 0; i < lineBreak; i++)
+            {
+                Console.WriteLine();
+            }
         }
 
         /// <summary>
@@ -50,68 +109,37 @@ namespace Bytebank.Utils
         /// </summary>
         /// <param name="text">String quew será manipulada e impresso.</param>
         /// <param name="color">Cor na qual o texto será impresso.</param>
-        /// <param name="lineBreak">Indica se o texto será impresso com ou sem quebra de linha.</param>
+        /// <param name="lineBreak">Indica se e quantas vezes o texto sofrerá quebras de linhas. 0 = sem quebra de linha.</param>
+        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, sbyte lineBreak)
+        {
+            // Definir a cor do texto 1
+            SetTextColor((ConsoleColor)color1);
+
+            // Imprimir o texto 1
+            Console.Write(text1);
+
+            // Definir a cor do texto 2
+            SetTextColor((ConsoleColor)color2);
+
+            // Imprimir o texto 2
+            Console.Write(text2);
+
+            // Definir a cor do texto 3
+            SetTextColor((ConsoleColor)color3);
+
+            // Imprimir o texto 3
+            Console.Write(text3);
+
+            // Realizar quebra de linha, determinada pelo valor que o programador define na declaração do método.
+            SetLineBreak(lineBreak);
+        }
+
         protected internal static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
         {
-            switch (color)
-            {
-                case TextColor.Black:
-                    SetTextColor(ConsoleColor.Black);
-                    break;
-                case TextColor.Blue:
-                    SetTextColor(ConsoleColor.Blue);
-                    break;
-                case TextColor.DarkBlue:
-                    SetTextColor(ConsoleColor.DarkBlue);
-                    break;
-                case TextColor.DarkCyan:
-                    SetTextColor(ConsoleColor.DarkCyan);
-                    break;
-                case TextColor.DarkGray:
-                    SetTextColor(ConsoleColor.DarkGray);
-                    break;
-                case TextColor.DarkGreen:
-                    SetTextColor(ConsoleColor.DarkGreen);
-                    break;
-                case TextColor.DarkMagenta:
-                    SetTextColor(ConsoleColor.DarkMagenta);
-                    break;
-                case TextColor.DarkRed:
-                    SetTextColor(ConsoleColor.DarkRed);
-                    break;
-                case TextColor.DarkYellow:
-                    SetTextColor(ConsoleColor.DarkYellow);
-                    break;
-                case TextColor.Gray:
-                    SetTextColor(ConsoleColor.Gray);
-                    break;
-                case TextColor.Green:
-                    SetTextColor(ConsoleColor.Green);
-                    break;
-                case TextColor.Red:
-                    SetTextColor(ConsoleColor.Red);
-                    break;
-                case TextColor.White:
-                    SetTextColor(ConsoleColor.White);
-                    break;
-                case TextColor.Yellow:
-                    SetTextColor(ConsoleColor.Yellow);
-                    break;
-                default:
-                    ResetTextColor();
-                    return;
-            }
-
-            if (lineBreak == 1)
-            {
-                Console.WriteLine(text);
-            }
-            else
-            {
-                Console.Write(text);
-            }
-
-            ResetTextColor();
+            SetTextColor((ConsoleColor)color);
+            Console.Write(text);
+            SetLineBreak(lineBreak);
+            ResetTextColor(); //Define a cor padrão do terminal para Cinza, caso o método ColorizeText não esteja sendo utilizado.
         }
         #endregion
 
