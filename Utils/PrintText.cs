@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mainframe.Utils
+namespace Bytebank.Utils
 {
     /// <summary>
     /// Classe <code>PrintText</code>
@@ -91,7 +91,6 @@ namespace Mainframe.Utils
         {
             Console.ForegroundColor = ConsoleColor.Gray;
         }
-
         private static void SetLineBreak(sbyte lineBreak)
         {
             for (int i = 0; i < lineBreak; i++)
@@ -110,30 +109,52 @@ namespace Mainframe.Utils
         /// <param name="text">String quew será manipulada e impresso.</param>
         /// <param name="color">Cor na qual o texto será impresso.</param>
         /// <param name="lineBreak">Indica se e quantas vezes o texto sofrerá quebras de linhas. 0 = sem quebra de linha.</param>
-        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, sbyte lineBreak)
+        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, string? text5, TextColor color5, sbyte lineBreak)
         {
             // Definir a cor do texto 1
             SetTextColor((ConsoleColor)color1);
-
-            // Imprimir o texto 1
             Console.Write(text1);
-
-            // Definir a cor do texto 2
             SetTextColor((ConsoleColor)color2);
-
-            // Imprimir o texto 2
             Console.Write(text2);
-
-            // Definir a cor do texto 3
             SetTextColor((ConsoleColor)color3);
-
-            // Imprimir o texto 3
             Console.Write(text3);
-
+            SetTextColor((ConsoleColor)color4);
+            Console.Write(text4);
+            SetTextColor((ConsoleColor)color5);
+            Console.Write(text5);
             // Realizar quebra de linha, determinada pelo valor que o programador define na declaração do método.
             SetLineBreak(lineBreak);
         }
-
+        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, sbyte lineBreak)
+        {
+            SetTextColor((ConsoleColor)color1);
+            Console.Write(text1);
+            SetTextColor((ConsoleColor)color2);
+            Console.Write(text2);
+            SetTextColor((ConsoleColor)color3);
+            Console.Write(text3);
+            SetTextColor((ConsoleColor)color4);
+            Console.Write(text4);
+            SetLineBreak(lineBreak);
+        }
+        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, sbyte lineBreak)
+        {
+            SetTextColor((ConsoleColor)color1);
+            Console.Write(text1);
+            SetTextColor((ConsoleColor)color2);
+            Console.Write(text2);
+            SetTextColor((ConsoleColor)color3);
+            Console.Write(text3);
+            SetLineBreak(lineBreak);
+        }
+        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, sbyte lineBreak)
+        {
+            SetTextColor((ConsoleColor)color1);
+            Console.Write(text1);
+            SetTextColor((ConsoleColor)color2);
+            Console.Write(text2);
+            SetLineBreak(lineBreak);
+        }
         protected internal static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
         {
             SetTextColor((ConsoleColor)color);
