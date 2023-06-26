@@ -210,5 +210,10 @@ namespace Bytebank.Utils
         {
             ColorizeText("[>] ", TextColor.DarkGray, 0);
         }
+
+        internal static void LineBreak()
+        {
+            Console.WriteLine();
+        }
     }
 }
