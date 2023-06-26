@@ -20,7 +20,7 @@ namespace Bytebank.Authenticated
         {
             Console.Clear();
             PrintText.DecorateTitleText("MENU", '-');
-            PrintText.ColorizeText("Operações disponíveis neste terminal", PrintText.TextColor.DarkGray, 1);
+            PrintText.ColorizeText("Operações disponíveis neste terminal", PrintText.TextColor.DarkGray);
 
             ConsoleKey keyPressed = StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione |", ConsoleKey.Enter, "| ou aguarde.");
             if (keyPressed == ConsoleKey.Enter)

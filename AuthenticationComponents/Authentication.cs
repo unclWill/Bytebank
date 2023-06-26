@@ -68,13 +68,13 @@ namespace Bytebank.AuthenticationComponents
 
         private static void ValidClientData()
         {
-            PrintText.AcessingSystemAnimationText("Validando os dados da sua conta");
+            PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             AuthenticatedScreen.ShowMainMenu();
         }
         private static void InvalidClientData()
         {
-            PrintText.AcessingSystemAnimationText("Validando os dados da sua conta");
-            PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed, 1);
+            PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
+            PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed);
             Console.Write("\n[i] Digite |1| para tentar novamente ou |2| para voltar à tela inicial\n");
             PrintText.UserInteractionIndicator();
             string readKeyboard = Console.ReadLine()!;

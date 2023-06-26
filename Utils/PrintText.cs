@@ -91,7 +91,7 @@ namespace Bytebank.Utils
         {
             Console.ForegroundColor = ConsoleColor.Gray;
         }
-        private static void SetLineBreak(sbyte lineBreak)
+        private static void SetLineBreak(sbyte lineBreak = 1)
         {
             for (int i = 0; i < lineBreak; i++)
             {
@@ -106,10 +106,10 @@ namespace Bytebank.Utils
         /// <code>O parêmetro 1 indica que o texto será impresso utilizando Console.WriteLine (com quebra de linha)</code>
         /// <code>O parâmetro 0 indica que o texto será impresso utilizando Console.Write (sem quebra de linha).</code>
         /// </summary>
-        /// <param name="text">String quew será manipulada e impresso.</param>
+        /// <param name="text">String que será manipulada e impressa.</param>
         /// <param name="color">Cor na qual o texto será impresso.</param>
         /// <param name="lineBreak">Indica se e quantas vezes o texto sofrerá quebras de linhas. 0 = sem quebra de linha.</param>
-        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, string? text5, TextColor color5, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, string? text5, TextColor color5, sbyte lineBreak = 1)
         {
             // Definir a cor do texto 1
             SetTextColor((ConsoleColor)color1);
@@ -125,7 +125,7 @@ namespace Bytebank.Utils
             // Realizar quebra de linha, determinada pelo valor que o programador define na declaração do método.
             SetLineBreak(lineBreak);
         }
-        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, sbyte lineBreak = 1)
         {
             SetTextColor((ConsoleColor)color1);
             Console.Write(text1);
@@ -137,7 +137,7 @@ namespace Bytebank.Utils
             Console.Write(text4);
             SetLineBreak(lineBreak);
         }
-        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, sbyte lineBreak = 1)
         {
             SetTextColor((ConsoleColor)color1);
             Console.Write(text1);
@@ -147,7 +147,7 @@ namespace Bytebank.Utils
             Console.Write(text3);
             SetLineBreak(lineBreak);
         }
-        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, sbyte lineBreak = 1)
         {
             SetTextColor((ConsoleColor)color1);
             Console.Write(text1);
@@ -155,7 +155,7 @@ namespace Bytebank.Utils
             Console.Write(text2);
             SetLineBreak(lineBreak);
         }
-        internal static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
+        internal static void ColorizeText(string? text, TextColor color, sbyte lineBreak = 1)
         {
             SetTextColor((ConsoleColor)color);
             Console.Write(text);
@@ -180,29 +180,6 @@ namespace Bytebank.Utils
         }
 
         /// <summary>
-        /// Método <code>TreeDotsAnimationText</code>
-        /// Insere três pontos que vão sendo adicionados após um determinado texto, dando a impressão de que algo está sendo processado.
-        /// </summary>
-        internal static void TreeDotsAnimationText()
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                Thread.Sleep(450);
-                ColorizeText(".", TextColor.DarkYellow, 0);
-            }
-        }
-
-        internal static void AcessingSystemAnimationText(string? text)
-        {
-            ColorizeText($"\n[i] {text}", TextColor.DarkGray, 0);
-            for (int i = 0; i < 5; i++)
-            {
-                Thread.Sleep(450);
-                ColorizeText(".", TextColor.DarkYellow, 0);
-            }
-        }
-
-        /// <summary>
         /// Método <code>UserInteractionIndicator</code>
         /// Exibe os caracteres [>] indicando que o espaço a seguir é destinado à inserção de dados pelo usuário.
         /// </summary>
@@ -211,9 +188,5 @@ namespace Bytebank.Utils
             ColorizeText("[>] ", TextColor.DarkGray, 0);
         }
 
-        internal static void LineBreak()
-        {
-            Console.WriteLine();
-        }
     }
 }

@@ -51,7 +51,7 @@ namespace Bytebank.StartScreenComponents
         internal static void ReturningToStartScreenMessage()
         {
             PrintText.ColorizeText("\n[i] Retornando à tela inicial", PrintText.TextColor.Yellow, 0);
-            PrintText.TreeDotsAnimationText();
+            PrintTextAnimations.TreeDotsAnimation();
             ShowStartScreen();
         }
 
@@ -68,7 +68,7 @@ namespace Bytebank.StartScreenComponents
 | |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
 |______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
         (____/";
-            PrintText.ColorizeText(productOwnerBrand, PrintText.TextColor.DarkMagenta, 1);
+            PrintText.ColorizeText(productOwnerBrand, PrintText.TextColor.DarkMagenta);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Bytebank.StartScreenComponents
         {
             PrintText.DecorateTitleText(" Digite |1| para iniciar o seu atendimento", '-');
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
-            PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen, 1);
+            PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen);
             PrintText.UserInteractionIndicator();
             int selectedOption;
             //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
@@ -125,7 +125,7 @@ namespace Bytebank.StartScreenComponents
         private static void ShowAppFinalizationDialog()
         {
             Console.Write("\n[i] Liberando terminal");
-            PrintText.TreeDotsAnimationText();
+            PrintTextAnimations.TreeDotsAnimation();
             Console.Write("\n\n[i] Terminal liberado! Obrigado por utlilizar o Bytebank.\n\n");
 
             PrintText.ColorizeText("Finalizando ", PrintText.TextColor.DarkGray, 0);
