@@ -1,7 +1,7 @@
 /* Classe  : AuthenticationScreen
  * Objetivo: Exibe a tela de autenticação de verificando se um Cliente existe no sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 23/06/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
  */
 
 using Bytebank.StartScreenComponents;

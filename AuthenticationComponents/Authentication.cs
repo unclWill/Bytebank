@@ -1,7 +1,7 @@
 /* Classe  : Authentication
  * Objetivo: Concentra os métodos de autenticação para permitir que o usuário entre na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: DD/MM/AAAA
+ * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
  */
 
 using Bytebank.Authenticated;
@@ -50,7 +50,7 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
-        protected internal static void Authenticate(Authentication authData)
+        internal static void Authenticate(Authentication authData)
         {
             //---DADOS DE CLIENTE HARDCODED
             Authentication authClient = new Authentication("1020-X", "12345678900", 1234);

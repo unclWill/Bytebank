@@ -1,7 +1,7 @@
 /* Classe  : PrintText
  * Objetivo: Imprime textos na tela. Contém métodos que permitem imprimir textos de forma personalizada utilizando a classe System.Console.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | Modificação: 25/06/2023
+ * Data    : 21/06/2023 (Criação) | Modificação: 26/06/2023
  */
 
 using System;
@@ -18,7 +18,7 @@ namespace Bytebank.Utils
     internal class PrintText
     {
         #region ColorizeText -- definições responsáveis por definir a cor do texto.
-        public enum TextColor
+        internal enum TextColor
         {
             Black,
             Blue,
@@ -109,7 +109,7 @@ namespace Bytebank.Utils
         /// <param name="text">String quew será manipulada e impresso.</param>
         /// <param name="color">Cor na qual o texto será impresso.</param>
         /// <param name="lineBreak">Indica se e quantas vezes o texto sofrerá quebras de linhas. 0 = sem quebra de linha.</param>
-        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, string? text5, TextColor color5, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, string? text5, TextColor color5, sbyte lineBreak)
         {
             // Definir a cor do texto 1
             SetTextColor((ConsoleColor)color1);
@@ -125,7 +125,7 @@ namespace Bytebank.Utils
             // Realizar quebra de linha, determinada pelo valor que o programador define na declaração do método.
             SetLineBreak(lineBreak);
         }
-        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, string? text4, TextColor color4, sbyte lineBreak)
         {
             SetTextColor((ConsoleColor)color1);
             Console.Write(text1);
@@ -137,7 +137,7 @@ namespace Bytebank.Utils
             Console.Write(text4);
             SetLineBreak(lineBreak);
         }
-        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, string? text3, TextColor color3, sbyte lineBreak)
         {
             SetTextColor((ConsoleColor)color1);
             Console.Write(text1);
@@ -147,7 +147,7 @@ namespace Bytebank.Utils
             Console.Write(text3);
             SetLineBreak(lineBreak);
         }
-        protected internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, sbyte lineBreak)
+        internal static void ColorizeText(string? text1, TextColor color1, string? text2, TextColor color2, sbyte lineBreak)
         {
             SetTextColor((ConsoleColor)color1);
             Console.Write(text1);
@@ -155,7 +155,7 @@ namespace Bytebank.Utils
             Console.Write(text2);
             SetLineBreak(lineBreak);
         }
-        protected internal static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
+        internal static void ColorizeText(string? text, TextColor color, sbyte lineBreak)
         {
             SetTextColor((ConsoleColor)color);
             Console.Write(text);
@@ -170,7 +170,7 @@ namespace Bytebank.Utils
         /// </summary>
         /// <param name="text">String que será exibida.</param>
         /// <param name="character">Caractere que será utilizado para criar a decoração entorno do texto.</param>
-        protected internal static void DecorateTitleText(string text, char character)
+        internal static void DecorateTitleText(string text, char character)
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);
@@ -183,7 +183,7 @@ namespace Bytebank.Utils
         /// Método <code>TreeDotsAnimationText</code>
         /// Insere três pontos que vão sendo adicionados após um determinado texto, dando a impressão de que algo está sendo processado.
         /// </summary>
-        protected internal static void TreeDotsAnimationText()
+        internal static void TreeDotsAnimationText()
         {
             for (int i = 0; i < 3; i++)
             {
@@ -192,7 +192,7 @@ namespace Bytebank.Utils
             }
         }
 
-        protected internal static void AcessingSystemAnimationText(string? text)
+        internal static void AcessingSystemAnimationText(string? text)
         {
             ColorizeText($"\n[i] {text}", TextColor.DarkGray, 0);
             for (int i = 0; i < 5; i++)
@@ -206,7 +206,7 @@ namespace Bytebank.Utils
         /// Método <code>UserInteractionIndicator</code>
         /// Exibe os caracteres [>] indicando que o espaço a seguir é destinado à inserção de dados pelo usuário.
         /// </summary>
-        protected internal static void UserInteractionIndicator()
+        internal static void UserInteractionIndicator()
         {
             ColorizeText("[>] ", TextColor.DarkGray, 0);
         }

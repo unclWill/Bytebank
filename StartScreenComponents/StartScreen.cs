@@ -1,7 +1,7 @@
 /* Classe  : StartScreenComponents
  * Objetivo: Concentra os métodos personalizados utilizados na tela inicial do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 23/06/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
  */
 
 using System;
@@ -19,7 +19,7 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Exibe os itens que compõe a tela inicial do sistema.
         /// </summary>
-        protected internal static void ShowStartScreen()
+        internal static void ShowStartScreen()
         {
             Console.Clear();
             ShowAppWindowTitle();
@@ -33,7 +33,7 @@ namespace Bytebank.StartScreenComponents
         /// Diálogo que permite voltar à tela inicial ao pressionar uma determinada tecla.
         /// Retorna uma ConsoleKey para ser usada como controle de execução.
         /// </summary>
-        protected internal static ConsoleKey EscapeFromScreenDialog(string? primaryText, ConsoleKey escapeKey, string? secondaryText)
+        internal static ConsoleKey EscapeFromScreenDialog(string? primaryText, ConsoleKey escapeKey, string? secondaryText)
         {
             Console.Write($"\n[i] {primaryText} {escapeKey} {secondaryText}\n");
             PrintText.UserInteractionIndicator();
@@ -48,7 +48,7 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Exibe uma mensagem que informa que o sistema está retornando a tela inicial.
         /// </summary>
-        protected internal static void ReturningToStartScreenMessage()
+        internal static void ReturningToStartScreenMessage()
         {
             PrintText.ColorizeText("\n[i] Retornando à tela inicial", PrintText.TextColor.Yellow, 0);
             PrintText.TreeDotsAnimationText();
@@ -58,7 +58,7 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Exibe o logo do Bytebank estilizado com caracteres ASCII.
         /// </summary>
-        protected internal static void ShowProductOwnerBrand()
+        internal static void ShowProductOwnerBrand()
         {
             string productOwnerBrand = @"
  ______                  _                 _     
