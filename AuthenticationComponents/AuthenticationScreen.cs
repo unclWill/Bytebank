@@ -6,6 +6,7 @@
 
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
+using Microsoft.VisualBasic;
 using System;
 
 namespace Bytebank.AuthenticationComponents
