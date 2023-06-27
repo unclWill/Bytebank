@@ -35,11 +35,7 @@ namespace Bytebank.Authenticated
         {
             //Authentication.Authenticate(authClient);
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
-            Console.WriteLine(_accountId);
-            //Console.WriteLine(Authentication._getAccountId);
-            //Console.WriteLine(authenticatedInfo.AuthClientAccountId = accountId);
-            //Console.WriteLine(authenticatedInfo.AuthClientCpf = "12345678900");
-            //Console.WriteLine(authenticatedInfo.AuthClientPassword);
+            Console.WriteLine($"Conta: {_accountId}");
             Console.WriteLine();
         }
 
