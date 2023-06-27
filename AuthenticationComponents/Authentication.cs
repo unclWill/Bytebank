@@ -4,6 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
  */
 
+using System.Reflection.Metadata.Ecma335;
 using Bytebank.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
@@ -12,9 +13,16 @@ namespace Bytebank.AuthenticationComponents
 {
     public class Authentication
     {
-        public string AuthClientAccountId { get; private set; }
-        public string AuthClientCpf { get; private set; }
-        public int AuthClientPassword { get; private set; }
+        public string AuthClientAccountId { get; set; }
+        public string AuthClientCpf { get; set; }
+        public int AuthClientPassword { get; set; }
+
+        public Authentication()
+        {
+            AuthClientAccountId = "";
+            AuthClientCpf = "";
+            AuthClientPassword = 0000;
+        }
 
         public Authentication(string clientId, string clientCpf, int clientPassword)
         {
@@ -50,26 +58,10 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
-        internal static void Authenticate(Authentication authData)
-        {
-            //---DADOS DE CLIENTE HARDCODED
-            Authentication authClient = new Authentication("1020-X", "12345678900", 1234);
-
-            //AuthenticationScreen authScreen = new AuthenticationScreen();
-            if (authData.Equals(authClient))
-            {
-                ValidClientData();
-            }
-            else
-            {
-                InvalidClientData();
-            }
-        }
-
         private static void ValidClientData()
         {
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
-            AuthenticatedScreen.ShowMainMenu();
+            AuthenticatedScreen.ShowAuthenticatedScreen();
         }
         private static void InvalidClientData()
         {
@@ -86,7 +78,21 @@ namespace Bytebank.AuthenticationComponents
             {
                 StartScreen.ReturningToStartScreenMessage();
             }
+        }
 
+        internal static void Authenticate(Authentication authData)
+        {
+            //---DADOS DE CLIENTE HARDCODED
+            Authentication authClient = new Authentication("1020-X", "12345678900", 1234);
+
+            if (authData.Equals(authClient))
+            {
+                ValidClientData();
+            }
+            else
+            {
+                InvalidClientData();
+            }
         }
     }
 }

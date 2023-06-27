@@ -91,7 +91,7 @@ namespace Bytebank.Utils
         {
             Console.ForegroundColor = ConsoleColor.Gray;
         }
-        private static void SetLineBreak(sbyte lineBreak = 1)
+        internal static void SetLineBreak(sbyte lineBreak = 1)
         {
             for (int i = 0; i < lineBreak; i++)
             {
