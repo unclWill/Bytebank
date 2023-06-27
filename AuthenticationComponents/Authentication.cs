@@ -22,14 +22,15 @@ namespace Bytebank.AuthenticationComponents
         public Authentication()
         {
             AuthClientAccountId = "";
+            AuthClientBankBranch = "";
             AuthClientCpf = "";
             AuthClientPinCode = 0;
         }
 
-        public Authentication(string clientId, string clientCpf, int clientPassword)
+        public Authentication(string clientId, string clientBankBranch, int clientPassword)
         {
             AuthClientAccountId = clientId;
-            AuthClientCpf = clientCpf;
+            AuthClientBankBranch = clientBankBranch;
             AuthClientPinCode = clientPassword;
         }
 
