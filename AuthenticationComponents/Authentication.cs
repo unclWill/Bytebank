@@ -96,7 +96,7 @@ namespace Bytebank.AuthenticationComponents
         {
             //#MEU CÓDIGO: Utilizando o foreach com comparação direta entre o objeto e a lista. 
             //<!> Precisa que os métodos Equals() e GetHashCode() sejam sobrescritos para que compare os contéudos dos objetos e não os objetos em si.
-            foreach (var client in registeredClients)
+            foreach (var client in registeredClients) //Este trecho do código apresentou comportamentos estranhos!
             {
                 if (clientAuthInput.Equals(client))
                 {

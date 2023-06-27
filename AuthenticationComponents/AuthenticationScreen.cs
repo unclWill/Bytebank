@@ -35,22 +35,22 @@ namespace Bytebank.AuthenticationComponents
 
         private static string RequireClientCpf(string clientCpfInput)
         {
-            //while (true)
-            //{
+            while (true)
+            {
                 PrintText.ColorizeText("\nInforme o seu CPF (Nºs apenas)  : ", PrintText.TextColor.White, 0);
-                return clientCpfInput = Console.ReadLine()!;
+                clientCpfInput = Console.ReadLine()!;
 
-                //if (clientCpfInput.Length == 11 && int.TryParse(clientCpfInput.AsSpan(0, 10), out _))
-                //{
-                //    break;
-               // }
-               // else
-                //{
-                    //PrintText.ColorizeText("\n[!] O CPF digitado não é válido neste sistema!\n[i] O CPF deve conter 11 dígitos numéricos.\n", PrintText.TextColor.DarkRed, 0);
-                    //StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
-                //}
-            //}
-            //return clientCpfInput;
+                if (clientCpfInput.Length == 11 && int.TryParse(clientCpfInput.AsSpan(0, 10), out _))
+                {
+                    break;
+                }
+                else
+                {
+                    PrintText.ColorizeText("\n[!] O CPF digitado não é válido neste sistema!\n[i] O CPF deve conter 11 dígitos numéricos.\n", PrintText.TextColor.DarkRed, 0);
+                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
+                }
+            }
+            return clientCpfInput;
         }
         private static int RequireClientPinCode(int clientPinCode)
         {
