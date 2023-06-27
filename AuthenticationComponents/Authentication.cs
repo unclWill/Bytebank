@@ -115,20 +115,6 @@ namespace Bytebank.AuthenticationComponents
             {
                 InvalidClientData();
             }*/
-
-            //#MAIS CÓDIGO: Utilizando forearch com comparação direta entre as propriedades do objeto.
-            /*foreach (var client in registeredClients)
-            {
-                if (clientAuthInput.AuthClientAccountId == client.AuthClientAccountId &&
-                    clientAuthInput.AuthClientCpf == client.AuthClientCpf &&
-                    clientAuthInput.AuthClientPinCode == client.AuthClientPinCode)
-                {
-                    ValidClientData(client);
-                    return;
-                }
-            }
-            InvalidClientData();
-            */
             //-------------------------------------------------------------------------------------------------------------------
         }
     }

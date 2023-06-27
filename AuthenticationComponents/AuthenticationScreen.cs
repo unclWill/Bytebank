@@ -33,26 +33,26 @@ namespace Bytebank.AuthenticationComponents
             return clientId;
         }
 
-        private static string RequireClientCpf(string clientCpf)
+        private static string RequireClientCpf(string clientCpfInput)
         {
-            while (true)
-            {
+            //while (true)
+            //{
                 PrintText.ColorizeText("\nInforme o seu CPF (Nºs apenas)  : ", PrintText.TextColor.White, 0);
-                string clientCpfInput = Console.ReadLine()!;
+                return clientCpfInput = Console.ReadLine()!;
 
-                if (clientCpfInput.Length == 11) //&& int.TryParse(clientCpfInput.AsSpan(0, 10), out _))
-                {
-                    break;
-                }
-                else
-                {
-                    PrintText.ColorizeText("\n[!] O CPF digitado não é válido neste sistema!\n[i] O CPF deve conter 11 dígitos numéricos.\n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
-                }
-            }
-            return clientCpf;
+                //if (clientCpfInput.Length == 11 && int.TryParse(clientCpfInput.AsSpan(0, 10), out _))
+                //{
+                //    break;
+               // }
+               // else
+                //{
+                    //PrintText.ColorizeText("\n[!] O CPF digitado não é válido neste sistema!\n[i] O CPF deve conter 11 dígitos numéricos.\n", PrintText.TextColor.DarkRed, 0);
+                    //StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
+                //}
+            //}
+            //return clientCpfInput;
         }
-        private static int RequireClientPassword(int clientPinCode)
+        private static int RequireClientPinCode(int clientPinCode)
         {
             while (true)
             {
@@ -81,14 +81,11 @@ namespace Bytebank.AuthenticationComponents
             PrintText.DecorateTitleText("           AUTENTICAÇÃO           ", '~');
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
 
-            //Recebendo o número da conta e validando.
             string clientAccountId = string.Empty;
-            //Recebendo o número do CPF
             string clientCpf = string.Empty;
-            //Recebendo a senha e validando.
-            int clientPassword = 0;
+            int clientPinCode = 0;
 
-            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientCpf(clientCpf), RequireClientPassword(clientPassword));
+            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientCpf(clientCpf), RequireClientPinCode(clientPinCode));
             Authentication.Authenticate(clientInfo);
         }
     }
