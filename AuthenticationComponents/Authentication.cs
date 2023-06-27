@@ -15,6 +15,7 @@ namespace Bytebank.AuthenticationComponents
         //internal static string? _getAccountId;
 
         public string AuthClientAccountId { get; set; }
+        public string AuthClientBankBranch { get; set; }
         public string AuthClientCpf { get; set; }
         public int AuthClientPinCode { get; set; }
 
