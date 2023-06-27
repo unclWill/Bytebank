@@ -58,8 +58,8 @@ namespace Bytebank.AuthenticationComponents
                 return hash;
             }
             /* #FORMA MAIS SIMPLES:
-             * return HashCode.Combine(AuthClientAccountId, AuthClientCpf, AuthClientPinCode);
-             */
+            return HashCode.Combine(AuthClientAccountId, AuthClientCpf, AuthClientPinCode); */
+
         }
 
         private static void ValidClientData(Authentication getClientAccountId)
@@ -95,7 +95,7 @@ namespace Bytebank.AuthenticationComponents
         internal static void Authenticate(Authentication clientAuthInput)
         {
             //#MEU CÓDIGO: Utilizando o foreach com comparação direta entre o objeto e a lista. 
-            //<!> Precisar que os métodos Equals() e GetHashCode() sejam sobrescritos para que compare os contéudos dos objetos e não os objetos em si.
+            //<!> Precisa que os métodos Equals() e GetHashCode() sejam sobrescritos para que compare os contéudos dos objetos e não os objetos em si.
             foreach (var client in registeredClients)
             {
                 if (clientAuthInput.Equals(client))
@@ -106,22 +106,22 @@ namespace Bytebank.AuthenticationComponents
             InvalidClientData();
 
             //-------------------------------------------- OUTRAS FORMAS DE RESOLVER --------------------------------------------
-            /*//#MAIS OTIMIZADO: Utilizando o método Any() - LINQ e expressão lambda -- NÃO REQUER A REESCRITA DO MÉTODO Equals()
-            if (registeredClients.Any(client => clientAuthenticationInput.Equals(clientAuthenticationInput)))
+            //#MAIS OTIMIZADO: Utilizando o método Any() - LINQ e expressão lambda -- NÃO REQUER A REESCRITA DO MÉTODO Equals()
+            /*if (registeredClients.Any(client => clientAuthInput.Equals(clientAuthInput)))
             {
-                ValidClientData(clientAuthenticationInput);
+                ValidClientData(clientAuthInput);
             }
             else
             {
                 InvalidClientData();
-            }
-            */
-            /*//#MAIS CÓDIGO: Utilizando forearch com comparação direta entre as propriedades do objeto.
-            foreach (var client in registeredClients)
+            }*/
+
+            //#MAIS CÓDIGO: Utilizando forearch com comparação direta entre as propriedades do objeto.
+            /*foreach (var client in registeredClients)
             {
-                if (clientAuthenticationInput.AuthClientAccountId == client.AuthClientAccountId &&
-                    clientAuthenticationInput.AuthClientCpf == client.AuthClientCpf &&
-                    clientAuthenticationInput.AuthClientPinCode == client.AuthClientPinCode)
+                if (clientAuthInput.AuthClientAccountId == client.AuthClientAccountId &&
+                    clientAuthInput.AuthClientCpf == client.AuthClientCpf &&
+                    clientAuthInput.AuthClientPinCode == client.AuthClientPinCode)
                 {
                     ValidClientData(client);
                     return;

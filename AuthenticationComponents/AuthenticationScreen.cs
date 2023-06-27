@@ -35,21 +35,33 @@ namespace Bytebank.AuthenticationComponents
 
         private static string RequireClientCpf(string clientCpf)
         {
-            PrintText.ColorizeText("\nInforme o seu CPF (Nºs apenas)  : ", PrintText.TextColor.White, 0);
-            clientCpf = Console.ReadLine()!;
+            while (true)
+            {
+                PrintText.ColorizeText("\nInforme o seu CPF (Nºs apenas)  : ", PrintText.TextColor.White, 0);
+                string clientCpfInput = Console.ReadLine()!;
+
+                if (clientCpfInput.Length == 11) //&& int.TryParse(clientCpfInput.AsSpan(0, 10), out _))
+                {
+                    break;
+                }
+                else
+                {
+                    PrintText.ColorizeText("\n[!] O CPF digitado não é válido neste sistema!\n[i] O CPF deve conter 11 dígitos numéricos.\n", PrintText.TextColor.DarkRed, 0);
+                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
+                }
+            }
             return clientCpf;
         }
-
-        private static int RequireClientPassword(int clientPassword)
+        private static int RequireClientPassword(int clientPinCode)
         {
             while (true)
             {
                 PrintText.ColorizeText("\nInforme sua senha (4 dígitos)   : ", PrintText.TextColor.White, 0);
-                string passwordInput = Console.ReadLine()!;
+                string pinCodeInput = Console.ReadLine()!;
 
-                if (int.TryParse(passwordInput, out clientPassword) && clientPassword >= 0 && clientPassword <= 9999)
+                if (int.TryParse(pinCodeInput, out clientPinCode) && clientPinCode >= 0 && clientPinCode <= 9999)
                 {
-                    if (clientPassword.ToString("D4") == passwordInput)
+                    if (clientPinCode.ToString("D4") == pinCodeInput)
                     {
                         break; // A saída do loop ocorre quando uma senha válida é fornecida
                     }
@@ -58,7 +70,7 @@ namespace Bytebank.AuthenticationComponents
                 PrintText.ColorizeText("\n[i] Senha inválida! A senha deve ter 4 dígitos numéricos.", PrintText.TextColor.DarkRed);
                 Console.WriteLine("[i] Por favor, tente novamente.");
             }
-            return clientPassword;
+            return clientPinCode;
         }
 
         protected internal static void ShowAuthenticationDialog()
