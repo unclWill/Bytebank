@@ -8,26 +8,38 @@ using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using System;
+using System.Runtime.InteropServices;
 
 namespace Bytebank.Authenticated
 {
     public class AuthenticatedScreen
     {
+        private static string? _accountId;
+
         /// <summary>
         /// Exibe o menu da área logada do sistema.
         /// </summary>
         internal static void ShowAuthenticatedScreen()
         {
+            Console.Clear();
             ShowAuthenticatedMenu();
+        }
+
+        //Pega como parâmetro o número da conta do cliente no momento que os dados de autenticação são validados na classe Authentication.
+        internal static void GetAccountId(Authentication accountId)
+        {
+            _accountId = accountId.AuthClientAccountId;
         }
 
         private static void ShowClientAccountBasicInfo()
         {
+            //Authentication.Authenticate(authClient);
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
-            Authentication authenticatedInfo = new Authentication();
-            Console.WriteLine(authenticatedInfo.AuthClientAccountId = "TESTE");
-            Console.WriteLine(authenticatedInfo.AuthClientCpf = "12345678900");
-            Console.WriteLine(authenticatedInfo.AuthClientPassword);
+            Console.WriteLine(_accountId);
+            //Console.WriteLine(Authentication._getAccountId);
+            //Console.WriteLine(authenticatedInfo.AuthClientAccountId = accountId);
+            //Console.WriteLine(authenticatedInfo.AuthClientCpf = "12345678900");
+            //Console.WriteLine(authenticatedInfo.AuthClientPassword);
             Console.WriteLine();
         }
 

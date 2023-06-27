@@ -4,7 +4,6 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
  */
 
-using System.Reflection.Metadata.Ecma335;
 using Bytebank.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
@@ -13,22 +12,24 @@ namespace Bytebank.AuthenticationComponents
 {
     public class Authentication
     {
+        //internal static string? _getAccountId;
+
         public string AuthClientAccountId { get; set; }
         public string AuthClientCpf { get; set; }
-        public int AuthClientPassword { get; set; }
+        public int AuthClientPinCode { get; set; }
 
         public Authentication()
         {
             AuthClientAccountId = "";
             AuthClientCpf = "";
-            AuthClientPassword = 0000;
+            AuthClientPinCode = 0;
         }
 
         public Authentication(string clientId, string clientCpf, int clientPassword)
         {
             AuthClientAccountId = clientId;
             AuthClientCpf = clientCpf;
-            AuthClientPassword = clientPassword;
+            AuthClientPinCode = clientPassword;
         }
 
         public override bool Equals(object? obj)
@@ -41,7 +42,7 @@ namespace Bytebank.AuthenticationComponents
 
             return AuthClientAccountId == otherObj.AuthClientAccountId &&
                    AuthClientCpf == otherObj.AuthClientCpf &&
-                   AuthClientPassword == otherObj.AuthClientPassword;
+                   AuthClientPinCode == otherObj.AuthClientPinCode;
         }
         public override int GetHashCode()
         {
@@ -52,14 +53,18 @@ namespace Bytebank.AuthenticationComponents
                 // Combina o hash das propriedades com o hash atual
                 hash = hash * 23 + AuthClientAccountId.GetHashCode();
                 hash = hash * 23 + AuthClientCpf.GetHashCode();
-                hash = hash * 23 + AuthClientPassword.GetHashCode();
+                hash = hash * 23 + AuthClientPinCode.GetHashCode();
 
                 return hash;
             }
+            /* #FORMA MAIS SIMPLES:
+             * return HashCode.Combine(AuthClientAccountId, AuthClientCpf, AuthClientPinCode);
+             */
         }
 
-        private static void ValidClientData()
+        private static void ValidClientData(Authentication getClientAccountId)
         {
+            AuthenticatedScreen.GetAccountId(getClientAccountId);
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             AuthenticatedScreen.ShowAuthenticatedScreen();
         }
@@ -80,19 +85,51 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
-        internal static void Authenticate(Authentication authData)
+        private static readonly List<Authentication> registeredClients = new()
         {
-            //---DADOS DE CLIENTE HARDCODED
-            Authentication authClient = new Authentication("1020-X", "12345678900", 1234);
+            { new Authentication("1111-X", "12345678999", 2468) },
+            { new Authentication("1020-X", "12345678900", 1234) },
+            { new Authentication("1120-X", "00987654321", 4321) },
+        };
 
-            if (authData.Equals(authClient))
+        internal static void Authenticate(Authentication clientAuthInput)
+        {
+            //#MEU CÓDIGO: Utilizando o foreach com comparação direta entre o objeto e a lista. 
+            //<!> Precisar que os métodos Equals() e GetHashCode() sejam sobrescritos para que compare os contéudos dos objetos e não os objetos em si.
+            foreach (var client in registeredClients)
             {
-                ValidClientData();
+                if (clientAuthInput.Equals(client))
+                {
+                    ValidClientData(clientAuthInput);
+                }
+            }
+            InvalidClientData();
+
+            //-------------------------------------------- OUTRAS FORMAS DE RESOLVER --------------------------------------------
+            /*//#MAIS OTIMIZADO: Utilizando o método Any() - LINQ e expressão lambda -- NÃO REQUER A REESCRITA DO MÉTODO Equals()
+            if (registeredClients.Any(client => clientAuthenticationInput.Equals(clientAuthenticationInput)))
+            {
+                ValidClientData(clientAuthenticationInput);
             }
             else
             {
                 InvalidClientData();
             }
+            */
+            /*//#MAIS CÓDIGO: Utilizando forearch com comparação direta entre as propriedades do objeto.
+            foreach (var client in registeredClients)
+            {
+                if (clientAuthenticationInput.AuthClientAccountId == client.AuthClientAccountId &&
+                    clientAuthenticationInput.AuthClientCpf == client.AuthClientCpf &&
+                    clientAuthenticationInput.AuthClientPinCode == client.AuthClientPinCode)
+                {
+                    ValidClientData(client);
+                    return;
+                }
+            }
+            InvalidClientData();
+            */
+            //-------------------------------------------------------------------------------------------------------------------
         }
     }
 }
