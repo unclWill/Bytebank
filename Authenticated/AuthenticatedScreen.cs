@@ -36,7 +36,7 @@ namespace Bytebank.Authenticated
             //Authentication.Authenticate(authClient);
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             Console.WriteLine($"Conta: {_accountId}");
-            Console.WriteLine();
+            PrintText.SetLineBreak();
         }
 
         private static void ShowAuthenticatedMenu()

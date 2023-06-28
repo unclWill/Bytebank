@@ -18,9 +18,6 @@ namespace Bytebank.AuthenticationComponents
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o nº da sua conta\n(no formato 0000-X): ", PrintText.TextColor.White, 0);
-                Console.Write("", Console.ForegroundColor = ConsoleColor.DarkYellow);
-                clientIdInput = Console.ReadLine()!;
-
                 if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && clientIdInput.EndsWith("X") && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
                 {
                     break;
@@ -39,7 +36,6 @@ namespace Bytebank.AuthenticationComponents
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 0000-A): ", PrintText.TextColor.White, 0);
-                Console.Write("", Console.ForegroundColor = ConsoleColor.DarkYellow);
                 clientBankBranchInput = Console.ReadLine()!;
 
                 if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
@@ -60,7 +56,6 @@ namespace Bytebank.AuthenticationComponents
             while (true)
             {
                 PrintText.ColorizeText("\nInforme sua senha\n(4 dígitos numéricos): ", PrintText.TextColor.White, 0);
-                Console.Write("", Console.ForegroundColor = ConsoleColor.DarkYellow);
                 pinCodeInput = Console.ReadLine()!;
 
                 if (int.TryParse(pinCodeInput, out clientPinCode) && clientPinCode >= 0 && clientPinCode <= 9999)
