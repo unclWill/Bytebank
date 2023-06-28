@@ -95,8 +95,8 @@ namespace Bytebank.StartScreenComponents
         private static void ShowStartServiceAtTerminalDialog()
         {
             PrintText.DecorateTitleText(" Digite |1| para iniciar o seu atendimento", '-');
-            PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Green, 0);
-            PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGreen);
+            PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Gray, 0);
+            PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGray);
             PrintText.UserInteractionIndicator();
             int selectedOption;
             //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.

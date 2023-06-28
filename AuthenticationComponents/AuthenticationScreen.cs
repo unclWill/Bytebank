@@ -18,6 +18,8 @@ namespace Bytebank.AuthenticationComponents
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o nº da sua conta\n(no formato 0000-X): ", PrintText.TextColor.White, 0);
+                clientIdInput = Console.ReadLine()!;
+
                 if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && clientIdInput.EndsWith("X") && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
                 {
                     break;
