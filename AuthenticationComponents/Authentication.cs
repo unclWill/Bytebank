@@ -85,7 +85,7 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
-        private static readonly List<Authentication> registeredClients = new()
+        internal static readonly List<Authentication> registeredClients = new()
         {
             { new Authentication("1111-X", "1234-A", 2468) },
             { new Authentication("1020-X", "6789-A", 1234) },
