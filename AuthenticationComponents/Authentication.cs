@@ -16,22 +16,20 @@ namespace Bytebank.AuthenticationComponents
 
         public string AuthClientAccountId { get; set; }
         public string AuthClientBankBranch { get; set; }
-        public string AuthClientCpf { get; set; }
         public int AuthClientPinCode { get; set; }
 
         public Authentication()
         {
             AuthClientAccountId = "";
             AuthClientBankBranch = "";
-            AuthClientCpf = "";
             AuthClientPinCode = 0;
         }
 
-        public Authentication(string clientId, string clientBankBranch, int clientPassword)
+        public Authentication(string clientId, string clientBankBranch, int clientPinCode)
         {
             AuthClientAccountId = clientId;
             AuthClientBankBranch = clientBankBranch;
-            AuthClientPinCode = clientPassword;
+            AuthClientPinCode = clientPinCode;
         }
 
         public override bool Equals(object? obj)
@@ -43,7 +41,7 @@ namespace Bytebank.AuthenticationComponents
             Authentication otherObj = (Authentication)obj; //É feita a conversão do objeto otherObj para Authentication, já que a verificação anterior garante que obj é do mesmo tipo.
 
             return AuthClientAccountId == otherObj.AuthClientAccountId &&
-                   AuthClientCpf == otherObj.AuthClientCpf &&
+                   AuthClientBankBranch == otherObj.AuthClientBankBranch &&
                    AuthClientPinCode == otherObj.AuthClientPinCode;
         }
         public override int GetHashCode()
@@ -54,7 +52,7 @@ namespace Bytebank.AuthenticationComponents
 
                 // Combina o hash das propriedades com o hash atual
                 hash = hash * 23 + AuthClientAccountId.GetHashCode();
-                hash = hash * 23 + AuthClientCpf.GetHashCode();
+                hash = hash * 23 + AuthClientBankBranch.GetHashCode();
                 hash = hash * 23 + AuthClientPinCode.GetHashCode();
 
                 return hash;
@@ -89,9 +87,9 @@ namespace Bytebank.AuthenticationComponents
 
         private static readonly List<Authentication> registeredClients = new()
         {
-            { new Authentication("1111-X", "12345678999", 2468) },
-            { new Authentication("1020-X", "12345678900", 1234) },
-            { new Authentication("1120-X", "00987654321", 4321) },
+            { new Authentication("1111-X", "1234-A", 2468) },
+            { new Authentication("1020-X", "6789-A", 1234) },
+            { new Authentication("1120-X", "1112-A", 4321) },
         };
 
         internal static void Authenticate(Authentication clientAuthInput)

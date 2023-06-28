@@ -13,14 +13,15 @@ namespace Bytebank.AuthenticationComponents
 {
     internal class AuthenticationScreen
     {
-        private static string RequireClientId(string clientId)
+        private static string RequireClientId(string clientIdInput)
         {
             while (true)
             {
-                PrintText.ColorizeText("\nInforme o número da sua conta   : ", PrintText.TextColor.White, 0);
-                clientId = Console.ReadLine()!;
+                PrintText.ColorizeText("\nInforme o nº da sua conta\n(no formato 0000-X): ", PrintText.TextColor.White, 0);
+                Console.Write("", Console.ForegroundColor = ConsoleColor.DarkYellow);
+                clientIdInput = Console.ReadLine()!;
 
-                if (clientId.Length == 6 && clientId.Contains('-') && clientId.EndsWith("X") && int.TryParse(clientId.AsSpan(0, 4), out _)) // Uso do discard*
+                if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && clientIdInput.EndsWith("X") && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
                 {
                     break;
                 }
@@ -30,34 +31,37 @@ namespace Bytebank.AuthenticationComponents
                     StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
                 }
             }
-            return clientId;
+            return clientIdInput;
         }
 
-        private static string RequireClientCpf(string clientCpfInput)
+        private static string RequireClientBankBranch(string clientBankBranchInput)
         {
             while (true)
             {
-                PrintText.ColorizeText("\nInforme o seu CPF (Nºs apenas)  : ", PrintText.TextColor.White, 0);
-                clientCpfInput = Console.ReadLine()!;
+                PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 0000-A): ", PrintText.TextColor.White, 0);
+                Console.Write("", Console.ForegroundColor = ConsoleColor.DarkYellow);
+                clientBankBranchInput = Console.ReadLine()!;
 
-                if (clientCpfInput.Length == 11 && int.TryParse(clientCpfInput.AsSpan(0, 10), out _))
+                if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
                 {
                     break;
                 }
                 else
                 {
-                    PrintText.ColorizeText("\n[!] O CPF digitado não é válido neste sistema!\n[i] O CPF deve conter 11 dígitos numéricos.\n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
+                    PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 0000-A.\n", PrintText.TextColor.DarkRed, 0);
+                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua agência para tentar novamente: ");
                 }
             }
-            return clientCpfInput;
+            return clientBankBranchInput;
         }
         private static int RequireClientPinCode(int clientPinCode)
         {
+            string pinCodeInput;
             while (true)
             {
-                PrintText.ColorizeText("\nInforme sua senha (4 dígitos)   : ", PrintText.TextColor.White, 0);
-                string pinCodeInput = Console.ReadLine()!;
+                PrintText.ColorizeText("\nInforme sua senha\n(4 dígitos numéricos): ", PrintText.TextColor.White, 0);
+                Console.Write("", Console.ForegroundColor = ConsoleColor.DarkYellow);
+                pinCodeInput = Console.ReadLine()!;
 
                 if (int.TryParse(pinCodeInput, out clientPinCode) && clientPinCode >= 0 && clientPinCode <= 9999)
                 {
@@ -70,7 +74,7 @@ namespace Bytebank.AuthenticationComponents
                 PrintText.ColorizeText("\n[i] Senha inválida! A senha deve ter 4 dígitos numéricos.", PrintText.TextColor.DarkRed);
                 Console.WriteLine("[i] Por favor, tente novamente.");
             }
-            return clientPinCode;
+            return int.Parse(pinCodeInput);
         }
 
         protected internal static void ShowAuthenticationDialog()
@@ -82,10 +86,10 @@ namespace Bytebank.AuthenticationComponents
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
 
             string clientAccountId = string.Empty;
-            string clientCpf = string.Empty;
+            string clientBankBranch = string.Empty;
             int clientPinCode = 0;
 
-            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientCpf(clientCpf), RequireClientPinCode(clientPinCode));
+            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientBankBranch(clientBankBranch), RequireClientPinCode(clientPinCode));
             Authentication.Authenticate(clientInfo);
         }
     }
