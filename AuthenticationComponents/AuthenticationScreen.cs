@@ -85,8 +85,8 @@ namespace Bytebank.AuthenticationComponents
             string clientBankBranch = string.Empty;
             int clientPinCode = 0;
 
-            Authentication clientInfo = new Authentication(RequireClientId(clientAccountId), RequireClientBankBranch(clientBankBranch), RequireClientPinCode(clientPinCode));
-            Authentication.Authenticate(clientInfo);
+            Authentication clientAuthData = new Authentication(RequireClientId(clientAccountId), RequireClientBankBranch(clientBankBranch), RequireClientPinCode(clientPinCode));
+            Authentication.Authenticate(clientAuthData);
         }
     }
 }
