@@ -4,7 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
  */
 
-using Bytebank.Authenticated;
+using Bytebank.AuthenticationComponents.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 
@@ -12,8 +12,6 @@ namespace Bytebank.AuthenticationComponents
 {
     public class Authentication
     {
-        //internal static string? _getAccountId;
-
         public string AuthClientAccountId { get; set; }
         public string AuthClientBankBranch { get; set; }
         public int AuthClientPinCode { get; set; }

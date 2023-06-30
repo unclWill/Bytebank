@@ -1,16 +1,14 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 30/06/2023
  */
 
-using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using System;
-using System.Runtime.InteropServices;
 
-namespace Bytebank.Authenticated
+namespace Bytebank.AuthenticationComponents.Authenticated
 {
     public class AuthenticatedScreen
     {
@@ -33,7 +31,6 @@ namespace Bytebank.Authenticated
 
         private static void ShowClientAccountBasicInfo()
         {
-            //Authentication.Authenticate(authClient);
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             Console.WriteLine($"Conta: {_accountId}");
             PrintText.SetLineBreak();
