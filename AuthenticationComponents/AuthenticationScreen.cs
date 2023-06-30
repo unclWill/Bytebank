@@ -31,7 +31,6 @@ namespace Bytebank.AuthenticationComponents
             }
             return clientIdInput;
         }
-
         private static string RequireClientBankBranch(string clientBankBranchInput)
         {
             while (true)
@@ -78,7 +77,7 @@ namespace Bytebank.AuthenticationComponents
             Console.Clear();
             StartScreen.ShowProductOwnerBrand();
             Console.WriteLine();
-            PrintText.DecorateTitleText("           AUTENTICAÇÃO           ", '~');
+            PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
 
             string clientAccountId = string.Empty;

@@ -94,7 +94,7 @@ namespace Bytebank.StartScreenComponents
         /// </summary>
         private static void ShowStartServiceAtTerminalDialog()
         {
-            PrintText.DecorateTitleText(" Digite |1| para iniciar o seu atendimento", '-');
+            PrintText.DecoratedTitleText(" Digite |1| para iniciar o seu atendimento", '-');
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Gray, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGray);
             PrintText.UserInteractionIndicator();

@@ -16,12 +16,12 @@ namespace Bytebank.AuthenticationComponents
         public string AuthClientBankBranch { get; }
         public int AuthClientPinCode { get; }
 
-        public Authentication()
-        {
-            AuthClientAccountId = "";
-            AuthClientBankBranch = "";
-            AuthClientPinCode = 0;
-        }
+        /* public Authentication()
+         {
+             AuthClientAccountId = "";
+             AuthClientBankBranch = "";
+             AuthClientPinCode = 0;
+         }*/
 
         public Authentication(string clientId, string clientBankBranch, int clientPinCode)
         {
@@ -57,7 +57,6 @@ namespace Bytebank.AuthenticationComponents
             }
             /* #FORMA MAIS SIMPLES:
             return HashCode.Combine(AuthClientAccountId, AuthClientCpf, AuthClientPinCode); */
-
         }
 
         private static void ValidClientData(Authentication getClientAccountId)

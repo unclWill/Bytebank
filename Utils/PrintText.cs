@@ -170,7 +170,7 @@ namespace Bytebank.Utils
         /// </summary>
         /// <param name="text">String que será exibida.</param>
         /// <param name="character">Caractere que será utilizado para criar a decoração entorno do texto.</param>
-        internal static void DecorateTitleText(string text, char character)
+        internal static void DecoratedTitleText(string text, char character)
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);

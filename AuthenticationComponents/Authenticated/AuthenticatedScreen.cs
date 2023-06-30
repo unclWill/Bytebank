@@ -40,17 +40,17 @@ namespace Bytebank.AuthenticationComponents.Authenticated
         {
             Console.Clear();
             StartScreen.ShowProductOwnerBrand();
-            PrintText.DecorateTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
+            PrintText.DecoratedTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
             PrintText.SetLineBreak(2);
             //
             ShowClientAccountBasicInfo();
-            PrintText.DecorateTitleText(" Operações disponíveis neste terminal ", '-');
+            PrintText.DecoratedTitleText(" Operações disponíveis neste terminal ", '-');
             PrintText.ColorizeText("|1| DEPÓSITO\n|2| SAQUE\n|3| TRANSFERÊNCIA", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
-            PrintText.DecorateTitleText("             Área do cliente          ", '-');
+            PrintText.DecoratedTitleText("             Área do cliente          ", '-');
             PrintText.ColorizeText("|4| CONSULTAR MEUS DADOS\n|5| CONSULTAR MEU HISTÓRICO FINANCEIRO\n|6| TROCAR MINHA SENHA DE ACESSO", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
-            PrintText.DecorateTitleText("          Finalizar atendimento       ", '-');
+            PrintText.DecoratedTitleText("          Finalizar atendimento       ", '-');
             PrintText.ColorizeText("|7| ENCERRAR TERMINAL", PrintText.TextColor.DarkYellow);
 
             ConsoleKey keyPressed = StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione |", ConsoleKey.Enter, "| ou aguarde.");
