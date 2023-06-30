@@ -1,7 +1,7 @@
 /* Classe  : PrintText
  * Objetivo: Imprime textos na tela. Contém métodos que permitem imprimir textos de forma personalizada utilizando a classe System.Console.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | Modificação: 26/06/2023
+ * Data    : 21/06/2023 (Criação) | Modificação: 30/06/2023
  */
 
 using System;
