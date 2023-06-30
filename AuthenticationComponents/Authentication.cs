@@ -12,9 +12,9 @@ namespace Bytebank.AuthenticationComponents
 {
     public class Authentication
     {
-        public string AuthClientAccountId { get; set; }
-        public string AuthClientBankBranch { get; set; }
-        public int AuthClientPinCode { get; set; }
+        public string AuthClientAccountId { get; }
+        public string AuthClientBankBranch { get; }
+        public int AuthClientPinCode { get; }
 
         public Authentication()
         {
