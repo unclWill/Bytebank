@@ -17,7 +17,7 @@ namespace Bytebank.Utils
     /// </summary>
     internal class PrintText
     {
-        #region ColorizeText -- definições responsáveis por definir a cor do texto.
+        #region ColorizeText -- definições responsáveis pela impressão do texto colorido.
         internal enum TextColor
         {
             Black,
