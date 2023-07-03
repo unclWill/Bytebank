@@ -14,7 +14,7 @@ namespace Bytebank.StartScreenComponents
     /// Classe <code>StartScreenComponents</code>
     /// Concentra os métodos personalizados utilizados na tela inicial do sistema.
     /// </summary>
-    public class StartScreen
+    internal class StartScreen
     {
         /// <summary>
         /// Exibe os itens que compõe a tela inicial do sistema.
