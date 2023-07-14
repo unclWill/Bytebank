@@ -1,7 +1,7 @@
 /* Classe  : Authentication
  * Objetivo: Concentra os métodos de autenticação para permitir que o usuário entre na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 14/07/2023
  */
 
 using Bytebank.AuthenticationComponents.Authenticated;
@@ -82,11 +82,12 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
+        //Lista de contas cadastradas
         internal static readonly List<Authentication> registeredClients = new()
         {
-            { new Authentication("1111-X", "5678-A", 2468) },
-            { new Authentication("1020-X", "1234-A", 1234) },
-            { new Authentication("1120-X", "1112-A", 4321) },
+            { new Authentication("1010-X", "15", 1234) },
+            { new Authentication("1018-X", "17", 4321) },
+            { new Authentication("1120-X", "16", 2468) },
         };
 
         internal static void Authenticate(Authentication clientAuthInput)

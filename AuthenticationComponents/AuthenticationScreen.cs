@@ -1,7 +1,7 @@
 /* Classe  : AuthenticationScreen
  * Objetivo: Exibe a tela de autenticação de verificando se um Cliente existe no sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 14/07/2023
  */
 
 using Bytebank.StartScreenComponents;
@@ -38,14 +38,15 @@ namespace Bytebank.AuthenticationComponents
                 PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 0000-A): ", PrintText.TextColor.White, 0);
                 clientBankBranchInput = Console.ReadLine()!;
 
-                if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
+                //if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
+                if (!int.TryParse(clientBankBranchInput, out _))
                 {
-                    break;
+                    PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 00.\n", PrintText.TextColor.DarkRed, 0);
+                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua agência para tentar novamente: ");
                 }
                 else
                 {
-                    PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 0000-A.\n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua agência para tentar novamente: ");
+                    break;
                 }
             }
             return clientBankBranchInput;

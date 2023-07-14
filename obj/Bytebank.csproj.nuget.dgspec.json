@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj": {}
+    "D:\\Development\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj": {}
   },
   "projects": {
-    "d:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj": {
+    "D:\\Development\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj",
+        "projectUniqueName": "D:\\Development\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj",
         "projectName": "Bytebank",
-        "projectPath": "d:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj",
+        "projectPath": "D:\\Development\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\Bytebank.csproj",
         "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-        "outputPath": "d:\\Desenvolvimento\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\obj\\",
+        "outputPath": "D:\\Development\\PROJETOS\\_ProjetosDeCursos\\Projetos_Alura\\FormacaoCSharp\\2.0_Aplicando a Orientação a Objetos\\Bytebank_Project\\Bytebank\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
