@@ -16,13 +16,6 @@ namespace Bytebank.AuthenticationComponents
         public string AuthClientBankBranch { get; }
         public int AuthClientPinCode { get; }
 
-        /* public Authentication()
-         {
-             AuthClientAccountId = "";
-             AuthClientBankBranch = "";
-             AuthClientPinCode = 0;
-         }*/
-
         public Authentication(string clientId, string clientBankBranch, int clientPinCode)
         {
             AuthClientAccountId = clientId;
@@ -86,8 +79,8 @@ namespace Bytebank.AuthenticationComponents
         internal static readonly List<Authentication> registeredClients = new()
         {
             { new Authentication("1010-X", "15", 1234) },
-            { new Authentication("1018-X", "17", 4321) },
-            { new Authentication("1120-X", "16", 2468) },
+            { new Authentication("1018-5", "17", 4321) },
+            { new Authentication("8594-6", "16", 2468) },
         };
 
         internal static void Authenticate(Authentication clientAuthInput)

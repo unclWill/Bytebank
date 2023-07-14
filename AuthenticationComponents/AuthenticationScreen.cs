@@ -19,7 +19,7 @@ namespace Bytebank.AuthenticationComponents
                 PrintText.ColorizeText("\nInforme o nº da sua conta\n(no formato 0000-X): ", PrintText.TextColor.White, 0);
                 clientIdInput = Console.ReadLine()!;
 
-                if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && clientIdInput.EndsWith("X") && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
+                if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && char.IsLetterOrDigit(clientIdInput[^1]) && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
                 {
                     break;
                 }
@@ -35,7 +35,7 @@ namespace Bytebank.AuthenticationComponents
         {
             while (true)
             {
-                PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 0000-A): ", PrintText.TextColor.White, 0);
+                PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 00): ", PrintText.TextColor.White, 0);
                 clientBankBranchInput = Console.ReadLine()!;
 
                 //if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
