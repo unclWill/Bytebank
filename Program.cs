@@ -4,6 +4,7 @@
  * Data    : 21/06/2023 (Criação) | última edição: 23/06/2023
  */
 
+using Bytebank.AccountManagement;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using System;
@@ -23,6 +24,8 @@ namespace Bytebank
 
         public static void ExecuteCommands()
         {
+            CurrentAccount andreAccount = new CurrentAccount();
+            andreAccount.AccountId = "";
 
         }
 
