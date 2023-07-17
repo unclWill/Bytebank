@@ -32,7 +32,7 @@ namespace Bytebank.AuthenticationComponents.Authenticated
         private static void ShowClientAccountBasicInfo()
         {
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
-            Console.WriteLine($"Conta: {_accountId}");
+            PrintText.ColorizeText($"Conta: {_accountId}", PrintText.TextColor.White);
             PrintText.SetLineBreak();
         }
 

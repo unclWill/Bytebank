@@ -26,7 +26,7 @@ namespace Bytebank.Utils
         internal static void AcessingSystemAnimation(string? text, int timer = 450)
         {
             ColorizeText($"\n[i] {text}", TextColor.DarkGray, 0);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Thread.Sleep(timer);
                 ColorizeText(".", TextColor.DarkYellow, 0);
