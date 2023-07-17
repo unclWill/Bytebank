@@ -17,7 +17,7 @@ namespace Bytebank.AuthenticationComponents
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o nº da sua conta\n(no formato 0000-X): ", PrintText.TextColor.White, 0);
-                clientIdInput = Console.ReadLine()!;
+                clientIdInput = Console.ReadLine()!.Trim();
 
                 if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && char.IsLetterOrDigit(clientIdInput[^1]) && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
                 {
@@ -36,7 +36,7 @@ namespace Bytebank.AuthenticationComponents
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 00): ", PrintText.TextColor.White, 0);
-                clientBankBranchInput = Console.ReadLine()!;
+                clientBankBranchInput = Console.ReadLine()!.Trim();
 
                 //if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
                 if (!int.TryParse(clientBankBranchInput, out _))
@@ -57,7 +57,7 @@ namespace Bytebank.AuthenticationComponents
             while (true)
             {
                 PrintText.ColorizeText("\nInforme sua senha\n(4 dígitos numéricos): ", PrintText.TextColor.White, 0);
-                pinCodeInput = Console.ReadLine()!;
+                pinCodeInput = Console.ReadLine()!.Trim();
 
                 if (int.TryParse(pinCodeInput, out clientPinCode) && clientPinCode >= 0 && clientPinCode <= 9999)
                 {
@@ -77,7 +77,7 @@ namespace Bytebank.AuthenticationComponents
         {
             Console.Clear();
             StartScreen.ShowProductOwnerBrand();
-            Console.WriteLine();
+            PrintText.SetLineBreak(1);
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
 
