@@ -63,7 +63,5 @@ namespace Bytebank.AuthenticationComponents.Authenticated
                 Console.BackgroundColor = ConsoleColor.Red;
             }
         }
-
-
     }
 }
