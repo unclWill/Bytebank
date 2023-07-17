@@ -13,6 +13,7 @@ namespace Bytebank.AuthenticationComponents.Authenticated
     public class AuthenticatedScreen
     {
         private static string? _accountId;
+        private static string? _accountBankBranch;
 
         /// <summary>
         /// Exibe o menu da área logada do sistema.
@@ -24,15 +25,17 @@ namespace Bytebank.AuthenticationComponents.Authenticated
         }
 
         //Pega como parâmetro o número da conta do cliente no momento que os dados de autenticação são validados na classe Authentication.
-        internal static void GetAccountId(Authentication accountId)
+        internal static void GetAccountData(Authentication accountData)
         {
-            _accountId = accountId.AuthClientAccountId;
+            _accountId = accountData.AuthClientAccountId;
+            _accountBankBranch = accountData.AuthClientBankBranch;
         }
 
         private static void ShowClientAccountBasicInfo()
         {
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             PrintText.ColorizeText($"Conta: {_accountId}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Agência: {_accountBankBranch}", PrintText.TextColor.White);
             PrintText.SetLineBreak();
         }
 

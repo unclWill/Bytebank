@@ -54,7 +54,7 @@ namespace Bytebank.AuthenticationComponents
 
         private static void ValidClientData(Authentication getClientAccountId)
         {
-            AuthenticatedScreen.GetAccountId(getClientAccountId);
+            AuthenticatedScreen.GetAccountData(getClientAccountId);
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             AuthenticatedScreen.ShowAuthenticatedScreen();
         }
