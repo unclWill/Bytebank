@@ -25,8 +25,8 @@ namespace Bytebank
         public static void ExecuteCommands()
         {
             CurrentAccount andreAccount = new CurrentAccount();
-            andreAccount.AccountId = "";
-
+            andreAccount.AccountId = "1010-X";
+            andreAccount.AccountHolder = "André Nascimento";
         }
 
     }

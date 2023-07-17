@@ -52,9 +52,9 @@ namespace Bytebank.AuthenticationComponents
             return HashCode.Combine(AuthClientAccountId, AuthClientCpf, AuthClientPinCode); */
         }
 
-        private static void ValidClientData(Authentication getClientAccountId)
+        private static void ValidClientData(Authentication getClientAccountData)
         {
-            AuthenticatedScreen.GetAccountData(getClientAccountId);
+            AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             AuthenticatedScreen.ShowAuthenticatedScreen();
         }
