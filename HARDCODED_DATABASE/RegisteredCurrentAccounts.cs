@@ -16,9 +16,9 @@ namespace Bytebank.HARDCODED_DATABASE
         //Lista de contas correntes cadastradas.
         internal List<CurrentAccount> currentAccounts = new List<CurrentAccount>()
         {
-            new CurrentAccount("1010-X", 15, "André Silva", 100d),
-            new CurrentAccount("1018-5", 17, "Marisa Santos", 500d),
-            new CurrentAccount("8594-6", 16, "Eustáquio Sodré", 1000d),
+            new CurrentAccount("1010-X", 15, "André Silva", 100m),
+            new CurrentAccount("1018-5", 17, "Marisa Santos", 500m),
+            new CurrentAccount("8594-6", 16, "Eustáquio Sodré", 1000m),
         };
     }
 }

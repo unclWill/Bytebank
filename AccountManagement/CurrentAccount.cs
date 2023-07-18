@@ -23,7 +23,7 @@ namespace Bytebank.AccountManagement
         }
 
         //Construtor para criação de contas correntes.
-        public CurrentAccount(string accountId, int bankBranch, string accountHolder, double balance)
+        public CurrentAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
         {
             AccountId = accountId;
             BankBranch = bankBranch;
@@ -38,7 +38,7 @@ namespace Bytebank.AccountManagement
         //Titular
         public string? AccountHolder { get; set; }
         //Saldo
-        public double Balance { get; set; }
+        public decimal Balance { get; set; }
 
 
     }

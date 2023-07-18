@@ -14,7 +14,7 @@ namespace Bytebank.HARDCODED_DATABASE
     public class RegisteredAuthenticationData
     {
         //Lista de dados de autenticação cadastrados.
-        internal List<Authentication> registeredAuthData = new()
+        internal List<Authentication> registeredAuthData = new List<Authentication>()
         {
             { new Authentication("1010-X", 15, 1234) },
             { new Authentication("1018-5", 17, 4321) },

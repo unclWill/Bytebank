@@ -9,6 +9,7 @@ using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using System;
+using Bytebank.AccountManagement;
 
 namespace Bytebank.Authenticated
 {
@@ -16,9 +17,8 @@ namespace Bytebank.Authenticated
     {
         private static string? _accountId;
         private static int _accountBankBranch;
-        //
         private static string? _accountHolder;
-        private static double _balance;
+        private static decimal _balance;
 
         /// <summary>
         /// Exibe o menu da área logada do sistema.
@@ -50,19 +50,19 @@ namespace Bytebank.Authenticated
                     _accountBankBranch = client.BankBranch;
                     _accountHolder = client.AccountHolder;
                     _balance = client.Balance;
-
-                    //CurrentAccount clientAccount = new CurrentAccount(_accountId, _accountBankBranch, _accountHolder, _balance);
                 }
             }
         }
 
-        private static void ShowClientAccountBasicInfo()
+        private static void ShowClientAccountOverview()
         {
+            CurrentAccount clientAccount = new CurrentAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
-            PrintText.ColorizeText($"Conta: {_accountId}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Agência: {_accountBankBranch}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Titular: {_accountHolder}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Saldo: R$ {_balance}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Conta  : {clientAccount.AccountId}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Agência: {clientAccount.BankBranch}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Titular: {clientAccount.AccountHolder}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Saldo  : {clientAccount.Balance:C}", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
         }
 
@@ -73,7 +73,8 @@ namespace Bytebank.Authenticated
             PrintText.DecoratedTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
             PrintText.SetLineBreak(2);
             //
-            ShowClientAccountBasicInfo();
+            ShowClientAccountOverview();
+            //
             PrintText.DecoratedTitleText(" Operações disponíveis neste terminal ", '-');
             PrintText.ColorizeText("|1| DEPÓSITO\n|2| SAQUE\n|3| TRANSFERÊNCIA", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
