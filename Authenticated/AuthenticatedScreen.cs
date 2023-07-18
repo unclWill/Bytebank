@@ -55,7 +55,7 @@ namespace Bytebank.Authenticated
 
         private static void ShowClientAccountOverview()
         {
-            CurrentAccount clientAccount = new CurrentAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+            CheckingAccount clientAccount = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
 
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             PrintText.ColorizeText($"Conta  : {clientAccount.AccountId}", PrintText.TextColor.White);
