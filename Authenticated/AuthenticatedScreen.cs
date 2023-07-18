@@ -9,6 +9,9 @@ using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.AccountManagement;
+using System.Text;
+using System.Text.Json;
+using System.IO;
 
 namespace Bytebank.Authenticated
 {
@@ -38,25 +41,35 @@ namespace Bytebank.Authenticated
          */
         private static void InitializeClientAccount(string authData)
         {
-            RegisteredCurrentAccounts registeredCurrentAccounts = new RegisteredCurrentAccounts();
-            var clientsList = registeredCurrentAccounts.currentAccounts;
+            RegisteredCheckingAccounts rCA = new RegisteredCheckingAccounts();
+            var clientsAccountList = rCA.checkingAccounts;
 
-            foreach (var client in clientsList)
+            try
             {
-                if (client.AccountId is not null && client.AccountId.Equals(authData))
+                //CheckingAccount checkingAccount = new CheckingAccount();
+                //var clientsAccountList = checkingAccount.LoadJsonFile();
+
+                foreach (var client in clientsAccountList)
                 {
-                    _accountId = client.AccountId;
-                    _accountBankBranch = client.BankBranch;
-                    _accountHolder = client.AccountHolder;
-                    _balance = client.Balance;
+                    if (client.AccountId is not null && client.AccountId.Equals(authData))
+                    {
+                        _accountId = client.AccountId;
+                        _accountBankBranch = client.BankBranch;
+                        _accountHolder = client.AccountHolder;
+                        _balance = client.Balance;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocorreu um erro: " + ex.Message);
             }
         }
 
         private static void ShowClientAccountInfo()
         {
-            CheckingAccount clientAccount = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-            clientAccount.ShowClientAccountOverview();
+            CheckingAccount clientAccountInfo = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+            clientAccountInfo.ShowClientAccountOverview();
             /*
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             PrintText.ColorizeText($"Conta  : {clientAccount.AccountId}", PrintText.TextColor.White);
@@ -84,6 +97,9 @@ namespace Bytebank.Authenticated
             PrintText.SetLineBreak(1);
             PrintText.DecoratedTitleText("          Finalizar atendimento       ", '-');
             PrintText.ColorizeText("|7| ENCERRAR TERMINAL", PrintText.TextColor.DarkYellow);
+            //
+            int selectedOption = int.Parse(Console.ReadLine()!);
+            MenuAction(selectedOption);
 
             ConsoleKey keyPressed = StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione |", ConsoleKey.Enter, "| ou aguarde.");
             if (keyPressed == ConsoleKey.Enter)
@@ -92,7 +108,38 @@ namespace Bytebank.Authenticated
             }
             else
             {
-                Console.BackgroundColor = ConsoleColor.Red;
+                ShowAuthenticatedMenu();
+            }
+        }
+
+        private static void MenuAction(int selectedOption)
+        {
+            switch (selectedOption)
+            {
+                case 1:
+                    CheckingAccount clientAccountDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+                    PrintText.DecoratedTitleText("DEPÓSITO", '*');
+                    PrintText.ColorizeText("Digite o valor que será depositado: ", PrintText.TextColor.White);
+                    decimal valueToDeposit = decimal.Parse(Console.ReadLine()!);
+                    clientAccountDeposit.Deposit(valueToDeposit);
+                    PrintText.ColorizeText($"Valor adicionado à conta! Valor atualizado: {clientAccountDeposit.Balance:C}", PrintText.TextColor.DarkGreen);
+                    _balance = clientAccountDeposit.Balance;
+                    //clientAccountDeposit.GenerateJsonFile(clientAccountDeposit);
+                    ShowAuthenticatedMenu();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+
             }
         }
     }

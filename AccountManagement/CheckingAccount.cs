@@ -5,7 +5,9 @@
  */
 
 using System;
+using System.Text.Json;
 using Bytebank.Utils;
+using System.Text.Json.Serialization;
 
 namespace Bytebank.AccountManagement
 {
@@ -15,6 +17,11 @@ namespace Bytebank.AccountManagement
         private int _bankBranch;
         private string? _accountHolder;
         private decimal _balance;
+
+        public CheckingAccount()
+        {
+
+        }
 
         //Construtor para criação de contas correntes.
         public CheckingAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
@@ -32,21 +39,11 @@ namespace Bytebank.AccountManagement
         //Titular
         public string? AccountHolder { get; set; }
         //Saldo
-        public decimal Balance
-        {
-            get => _balance;
+        public decimal Balance { get; set; }
 
-            set
-            {
-                if (value < 0)
-                {
-                    return;
-                }
-                else
-                {
-                    _balance = value;
-                }
-            }
+        internal void Deposit(decimal value)
+        {
+            Balance += value;
         }
 
         internal void ShowClientAccountOverview()
