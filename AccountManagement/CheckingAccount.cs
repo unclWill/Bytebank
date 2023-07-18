@@ -5,6 +5,7 @@
  */
 
 using System;
+using Bytebank.Utils;
 
 namespace Bytebank.AccountManagement
 {
@@ -48,6 +49,15 @@ namespace Bytebank.AccountManagement
             }
         }
 
+        internal void ShowClientAccountOverview()
+        {
+            PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
+            PrintText.ColorizeText($"Conta  : {AccountId}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Agência: {BankBranch}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Titular: {AccountHolder}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Saldo  : {Balance:C}", PrintText.TextColor.Gray);
+            PrintText.SetLineBreak(1);
+        }
 
     }
 }

@@ -53,16 +53,18 @@ namespace Bytebank.Authenticated
             }
         }
 
-        private static void ShowClientAccountOverview()
+        private static void ShowClientAccountInfo()
         {
             CheckingAccount clientAccount = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-
+            clientAccount.ShowClientAccountOverview();
+            /*
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             PrintText.ColorizeText($"Conta  : {clientAccount.AccountId}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Agência: {clientAccount.BankBranch}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Titular: {clientAccount.AccountHolder}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Saldo  : {clientAccount.Balance:C}", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
+            */
         }
 
         private static void ShowAuthenticatedMenu()
@@ -72,7 +74,7 @@ namespace Bytebank.Authenticated
             PrintText.DecoratedTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
             PrintText.SetLineBreak(2);
             //
-            ShowClientAccountOverview();
+            ShowClientAccountInfo();
             //
             PrintText.DecoratedTitleText(" Operações disponíveis neste terminal ", '-');
             PrintText.ColorizeText("|1| DEPÓSITO\n|2| SAQUE\n|3| TRANSFERÊNCIA", PrintText.TextColor.Gray);

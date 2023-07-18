@@ -14,11 +14,11 @@ namespace Bytebank.HARDCODED_DATABASE
     internal class RegisteredCurrentAccounts
     {
         //Lista de contas correntes cadastradas.
-        internal List<CurrentAccount> currentAccounts = new List<CurrentAccount>()
+        internal List<CheckingAccount> currentAccounts = new List<CheckingAccount>()
         {
-            new CurrentAccount("1010-X", 15, "André Silva", 100m),
-            new CurrentAccount("1018-5", 17, "Marisa Santos", 500m),
-            new CurrentAccount("8594-6", 16, "Eustáquio Sodré", 1000m),
+            new CheckingAccount("1010-X", 15, "André Silva", 100m),
+            new CheckingAccount("1018-5", 17, "Marisa Santos", 500m),
+            new CheckingAccount("8594-6", 16, "Eustáquio Sodré", 1000m),
         };
     }
 }
