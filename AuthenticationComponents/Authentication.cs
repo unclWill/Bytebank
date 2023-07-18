@@ -57,9 +57,6 @@ namespace Bytebank.AuthenticationComponents
         {
             AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
-            //Instanciação da parte logada do sistema.
-            /*AuthenticatedScreen authenticatedScreen = new AuthenticatedScreen();
-            authenticatedScreen.ShowAuthenticatedScreen();*/
             AuthenticatedScreen.ShowAuthenticatedScreen();
         }
         private static void InvalidClientData()
