@@ -8,7 +8,6 @@ using Bytebank.HARDCODED_DATABASE;
 using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
-using System;
 using Bytebank.AccountManagement;
 
 namespace Bytebank.Authenticated
