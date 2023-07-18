@@ -1,4 +1,8 @@
-
+/* Classe  : RegisteredCurrentAccounts
+ * Objetivo: Armazenar as contas correntes registradas no sistema.
+ * Autor   : unclWill (williamsilvajdf@gmail.com)
+ * Data    : 18/07/2023 (Criação) | Modificação: 18/07/2023
+ */
 
 using System;
 using System.Collections.Generic;

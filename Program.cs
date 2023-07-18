@@ -1,7 +1,7 @@
 ﻿/* Classe  : Program
  * Objetivo: Ponto de entrada do programa.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | última edição: 23/06/2023
+ * Data    : 21/06/2023 (Criação) | última edição: 18/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -24,10 +24,10 @@ namespace Bytebank
 
         public static void ExecuteCommands()
         {
-            CurrentAccount andreAccount = new CurrentAccount();
+            /*CurrentAccount andreAccount = new CurrentAccount();
             andreAccount.AccountId = "1010-X";
             andreAccount.BankBranch = 15;
-            andreAccount.AccountHolder = "André Nascimento";
+            andreAccount.AccountHolder = "André Nascimento";*/
         }
 
     }

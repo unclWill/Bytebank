@@ -1,7 +1,7 @@
 /* Classe  : Authentication
  * Objetivo: Concentra os métodos de autenticação para permitir que o usuário entre na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 14/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 18/07/2023
  */
 
 using Bytebank.HARDCODED_DATABASE;

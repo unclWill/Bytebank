@@ -1,7 +1,7 @@
 /* Classe  : CurrentAccount
  * Objetivo: Concentra as lógicas da Conta Corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 27/06/2023 (Criação) | Modificação: 14/07/2023
+ * Data    : 27/06/2023 (Criação) | Modificação: 18/07/2023
  */
 
 using System;

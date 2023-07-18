@@ -1,7 +1,12 @@
+/* Classe  : RegisteredAuthenticationData
+ * Objetivo: Armazenar os dados de autenticação das contas existentes.
+ * Autor   : unclWill (williamsilvajdf@gmail.com)
+ * Data    : 18/07/2023 (Criação) | Modificação: 18/07/2023
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Bytebank.AuthenticationComponents;
 
 namespace Bytebank.HARDCODED_DATABASE

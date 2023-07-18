@@ -1,7 +1,7 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 30/06/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 18/07/2023
  */
 
 using Bytebank.HARDCODED_DATABASE;
@@ -44,7 +44,7 @@ namespace Bytebank.Authenticated
 
             foreach (var client in clientsList)
             {
-                if (client.AccountId.Equals(authData))
+                if (client.AccountId is not null && client.AccountId.Equals(authData))
                 {
                     _accountId = client.AccountId;
                     _accountBankBranch = client.BankBranch;
@@ -62,7 +62,7 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText($"Conta: {_accountId}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Agência: {_accountBankBranch}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Titular: {_accountHolder}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Saldo: {_balance}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Saldo: R$ {_balance}", PrintText.TextColor.White);
             PrintText.SetLineBreak(1);
         }
 
