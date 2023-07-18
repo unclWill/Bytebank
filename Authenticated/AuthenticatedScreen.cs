@@ -4,6 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 30/06/2023
  */
 
+using Bytebank.AccountManagement;
 using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
@@ -15,13 +16,15 @@ namespace Bytebank.Authenticated
     {
         private static string? _accountId;
         private static int _accountBankBranch;
+        //
+        private static string? _accountHolder;
+        private static double _balance;
 
         /// <summary>
         /// Exibe o menu da área logada do sistema.
         /// </summary>
-        internal static void ShowAuthenticatedScreen()
+        internal void ShowAuthenticatedScreen()
         {
-            Console.Clear();
             ShowAuthenticatedMenu();
         }
 
@@ -29,7 +32,31 @@ namespace Bytebank.Authenticated
         internal static void GetAccountData(Authentication accountData)
         {
             _accountId = accountData.AuthClientAccountId;
-            _accountBankBranch = accountData.AuthClientBankBranch;
+            //_accountBankBranch = accountData.AuthClientBankBranch;
+
+            AuthenticatedScreen authenticatedScreen = new AuthenticatedScreen();
+            authenticatedScreen.InitializeClientAccount(_accountId);
+        }
+
+        /* Instancia os dados do cliente com base na classe de clientes registrados (RegisteredClients).
+         */
+        internal void InitializeClientAccount(string authData)
+        {
+            RegisteredClients registeredClients1 = new RegisteredClients();
+            var clientsList = registeredClients1.currentAccounts;
+
+            foreach (var client in clientsList)
+            {
+                if (client.AccountId.Equals(_accountId))
+                {
+                    _accountId = client.AccountId;
+                    _accountBankBranch = client.BankBranch;
+                    _accountHolder = client.AccountHolder;
+                    _balance = client.Balance;
+
+                    //CurrentAccount clientAccount = new CurrentAccount(_accountId, _accountBankBranch, _accountHolder, _balance);
+                }
+            }
         }
 
         private static void ShowClientAccountBasicInfo()
@@ -37,7 +64,9 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             PrintText.ColorizeText($"Conta: {_accountId}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Agência: {_accountBankBranch}", PrintText.TextColor.White);
-            PrintText.SetLineBreak();
+            PrintText.ColorizeText($"Titular: {_accountHolder}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Saldo: {_balance}", PrintText.TextColor.White);
+            PrintText.SetLineBreak(1);
         }
 
         private static void ShowAuthenticatedMenu()

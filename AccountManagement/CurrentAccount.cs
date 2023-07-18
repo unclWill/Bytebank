@@ -10,16 +10,25 @@ namespace Bytebank.AccountManagement
 {
     public class CurrentAccount
     {
-        public CurrentAccount()//no futuro: string accountId, int bankBranch, string accountHolder, double balance
+        //Construtor padrão.
+        internal CurrentAccount()
         {
-
         }
 
-        //Construtor para Autenticação
+        //Construtor para Autenticação.
         public CurrentAccount(string accountId, int bankBranch)
         {
             AccountId = accountId;
             BankBranch = bankBranch;
+        }
+
+        //Construtor para criação de contas correntes.
+        public CurrentAccount(string accountId, int bankBranch, string accountHolder, double balance)
+        {
+            AccountId = accountId;
+            BankBranch = bankBranch;
+            AccountHolder = accountHolder;
+            Balance = balance;
         }
 
         //Conta

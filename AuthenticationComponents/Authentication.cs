@@ -4,7 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 14/07/2023
  */
 
-using Bytebank.AuthenticationComponents;
+using Bytebank.AccountManagement;
 using Bytebank.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
@@ -57,7 +57,9 @@ namespace Bytebank.AuthenticationComponents
         {
             AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
-            AuthenticatedScreen.ShowAuthenticatedScreen();
+            //Instanciação da parte logada do sistema.
+            AuthenticatedScreen authenticatedScreen = new AuthenticatedScreen();
+            authenticatedScreen.ShowAuthenticatedScreen();
         }
         private static void InvalidClientData()
         {
