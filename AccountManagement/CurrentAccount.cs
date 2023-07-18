@@ -10,6 +10,11 @@ namespace Bytebank.AccountManagement
 {
     public class CurrentAccount
     {
+        private string? _accountId;
+        private int _bankBranch;
+        private string? _accountHolder;
+        private decimal _balance;
+
         //Construtor para criação de contas correntes.
         public CurrentAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
         {
@@ -26,7 +31,22 @@ namespace Bytebank.AccountManagement
         //Titular
         public string? AccountHolder { get; set; }
         //Saldo
-        public decimal Balance { get; set; }
+        public decimal Balance
+        {
+            get => _balance;
+
+            set
+            {
+                if (value < 0)
+                {
+                    return;
+                }
+                else
+                {
+                    _balance = value;
+                }
+            }
+        }
 
 
     }
