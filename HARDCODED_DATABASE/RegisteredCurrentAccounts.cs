@@ -1,12 +1,15 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Bytebank.AccountManagement;
 
-namespace Bytebank.AccountManagement
+namespace Bytebank.HARDCODED_DATABASE
 {
-    internal class RegisteredClients
+    internal class RegisteredCurrentAccounts
     {
+        //Lista de contas correntes cadastradas.
         internal List<CurrentAccount> currentAccounts = new List<CurrentAccount>()
         {
             new CurrentAccount("1010-X", 15, "André Silva", 100d),

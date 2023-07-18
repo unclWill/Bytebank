@@ -4,7 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 30/06/2023
  */
 
-using Bytebank.AccountManagement;
+using Bytebank.HARDCODED_DATABASE;
 using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
@@ -23,7 +23,7 @@ namespace Bytebank.Authenticated
         /// <summary>
         /// Exibe o menu da área logada do sistema.
         /// </summary>
-        internal void ShowAuthenticatedScreen()
+        internal static void ShowAuthenticatedScreen()
         {
             ShowAuthenticatedMenu();
         }
@@ -32,22 +32,19 @@ namespace Bytebank.Authenticated
         internal static void GetAccountData(Authentication accountData)
         {
             _accountId = accountData.AuthClientAccountId;
-            //_accountBankBranch = accountData.AuthClientBankBranch;
-
-            AuthenticatedScreen authenticatedScreen = new AuthenticatedScreen();
-            authenticatedScreen.InitializeClientAccount(_accountId);
+            InitializeClientAccount(_accountId);
         }
 
         /* Instancia os dados do cliente com base na classe de clientes registrados (RegisteredClients).
          */
-        internal void InitializeClientAccount(string authData)
+        private static void InitializeClientAccount(string authData)
         {
-            RegisteredClients registeredClients1 = new RegisteredClients();
-            var clientsList = registeredClients1.currentAccounts;
+            RegisteredCurrentAccounts registeredCurrentAccounts = new RegisteredCurrentAccounts();
+            var clientsList = registeredCurrentAccounts.currentAccounts;
 
             foreach (var client in clientsList)
             {
-                if (client.AccountId.Equals(_accountId))
+                if (client.AccountId.Equals(authData))
                 {
                     _accountId = client.AccountId;
                     _accountBankBranch = client.BankBranch;

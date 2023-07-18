@@ -4,7 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 14/07/2023
  */
 
-using Bytebank.AccountManagement;
+using Bytebank.HARDCODED_DATABASE;
 using Bytebank.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
@@ -58,8 +58,9 @@ namespace Bytebank.AuthenticationComponents
             AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             //Instanciação da parte logada do sistema.
-            AuthenticatedScreen authenticatedScreen = new AuthenticatedScreen();
-            authenticatedScreen.ShowAuthenticatedScreen();
+            /*AuthenticatedScreen authenticatedScreen = new AuthenticatedScreen();
+            authenticatedScreen.ShowAuthenticatedScreen();*/
+            AuthenticatedScreen.ShowAuthenticatedScreen();
         }
         private static void InvalidClientData()
         {
@@ -78,19 +79,14 @@ namespace Bytebank.AuthenticationComponents
             }
         }
 
-        //Lista de contas cadastradas
-        internal static readonly List<Authentication> registeredClients = new()
-        {
-            { new Authentication("1010-X", 15, 1234) },
-            { new Authentication("1018-5", 17, 4321) },
-            { new Authentication("8594-6", 16, 2468) },
-        };
-
         internal static void Authenticate(Authentication clientAuthInput)
         {
+            RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
+            var authDataList = registeredAuthenticationData.registeredAuthData;
+
             //#MEU CÓDIGO: Utilizando o foreach com comparação direta entre o objeto e a lista. 
             //<!> Precisa que os métodos Equals() e GetHashCode() sejam sobrescritos para que compare os contéudos dos objetos e não os objetos em si.
-            foreach (var client in registeredClients) //Este trecho do código apresentou comportamentos estranhos!
+            foreach (var client in authDataList) //Este trecho do código apresentou comportamentos estranhos!
             {
                 if (clientAuthInput.Equals(client))
                 {
