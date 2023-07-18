@@ -4,16 +4,17 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 30/06/2023
  */
 
+using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using System;
 
-namespace Bytebank.AuthenticationComponents.Authenticated
+namespace Bytebank.Authenticated
 {
     public class AuthenticatedScreen
     {
         private static string? _accountId;
-        private static string? _accountBankBranch;
+        private static int _accountBankBranch;
 
         /// <summary>
         /// Exibe o menu da área logada do sistema.

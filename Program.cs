@@ -26,6 +26,7 @@ namespace Bytebank
         {
             CurrentAccount andreAccount = new CurrentAccount();
             andreAccount.AccountId = "1010-X";
+            andreAccount.BankBranch = 15;
             andreAccount.AccountHolder = "André Nascimento";
         }
 

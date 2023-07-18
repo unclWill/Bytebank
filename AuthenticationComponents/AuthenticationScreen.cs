@@ -31,15 +31,15 @@ namespace Bytebank.AuthenticationComponents
             }
             return clientIdInput;
         }
-        private static string RequireClientBankBranch(string clientBankBranchInput)
+        private static int RequireClientBankBranch(int clientBankBranchInput)
         {
             while (true)
             {
                 PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 00): ", PrintText.TextColor.White, 0);
-                clientBankBranchInput = Console.ReadLine()!.Trim();
+                //clientBankBranchInput;// = int.Parse(Console.ReadLine()!.Trim());
 
                 //if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
-                if (!int.TryParse(clientBankBranchInput, out _))
+                if (!int.TryParse(Console.ReadLine(), out clientBankBranchInput))
                 {
                     PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 00.\n", PrintText.TextColor.DarkRed, 0);
                     StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua agência para tentar novamente: ");
@@ -82,7 +82,7 @@ namespace Bytebank.AuthenticationComponents
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
 
             string clientAccountId = string.Empty;
-            string clientBankBranch = string.Empty;
+            int clientBankBranch = 0;
             int clientPinCode = 0;
 
             Authentication clientAuthData = new Authentication(RequireClientId(clientAccountId), RequireClientBankBranch(clientBankBranch), RequireClientPinCode(clientPinCode));

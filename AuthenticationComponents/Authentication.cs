@@ -4,7 +4,8 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 14/07/2023
  */
 
-using Bytebank.AuthenticationComponents.Authenticated;
+using Bytebank.AuthenticationComponents;
+using Bytebank.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 
@@ -13,10 +14,10 @@ namespace Bytebank.AuthenticationComponents
     public class Authentication
     {
         public string AuthClientAccountId { get; }
-        public string AuthClientBankBranch { get; }
+        public int AuthClientBankBranch { get; }
         public int AuthClientPinCode { get; }
 
-        public Authentication(string clientId, string clientBankBranch, int clientPinCode)
+        public Authentication(string clientId, int clientBankBranch, int clientPinCode)
         {
             AuthClientAccountId = clientId;
             AuthClientBankBranch = clientBankBranch;
@@ -78,9 +79,9 @@ namespace Bytebank.AuthenticationComponents
         //Lista de contas cadastradas
         internal static readonly List<Authentication> registeredClients = new()
         {
-            { new Authentication("1010-X", "15", 1234) },
-            { new Authentication("1018-5", "17", 4321) },
-            { new Authentication("8594-6", "16", 2468) },
+            { new Authentication("1010-X", 15, 1234) },
+            { new Authentication("1018-5", 17, 4321) },
+            { new Authentication("8594-6", 16, 2468) },
         };
 
         internal static void Authenticate(Authentication clientAuthInput)
