@@ -8,7 +8,7 @@ using System;
 
 namespace Bytebank.AccountManagement
 {
-    public class CurrentAccount
+    public class CheckingAccount
     {
         private string? _accountId;
         private int _bankBranch;
@@ -16,7 +16,7 @@ namespace Bytebank.AccountManagement
         private decimal _balance;
 
         //Construtor para criação de contas correntes.
-        public CurrentAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
+        public CheckingAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
         {
             AccountId = accountId;
             BankBranch = bankBranch;
