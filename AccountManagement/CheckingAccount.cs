@@ -43,7 +43,14 @@ namespace Bytebank.AccountManagement
 
         internal void Deposit(decimal value)
         {
-            Balance += value;
+            if (value <= 0)
+            {
+                Balance = 0m;
+            }
+            else
+            {
+                Balance += value;
+            }
         }
 
         internal void ShowClientAccountOverview()

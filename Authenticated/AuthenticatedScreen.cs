@@ -96,7 +96,8 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|4| CONSULTAR MEUS DADOS\n|5| CONSULTAR MEU HISTÓRICO FINANCEIRO\n|6| TROCAR MINHA SENHA DE ACESSO", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
             PrintText.DecoratedTitleText("          Finalizar atendimento       ", '-');
-            PrintText.ColorizeText("|7| ENCERRAR TERMINAL", PrintText.TextColor.DarkYellow);
+            PrintText.ColorizeText("|7| ENCERRAR TERMINAL", PrintText.TextColor.DarkGray, 2);
+            PrintText.ColorizeText("|>| ", PrintText.TextColor.White, 0);
             //
             int selectedOption = int.Parse(Console.ReadLine()!);
             MenuAction(selectedOption);
@@ -117,12 +118,15 @@ namespace Bytebank.Authenticated
             switch (selectedOption)
             {
                 case 1:
+                    Console.Clear();
+                    StartScreen.ShowProductOwnerBrand();
                     CheckingAccount clientAccountDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
                     PrintText.DecoratedTitleText("DEPÓSITO", '*');
-                    PrintText.ColorizeText("Digite o valor que será depositado: ", PrintText.TextColor.White);
-                    decimal valueToDeposit = decimal.Parse(Console.ReadLine()!);
+                    PrintText.ColorizeText("Digite o valor que será depositado: ", PrintText.TextColor.White, 0);
+                    decimal valueToDeposit = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
                     clientAccountDeposit.Deposit(valueToDeposit);
-                    PrintText.ColorizeText($"Valor adicionado à conta! Valor atualizado: {clientAccountDeposit.Balance:C}", PrintText.TextColor.DarkGreen);
+                    PrintText.ColorizeText($"Valor adicionado à conta!\nValor atualizado: {clientAccountDeposit.Balance:C}", PrintText.TextColor.DarkGreen);
+                    PrintTextAnimations.TreeDotsAnimation(1000);
                     _balance = clientAccountDeposit.Balance;
                     //clientAccountDeposit.GenerateJsonFile(clientAccountDeposit);
                     ShowAuthenticatedMenu();
