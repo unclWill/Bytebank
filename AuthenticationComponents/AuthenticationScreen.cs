@@ -76,8 +76,7 @@ namespace Bytebank.AuthenticationComponents
         protected internal static void ShowAuthenticationDialog()
         {
             Console.Clear();
-            StartScreen.ShowProductOwnerBrand();
-            PrintText.SetLineBreak(1);
+            HeaderTexts.BytebankLogoHeader();
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
 

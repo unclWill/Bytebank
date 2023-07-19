@@ -9,13 +9,11 @@ using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.AccountManagement;
-using System.Text;
-using System.Text.Json;
-using System.IO;
+using Bytebank.Authenticated.Operations;
 
 namespace Bytebank.Authenticated
 {
-    public class AuthenticatedScreen
+    internal class AuthenticatedScreen
     {
         private static string? _accountId;
         private static int _accountBankBranch;
@@ -80,12 +78,9 @@ namespace Bytebank.Authenticated
             */
         }
 
-        private static void ShowAuthenticatedMenu()
+        internal static void ShowAuthenticatedMenu()
         {
-            Console.Clear();
-            StartScreen.ShowProductOwnerBrand();
-            PrintText.DecoratedTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
-            PrintText.SetLineBreak(2);
+            HeaderTexts.BytebankOperationsHeader();
             //
             ShowClientAccountInfo();
             //
@@ -118,20 +113,14 @@ namespace Bytebank.Authenticated
             switch (selectedOption)
             {
                 case 1:
-                    Console.Clear();
-                    StartScreen.ShowProductOwnerBrand();
                     CheckingAccount clientAccountDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-                    PrintText.DecoratedTitleText("DEPÓSITO", '*');
-                    PrintText.ColorizeText("Digite o valor que será depositado: ", PrintText.TextColor.White, 0);
-                    decimal valueToDeposit = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
-                    clientAccountDeposit.Deposit(valueToDeposit);
-                    PrintText.ColorizeText($"Valor adicionado à conta!\nValor atualizado: {clientAccountDeposit.Balance:C}", PrintText.TextColor.DarkGreen);
-                    PrintTextAnimations.TreeDotsAnimation(1000);
+                    Deposit depositToAccount = new Deposit();
+                    depositToAccount.DepositOperation(clientAccountDeposit);
                     _balance = clientAccountDeposit.Balance;
-                    //clientAccountDeposit.GenerateJsonFile(clientAccountDeposit);
                     ShowAuthenticatedMenu();
                     break;
                 case 2:
+                    CheckingAccount clientAccountWithdraw = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
                     break;
                 case 3:
                     break;

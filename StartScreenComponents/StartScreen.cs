@@ -23,7 +23,7 @@ namespace Bytebank.StartScreenComponents
         {
             Console.Clear();
             ShowAppWindowTitle();
-            ShowProductOwnerBrand();
+            HeaderTexts.BytebankLogoHeader();
             ShowGreetingAndDateTime();
             ShowStartServiceAtTerminalDialog();
         }
@@ -58,18 +58,6 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Exibe o logo do Bytebank estilizado com caracteres ASCII.
         /// </summary>
-        internal static void ShowProductOwnerBrand()
-        {
-            string productOwnerBrand = @"
- ______                  _                 _     
-(____  \       _        | |               | |    
- ____)  )_   _| |_  ____| | _   ____ ____ | |  _ 
-|  __  (| | | |  _)/ _  ) || \ / _  |  _ \| | / )
-| |__)  ) |_| | |_( (/ /| |_) | ( | | | | | |< ( 
-|______/ \__  |\___)____)____/ \_||_|_| |_|_| \_)
-        (____/";
-            PrintText.ColorizeText(productOwnerBrand, PrintText.TextColor.DarkMagenta);
-        }
 
         /// <summary>
         /// Exibe o título da janela.
