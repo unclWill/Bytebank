@@ -1,7 +1,7 @@
 /* Classe  : StartScreenComponents
  * Objetivo: Concentra os métodos personalizados utilizados na tela inicial do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 26/06/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 19/07/2023
  */
 
 using System;
@@ -21,7 +21,6 @@ namespace Bytebank.StartScreenComponents
         /// </summary>
         internal static void ShowStartScreen()
         {
-            Console.Clear();
             ShowAppWindowTitle();
             HeaderTexts.BytebankLogoHeader();
             ShowGreetingAndDateTime();

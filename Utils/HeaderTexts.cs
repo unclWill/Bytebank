@@ -12,6 +12,7 @@ namespace Bytebank.Utils
     {
         internal static void BytebankLogoHeader()
         {
+            Console.Clear();
             string bytebankLogo = @"
  ______                  _                 _     
 (____  \       _        | |               | |    
@@ -26,7 +27,6 @@ namespace Bytebank.Utils
 
         internal static void BytebankOperationsHeader()
         {
-            Console.Clear();
             BytebankLogoHeader();
             PrintText.DecoratedTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
             PrintText.SetLineBreak(2);

@@ -1,7 +1,7 @@
 /* Classe  : AuthenticationScreen
  * Objetivo: Exibe a tela de autenticação de verificando se um Cliente existe no sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 18/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 19/07/2023
  */
 
 using Bytebank.StartScreenComponents;
@@ -75,7 +75,6 @@ namespace Bytebank.AuthenticationComponents
 
         protected internal static void ShowAuthenticationDialog()
         {
-            Console.Clear();
             HeaderTexts.BytebankLogoHeader();
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
