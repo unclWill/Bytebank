@@ -13,11 +13,6 @@ namespace Bytebank.AccountManagement
 {
     public class CheckingAccount
     {
-        private string? _accountId;
-        private int _bankBranch;
-        private string? _accountHolder;
-        private decimal _balance;
-
         public CheckingAccount()
         {
 
