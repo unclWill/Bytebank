@@ -1,7 +1,7 @@
 /* Classe  : RegisteredCurrentAccounts
  * Objetivo: Armazenar as contas correntes registradas no sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 18/07/2023 (Criação) | Modificação: 18/07/2023
+ * Data    : 18/07/2023 (Criação) | Modificação: 19/07/2023
  */
 
 using System;
@@ -17,30 +17,49 @@ namespace Bytebank.HARDCODED_DATABASE
 {
     internal class RegisteredCheckingAccounts
     {
-        //public RegisteredCheckingAccounts()
-        //{
-        //    CheckingAccounts = checkingAccounts;
-        //}
+        internal RegisteredCheckingAccounts()
+        {
+            CheckingAccounts = checkingAccounts;
+        }
 
-        //[JsonPropertyName("CheckingAccounts")]
-        //internal List<CheckingAccount> CheckingAccounts { get; set; }
+        internal List<CheckingAccount> CheckingAccounts { get; set; }
 
         //Lista de contas correntes cadastradas.
-        internal List<CheckingAccount> checkingAccounts = new List<CheckingAccount>()
+        private List<CheckingAccount> checkingAccounts = new List<CheckingAccount>()
         {
             new CheckingAccount("1010-X", 15, "André Silva", 500m),
             new CheckingAccount("1018-5", 17, "Marisa Santos", 750m),
             new CheckingAccount("8594-6", 16, "Eustáquio Sodré", 2000m),
         };
 
-        /*internal List<CheckingAccount> LoadJsonFile()
+        internal void LoadFromDatabase(string path)
         {
-            string json = File.ReadAllText(@"D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\bin\Debug\net7.0\REGISTERED_CHECKING-ACCOUNTS.json");
+            if (File.Exists(path))
+            {
+                string json = File.ReadAllText(path);
+                checkingAccounts = JsonSerializer.Deserialize<List<CheckingAccount>>(json)!;
+            }
+            else
+            {
+                PrintText.ColorizeText("[!] O arquivo não existe!", PrintText.TextColor.DarkRed);
+            }
+        }
 
-            RegisteredCheckingAccounts registeredAccounts = JsonSerializer.Deserialize<RegisteredCheckingAccounts>(json)!;
-            List<CheckingAccount> importedCheckingAccounts = registeredAccounts.CheckingAccounts;
+        internal List<CheckingAccount> GetCheckingAccounts()
+        {
+            return checkingAccounts;
+        }
 
-            return importedCheckingAccounts;
-        }*/
+        internal void AddCheckingAccount(CheckingAccount checkingAccount)
+        {
+            checkingAccount.DatabaseId = checkingAccounts.Count + 1;
+            checkingAccounts.Add(checkingAccount);
+        }
+
+        internal void SaveOnDatabase(string path)
+        {
+            string json = JsonSerializer.Serialize(checkingAccounts);
+            File.WriteAllText(path, json);
+        }
     }
 }

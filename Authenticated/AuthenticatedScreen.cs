@@ -1,7 +1,7 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 18/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 19/07/2023
  */
 
 using Bytebank.HARDCODED_DATABASE;
@@ -42,7 +42,7 @@ namespace Bytebank.Authenticated
         private static void InitializeClientAccount(string authData)
         {
             RegisteredCheckingAccounts rCA = new RegisteredCheckingAccounts();
-            var clientsAccountList = rCA.checkingAccounts;
+            var clientsAccountList = rCA.CheckingAccounts;
 
             try
             {
