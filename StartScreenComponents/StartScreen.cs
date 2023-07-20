@@ -8,6 +8,7 @@ using System;
 using Bytebank.Utils;
 using Bytebank.AuthenticationComponents;
 using Bytebank.Authenticated;
+using System.Data;
 
 namespace Bytebank.StartScreenComponents
 {
@@ -76,6 +77,17 @@ namespace Bytebank.StartScreenComponents
                         AuthenticatedScreen.ReturningToAuthenticatedScreenMessage();
                     }
                     break;
+            }
+            return escapeKey;
+        }
+
+        internal static ConsoleKey EscapeFromTransferScreenDialog(ConsoleKey escapeKey)
+        {
+            Console.Write($"\n[i] Pressione |{ConsoleKey.Escape}| para retornar à tela anterior ou pressione qualquer tecla para tentar novamente\n");
+            ConsoleKeyInfo keyPressed = Console.ReadKey();
+            if (keyPressed.Key == escapeKey)
+            {
+                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage();
             }
             return escapeKey;
         }
