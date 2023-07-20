@@ -1,7 +1,7 @@
 /* Classe  : Transfer
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 19/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 20/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -22,7 +22,7 @@ namespace Bytebank.Authenticated.Operations
         internal decimal TransferOperation(CheckingAccount account)
         {
             //DEFININDO A CONTA QUE RECEBERÁ A TRANSFERÊNCIA
-            HeaderTexts.BytebankOperationsHeader();
+            HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
             PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
             VerifyBalance(account.Balance);

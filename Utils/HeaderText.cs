@@ -8,7 +8,7 @@ using System;
 
 namespace Bytebank.Utils
 {
-    internal static class HeaderTexts
+    internal static class HeaderText
     {
         internal static void BytebankLogoHeader()
         {

@@ -1,7 +1,7 @@
 /* Classe  : Deposit
  * Objetivo: Concentrar as operações de depósito na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 19/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 20/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -11,17 +11,19 @@ namespace Bytebank.Authenticated.Operations
 {
     internal class Deposit
     {
-        internal decimal DepositOperation(CheckingAccount account)
+        private static decimal _valueToDeposit;
+        internal static decimal DepositOperation(CheckingAccount account)
         {
-            HeaderTexts.BytebankOperationsHeader();
+            HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen);
-            PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
+            Operation.ActualBalance(account.Balance);
             PrintText.ColorizeText("Digite o valor que será depositado: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
-            decimal valueToDeposit = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
-            account.Deposit(valueToDeposit);
+            _valueToDeposit = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
+            ConfirmAction();
+            account.Deposit(_valueToDeposit);
             //
-            if (valueToDeposit == 0)
+            if (_valueToDeposit == 0)
             {
                 Console.WriteLine("[i] Nenhum valor foi depositado.");
             }
@@ -31,7 +33,12 @@ namespace Bytebank.Authenticated.Operations
             }
 
             PrintTextAnimations.TreeDotsAnimation(1000);
-            return valueToDeposit;
+            return _valueToDeposit;
+        }
+
+        private static void ConfirmAction()
+        {
+
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Bytebank.StartScreenComponents
         internal static void ShowStartScreen()
         {
             ShowAppWindowTitle();
-            HeaderTexts.BytebankLogoHeader();
+            HeaderText.BytebankLogoHeader();
             ShowGreetingAndDateTime();
             ShowStartServiceAtTerminalDialog();
         }

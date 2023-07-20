@@ -1,7 +1,7 @@
 /* Classe  : Withdraw
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 19/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 20/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -13,7 +13,7 @@ namespace Bytebank.Authenticated.Operations
     {
         internal decimal WithdrawOperation(CheckingAccount account)
         {
-            HeaderTexts.BytebankOperationsHeader();
+            HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
             PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
             PrintText.ColorizeText("Digite o valor que deseja sacar: ", PrintText.TextColor.White);

@@ -1,7 +1,7 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 19/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 20/07/2023
  */
 
 using Bytebank.HARDCODED_DATABASE;
@@ -72,7 +72,7 @@ namespace Bytebank.Authenticated
 
         internal static void ShowAuthenticatedMenu()
         {
-            HeaderTexts.BytebankOperationsHeader();
+            HeaderText.BytebankOperationsHeader();
             //
             ShowClientAccountInfo();
             //
@@ -106,8 +106,8 @@ namespace Bytebank.Authenticated
             {
                 case 1:
                     CheckingAccount accountToDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-                    Deposit depositToAccount = new Deposit();
-                    depositToAccount.DepositOperation(accountToDeposit);
+                    //Deposit depositToAccount = new Deposit();
+                    Deposit.DepositOperation(accountToDeposit);
                     _balance = accountToDeposit.Balance;
                     ShowAuthenticatedMenu();
                     break;
