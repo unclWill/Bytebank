@@ -13,11 +13,9 @@ namespace Bytebank.Authenticated.Operations
 {
     internal class Transfer
     {
-        private static string? _accountId;
-        //private static int _accountBankBranch;
-        //private static string? _accountHolder;
-        private static decimal _balance;
-        private static decimal _valueToTransfer;
+        private static string? _accountId = string.Empty;
+        private static decimal _balance = 0m;
+        private static decimal _valueToTransfer = 0m;
 
         internal decimal TransferOperation(CheckingAccount account)
         {
