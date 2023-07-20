@@ -4,6 +4,8 @@
  * Data    : 19/07/2023 (Criação) | Modificação: 20/07/2023
  */
 
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Bytebank.AccountManagement;
 using Bytebank.AuthenticationComponents;
 using Bytebank.HARDCODED_DATABASE;
@@ -64,12 +66,13 @@ namespace Bytebank.Authenticated.Operations
                         accountTransferDestination = client;
                     }
                 }
-                if (_accountId != accountId)
+
+                //if (_accountId != accountId)
+                if (accountId != accountTransferDestination.AccountId)
                 {
                     PrintText.ColorizeText("[!] A conta informada não existe!", PrintText.TextColor.Red);
                     PrintTextAnimations.TreeDotsAnimation(1500);
                 }
-
             }
             catch (Exception ex)
             {
