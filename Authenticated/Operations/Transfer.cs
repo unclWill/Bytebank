@@ -31,8 +31,9 @@ namespace Bytebank.Authenticated.Operations
             PrintText.UserInteractionIndicator();
             string transferDestination = Console.ReadLine()!;
             VerifyAccountToTransfer(transferDestination);
+            //Destino:
             CheckingAccount accountToTransfer = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-
+            //
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
             PrintText.ColorizeText("Digite o valor que deseja transferir: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
