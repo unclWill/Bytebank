@@ -8,6 +8,7 @@ using System;
 using System.Text.Json;
 using Bytebank.Utils;
 using System.Text.Json.Serialization;
+using System.Reflection.Metadata;
 
 namespace Bytebank.AccountManagement
 {
@@ -27,7 +28,7 @@ namespace Bytebank.AccountManagement
             Balance = balance;
         }
 
-        public int DatabaseId { get; set; }
+        //public int DatabaseId { get; set; }
         //Conta
         public string? AccountId { get; set; }
         //Agência
@@ -46,6 +47,40 @@ namespace Bytebank.AccountManagement
             else
             {
                 Balance += value;
+            }
+        }
+
+        internal bool Withdraw(decimal value)
+        {
+            if (Balance <= 0)
+            {
+                PrintText.ColorizeText("[!] Não existe saldo disponível para ser sacado!", PrintText.TextColor.Red);
+                return false;
+            }
+            else
+            {
+                Balance -= value;
+                return true;
+            }
+        }
+
+        internal bool Transfer(CheckingAccount transferDestination, decimal value)
+        {
+            if (Balance <= value)
+            {
+                PrintText.ColorizeText("[!] O valor da transferência é maior que o saldo disponível!", PrintText.TextColor.Red);
+                return false;
+            }
+            else if (value < 0)
+            {
+                PrintText.ColorizeText("[!] Não existe saldo disponível para realizar a transferência!", PrintText.TextColor.Red);
+                return false;
+            }
+            else
+            {
+                Balance -= value;
+                transferDestination.Balance += value;
+                return true;
             }
         }
 

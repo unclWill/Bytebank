@@ -20,6 +20,8 @@ namespace Bytebank.Authenticated
         private static string? _accountHolder;
         private static decimal _balance;
 
+        public AuthenticatedScreen() { }
+
         /// <summary>
         /// Exibe o menu da área logada do sistema.
         /// </summary>
@@ -27,6 +29,7 @@ namespace Bytebank.Authenticated
         {
             ShowAuthenticatedMenu();
         }
+
 
         //Pega como parâmetro o número da conta do cliente no momento que os dados de autenticação são validados na classe Authentication.
         internal static void GetAccountData(Authentication accountData)
@@ -37,19 +40,16 @@ namespace Bytebank.Authenticated
 
         /* Instancia os dados do cliente com base na classe de clientes registrados (RegisteredClients).
          */
-        private static void InitializeClientAccount(string authData)
+        private static void InitializeClientAccount(string accountId)
         {
             RegisteredCheckingAccounts rCA = new RegisteredCheckingAccounts();
             var clientsAccountList = rCA.CheckingAccounts;
 
             try
             {
-                //CheckingAccount checkingAccount = new CheckingAccount();
-                //var clientsAccountList = checkingAccount.LoadJsonFile();
-
                 foreach (var client in clientsAccountList)
                 {
-                    if (client.AccountId is not null && client.AccountId.Equals(authData))
+                    if (client.AccountId is not null && client.AccountId.Equals(accountId))
                     {
                         _accountId = client.AccountId;
                         _accountBankBranch = client.BankBranch;
@@ -68,14 +68,6 @@ namespace Bytebank.Authenticated
         {
             CheckingAccount clientAccountInfo = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
             clientAccountInfo.ShowClientAccountOverview();
-            /*
-            PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
-            PrintText.ColorizeText($"Conta  : {clientAccount.AccountId}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Agência: {clientAccount.BankBranch}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Titular: {clientAccount.AccountHolder}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Saldo  : {clientAccount.Balance:C}", PrintText.TextColor.Gray);
-            PrintText.SetLineBreak(1);
-            */
         }
 
         internal static void ShowAuthenticatedMenu()
@@ -97,7 +89,7 @@ namespace Bytebank.Authenticated
             int selectedOption = int.Parse(Console.ReadLine()!);
             MenuAction(selectedOption);
 
-            ConsoleKey keyPressed = StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione |", ConsoleKey.Enter, "| ou aguarde.");
+            ConsoleKey keyPressed = StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione |", ConsoleKey.Enter, "| ou digite uma opção válida.");
             if (keyPressed == ConsoleKey.Enter)
             {
                 StartScreen.ReturningToStartScreenMessage();
@@ -113,16 +105,25 @@ namespace Bytebank.Authenticated
             switch (selectedOption)
             {
                 case 1:
-                    CheckingAccount clientAccountDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+                    CheckingAccount accountToDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
                     Deposit depositToAccount = new Deposit();
-                    depositToAccount.DepositOperation(clientAccountDeposit);
-                    _balance = clientAccountDeposit.Balance;
+                    depositToAccount.DepositOperation(accountToDeposit);
+                    _balance = accountToDeposit.Balance;
                     ShowAuthenticatedMenu();
                     break;
                 case 2:
-                    CheckingAccount clientAccountWithdraw = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+                    CheckingAccount accountToWithdraw = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+                    Withdraw withdrawFromAccount = new Withdraw();
+                    withdrawFromAccount.WithdrawOperation(accountToWithdraw);
+                    _balance = accountToWithdraw.Balance;
+                    ShowAuthenticatedMenu();
                     break;
                 case 3:
+                    CheckingAccount accountToTransfer = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
+                    Transfer transferToAccount = new Transfer();
+                    transferToAccount.TransferOperation(accountToTransfer);
+                    _balance = accountToTransfer.Balance;
+                    ShowAuthenticatedMenu();
                     break;
                 case 4:
                     break;
@@ -131,6 +132,7 @@ namespace Bytebank.Authenticated
                 case 6:
                     break;
                 case 7:
+                    StartScreen.ReturningToStartScreenMessage();
                     break;
 
             }

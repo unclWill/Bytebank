@@ -27,9 +27,9 @@ namespace Bytebank.HARDCODED_DATABASE
         //Lista de contas correntes cadastradas.
         private List<CheckingAccount> checkingAccounts = new List<CheckingAccount>()
         {
-            new CheckingAccount("1010-X", 15, "André Silva", 500m),
-            new CheckingAccount("1018-5", 17, "Marisa Santos", 750m),
-            new CheckingAccount("8594-6", 16, "Eustáquio Sodré", 2000m),
+            new CheckingAccount("1010-X", 15, "André Silva", 100m),
+            new CheckingAccount("1018-5", 16, "Marisa Santos", 200m),
+            new CheckingAccount("8594-6", 17, "Eustáquio Sodré", 300m),
         };
 
         internal void LoadFromDatabase(string path)
@@ -52,7 +52,7 @@ namespace Bytebank.HARDCODED_DATABASE
 
         internal void AddCheckingAccount(CheckingAccount checkingAccount)
         {
-            checkingAccount.DatabaseId = checkingAccounts.Count + 1;
+            //checkingAccount.DatabaseId = checkingAccounts.Count + 1;
             checkingAccounts.Add(checkingAccount);
         }
 

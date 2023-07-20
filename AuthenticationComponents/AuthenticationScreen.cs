@@ -4,6 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 19/07/2023
  */
 
+using Bytebank.HARDCODED_DATABASE;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using System;
@@ -21,6 +22,8 @@ namespace Bytebank.AuthenticationComponents
 
                 if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && char.IsLetterOrDigit(clientIdInput[^1]) && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
                 {
+                    RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
+                    registeredAuthenticationData.GetAccountInformation(clientIdInput);//Captura o número da Agência para realizar o login.
                     break;
                 }
                 else
