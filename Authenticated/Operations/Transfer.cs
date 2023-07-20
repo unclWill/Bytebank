@@ -28,7 +28,7 @@ namespace Bytebank.Authenticated.Operations
             Operation.ActualBalance(account.Balance);
             VerifyBalance(account.Balance);
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência: ", PrintText.TextColor.White);
-            PrintText.UserInteractionIndicator();
+            PrintText.UserInputIndicator();
             string transferDestination = Console.ReadLine()!;
             VerifyAccountToTransfer(transferDestination);
             //Destino:
@@ -36,7 +36,7 @@ namespace Bytebank.Authenticated.Operations
             //
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
             PrintText.ColorizeText("Digite o valor que deseja transferir: ", PrintText.TextColor.White);
-            PrintText.UserInteractionIndicator();
+            PrintText.UserInputIndicator();
             decimal valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
             _valueToTransfer = Operation.ConfirmAction(valueToTransfer);
             account.Transfer(accountToTransfer, _valueToTransfer);

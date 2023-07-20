@@ -14,7 +14,7 @@ namespace Bytebank.Utils
             while (!int.TryParse(Console.ReadLine(), out optionNumber))
             {
                 PrintText.ColorizeText("\n[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
-                PrintText.UserInteractionIndicator();
+                PrintText.UserInputIndicator();
             }
             return optionNumber;
         }

@@ -35,7 +35,7 @@ namespace Bytebank.StartScreenComponents
         internal static ConsoleKey EscapeFromScreenDialog(string? primaryText, ConsoleKey escapeKey, string? secondaryText)
         {
             Console.Write($"\n[i] {primaryText} {escapeKey} {secondaryText}\n");
-            PrintText.UserInteractionIndicator();
+            PrintText.UserInputIndicator();
             ConsoleKeyInfo keyPressed = Console.ReadKey();
             if (keyPressed.Key == escapeKey)
             {
@@ -84,7 +84,7 @@ namespace Bytebank.StartScreenComponents
             PrintText.DecoratedTitleText(" Digite |1| para iniciar o seu atendimento", '-');
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Gray, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGray);
-            PrintText.UserInteractionIndicator();
+            PrintText.UserInputIndicator();
             //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
             int menuOption = InputVerification.VerifyMenuOptionInput();
 

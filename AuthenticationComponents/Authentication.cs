@@ -88,7 +88,7 @@ namespace Bytebank.AuthenticationComponents
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed);
             Console.Write("\n[i] Digite |1| para tentar novamente ou |2| para voltar à tela inicial\n");
-            PrintText.UserInteractionIndicator();
+            PrintText.UserInputIndicator();
             string readKeyboard = Console.ReadLine()!;
             if (readKeyboard == "1")
             {

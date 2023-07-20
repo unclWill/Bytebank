@@ -20,7 +20,7 @@ namespace Bytebank.Authenticated.Operations
             PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen, 0);
             Operation.ActualBalance(account.Balance);
             PrintText.ColorizeText("Digite o valor que será depositado: ", PrintText.TextColor.White);
-            PrintText.UserInteractionIndicator();
+            PrintText.UserInputIndicator();
             decimal valueToDeposit = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
             _valueToDeposit = Operation.ConfirmAction(valueToDeposit);
             account.Deposit(_valueToDeposit);

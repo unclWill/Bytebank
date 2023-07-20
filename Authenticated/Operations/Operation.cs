@@ -15,7 +15,7 @@ namespace Bytebank.Authenticated.Operations
             while (!int.TryParse(Console.ReadLine(), out confirmation))
             {
                 PrintText.ColorizeText("[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
-                PrintText.UserInteractionIndicator();
+                PrintText.UserInputIndicator();
             }
 
             switch (confirmation)

@@ -17,9 +17,9 @@ namespace Bytebank.AuthenticationComponents
         {
             while (true)
             {
-                PrintText.ColorizeText("\nInforme o nº da sua conta\n(no formato 0000-X): ", PrintText.TextColor.White, 0);
+                PrintText.ColorizeText("\nInforme o nº da sua conta", PrintText.TextColor.Gray, " (no formato 0000-X)", PrintText.TextColor.DarkGray);
+                PrintText.UserInputIndicator(PrintText.TextColor.DarkMagenta);
                 clientIdInput = Console.ReadLine()!.Trim();
-
                 if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && char.IsLetterOrDigit(clientIdInput[^1]) && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
                 {
                     RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
@@ -38,11 +38,10 @@ namespace Bytebank.AuthenticationComponents
         {
             while (true)
             {
-                PrintText.ColorizeText("\nInforme o nº da sua Agência\n(no formato 00): ", PrintText.TextColor.White, 0);
-                //clientBankBranchInput;// = int.Parse(Console.ReadLine()!.Trim());
-
+                PrintText.ColorizeText("\nInforme o nº da sua Agência", PrintText.TextColor.Gray, " (no formato 00)", PrintText.TextColor.DarkGray);
+                PrintText.UserInputIndicator(PrintText.TextColor.DarkMagenta);
                 //if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
-                if (!int.TryParse(Console.ReadLine(), out clientBankBranchInput))
+                if (!int.TryParse(Console.ReadLine()!.Trim(), out clientBankBranchInput))
                 {
                     PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 00.\n", PrintText.TextColor.DarkRed, 0);
                     StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua agência para tentar novamente: ");
@@ -59,9 +58,9 @@ namespace Bytebank.AuthenticationComponents
             string pinCodeInput;
             while (true)
             {
-                PrintText.ColorizeText("\nInforme sua senha\n(4 dígitos numéricos): ", PrintText.TextColor.White, 0);
+                PrintText.ColorizeText("\nInforme sua senha", PrintText.TextColor.Gray, " (4 dígitos numéricos)", PrintText.TextColor.DarkGray);
+                PrintText.UserInputIndicator(PrintText.TextColor.DarkMagenta);
                 pinCodeInput = Console.ReadLine()!.Trim();
-
                 if (int.TryParse(pinCodeInput, out clientPinCode) && clientPinCode >= 0 && clientPinCode <= 9999)
                 {
                     if (clientPinCode.ToString("D4") == pinCodeInput)
@@ -69,7 +68,6 @@ namespace Bytebank.AuthenticationComponents
                         break; // A saída do loop ocorre quando uma senha válida é fornecida
                     }
                 }
-
                 PrintText.ColorizeText("\n[i] Senha inválida! A senha deve ter 4 dígitos numéricos.", PrintText.TextColor.DarkRed);
                 Console.WriteLine("[i] Por favor, tente novamente.");
             }
@@ -80,7 +78,7 @@ namespace Bytebank.AuthenticationComponents
         {
             HeaderText.BytebankLogoHeader();
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
-            PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo: ", PrintText.TextColor.DarkGray);
+            PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo", PrintText.TextColor.DarkGray);
 
             string clientAccountId = string.Empty;
             int clientBankBranch = 0;

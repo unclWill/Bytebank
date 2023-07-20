@@ -19,7 +19,7 @@ namespace Bytebank.Authenticated.Operations
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
             Operation.ActualBalance(account.Balance);
             PrintText.ColorizeText("Digite o valor que deseja sacar: ", PrintText.TextColor.White);
-            PrintText.UserInteractionIndicator();
+            PrintText.UserInputIndicator();
             decimal valueToWithdraw = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
             _valueToWithdraw = Operation.ConfirmAction(valueToWithdraw);
             account.Withdraw(_valueToWithdraw);

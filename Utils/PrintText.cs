@@ -185,9 +185,9 @@ namespace Bytebank.Utils
         /// Método <code>UserInteractionIndicator</code>
         /// Exibe os caracteres [>] indicando que o espaço a seguir é destinado à inserção de dados pelo usuário.
         /// </summary>
-        internal static void UserInteractionIndicator()
+        internal static void UserInputIndicator(TextColor color = TextColor.White)
         {
-            ColorizeText("[>] ", TextColor.DarkGray, 0);
+            ColorizeText("|>| ", color, 0);
         }
 
     }
