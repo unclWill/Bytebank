@@ -19,12 +19,13 @@ namespace Bytebank.Authenticated.Operations
         private static decimal _valueToTransfer;
 
 
+
         internal decimal TransferOperation(CheckingAccount account)
         {
             //DEFININDO A CONTA QUE RECEBERÁ A TRANSFERÊNCIA
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
-            PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
+            Operation.ActualBalance(account.Balance);
             VerifyBalance(account.Balance);
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
@@ -35,10 +36,10 @@ namespace Bytebank.Authenticated.Operations
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
             PrintText.ColorizeText("Digite o valor que deseja transferir: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
-            _valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
-            ConfirmAction();
+            decimal valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
+            _valueToTransfer = Operation.ConfirmAction(valueToTransfer);
             account.Transfer(accountToTransfer, _valueToTransfer);
-            PrintText.ColorizeText($"Valor transferido da conta!\nValor atualizado: {account.Balance:C} | Valor na conta recebedora: {accountToTransfer.Balance:C}", PrintText.TextColor.DarkYellow);
+            Operation.AccountBalanceStatus('T', _valueToTransfer, _balance, accountToTransfer.Balance);
             PrintTextAnimations.TreeDotsAnimation(1000);
             return _valueToTransfer;
         }
@@ -82,25 +83,6 @@ namespace Bytebank.Authenticated.Operations
                 Console.WriteLine("Ocorreu um erro: " + ex.Message);
             }
             //return accountTransferDestination;
-        }
-
-        private static void ConfirmAction()
-        {
-            int confirmation;
-            PrintText.DecoratedTitleText("Confirmar operação?", '-', PrintText.TextColor.DarkRed);
-            PrintText.ColorizeText("|0| NÃO  -  |1| SIM\n[>] ", PrintText.TextColor.White, 0);
-            while (!int.TryParse(Console.ReadLine(), out confirmation))
-            {
-                PrintText.ColorizeText("[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
-                PrintText.UserInteractionIndicator();
-            }
-
-            if (confirmation == 0)
-            {
-                _valueToTransfer = 0m;
-                PrintText.ColorizeText("[!] Transferência cancelada.", PrintText.TextColor.Red);
-                return;
-            }
         }
     }
 }

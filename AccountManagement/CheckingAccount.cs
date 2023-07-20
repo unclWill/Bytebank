@@ -52,7 +52,7 @@ namespace Bytebank.AccountManagement
 
         internal bool Withdraw(decimal value)
         {
-            if (Balance <= 0)
+            if (Balance <= 0 || value > Balance)
             {
                 PrintText.ColorizeText("[!] Não existe saldo disponível para ser sacado!", PrintText.TextColor.Red);
                 return false;

@@ -11,18 +11,21 @@ namespace Bytebank.Authenticated.Operations
 {
     internal class Withdraw
     {
-        internal decimal WithdrawOperation(CheckingAccount account)
+        private static decimal _valueToWithdraw;
+
+        internal static void WithdrawOperation(CheckingAccount account)
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
-            PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
+            Operation.ActualBalance(account.Balance);
             PrintText.ColorizeText("Digite o valor que deseja sacar: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
             decimal valueToWithdraw = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
-            account.Withdraw(valueToWithdraw);
-            PrintText.ColorizeText($"Valor sacado da conta!\nValor atualizado: {account.Balance:C}", PrintText.TextColor.DarkYellow);
+            _valueToWithdraw = Operation.ConfirmAction(valueToWithdraw);
+            account.Withdraw(_valueToWithdraw);
+            Operation.AccountBalanceStatus('W', _valueToWithdraw, account.Balance);
             PrintTextAnimations.TreeDotsAnimation(1000);
-            return valueToWithdraw;
+            //return valueToWithdraw;
         }
     }
 }

@@ -29,7 +29,6 @@ namespace Bytebank.Utils
         {
             BytebankLogoHeader();
             PrintText.DecoratedTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
-            PrintText.SetLineBreak(2);
         }
     }
 }

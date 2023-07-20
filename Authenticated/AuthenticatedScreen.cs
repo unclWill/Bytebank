@@ -83,21 +83,11 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|4| CONSULTAR MEUS DADOS\n|5| CONSULTAR MEU HISTÓRICO FINANCEIRO\n|6| TROCAR MINHA SENHA DE ACESSO", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
             PrintText.DecoratedTitleText("          Finalizar atendimento       ", '-');
-            PrintText.ColorizeText("|7| ENCERRAR TERMINAL", PrintText.TextColor.DarkGray, 2);
+            PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.DarkGray, 2);
             PrintText.ColorizeText("|>| ", PrintText.TextColor.White, 0);
             //
-            int selectedOption = int.Parse(Console.ReadLine()!);
-            MenuAction(selectedOption);
-
-            ConsoleKey keyPressed = StartScreen.EscapeFromScreenDialog("Para retornar a tela incial pressione |", ConsoleKey.Enter, "| ou digite uma opção válida.");
-            if (keyPressed == ConsoleKey.Enter)
-            {
-                StartScreen.ReturningToStartScreenMessage();
-            }
-            else
-            {
-                ShowAuthenticatedMenu();
-            }
+            int menuOption = InputVerification.VerifyMenuOptionInput();
+            MenuAction(menuOption);
         }
 
         private static void MenuAction(int selectedOption)
@@ -113,8 +103,8 @@ namespace Bytebank.Authenticated
                     break;
                 case 2:
                     CheckingAccount accountToWithdraw = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-                    Withdraw withdrawFromAccount = new Withdraw();
-                    withdrawFromAccount.WithdrawOperation(accountToWithdraw);
+                    //Withdraw withdrawFromAccount = new Withdraw();
+                    Withdraw.WithdrawOperation(accountToWithdraw);
                     _balance = accountToWithdraw.Balance;
                     ShowAuthenticatedMenu();
                     break;

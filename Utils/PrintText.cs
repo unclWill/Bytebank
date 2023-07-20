@@ -1,7 +1,7 @@
 /* Classe  : PrintText
  * Objetivo: Imprime textos na tela. Contém métodos que permitem imprimir textos de forma personalizada utilizando a classe System.Console.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | Modificação: 03/07/2023
+ * Data    : 21/06/2023 (Criação) | Modificação: 20/07/2023
  */
 
 using System;
@@ -170,13 +170,15 @@ namespace Bytebank.Utils
         /// </summary>
         /// <param name="text">String que será exibida.</param>
         /// <param name="character">Caractere que será utilizado para criar a decoração entorno do texto.</param>
-        internal static void DecoratedTitleText(string text, char character, TextColor color = TextColor.DarkGray)
+        internal static void DecoratedTitleText(string text, char character, TextColor color = TextColor.DarkGray, sbyte lineBreak = 1)
         {
             int charCount = text.Length;
             string textEffect = string.Empty.PadLeft(charCount, character);
+            SetLineBreak(lineBreak);
             ColorizeText(textEffect, color, 1);
             ColorizeText(text, color, 1);
             ColorizeText(textEffect, color, 1);
+            SetLineBreak(lineBreak);
         }
 
         /// <summary>
