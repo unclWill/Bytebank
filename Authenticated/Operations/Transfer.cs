@@ -51,10 +51,9 @@ namespace Bytebank.Authenticated.Operations
         }
         private static void VerifyAccountToTransfer(string accountId)
         {
-            RegisteredCheckingAccounts rCA = new RegisteredCheckingAccounts();
-            var clientsAccountList = rCA.CheckingAccounts;
+            RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
+            var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
 
-            //CheckingAccount accountTransferDestination = new CheckingAccount();
             try
             {
                 foreach (var client in clientsAccountList)
