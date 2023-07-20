@@ -18,8 +18,6 @@ namespace Bytebank.Authenticated.Operations
         private static decimal _balance;
         private static decimal _valueToTransfer;
 
-
-
         internal decimal TransferOperation(CheckingAccount account)
         {
             //DEFININDO A CONTA QUE RECEBERÁ A TRANSFERÊNCIA
@@ -27,15 +25,15 @@ namespace Bytebank.Authenticated.Operations
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
             Operation.ActualBalance(account.Balance);
             VerifyBalance(account.Balance);
-            PrintText.ColorizeText("Digite o número da conta que receberá a transferência: ", PrintText.TextColor.White);
+            PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
             PrintText.UserInputIndicator();
             string transferDestination = Console.ReadLine()!;
             VerifyAccountToTransfer(transferDestination);
             //Destino:
             CheckingAccount accountToTransfer = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-            //
+            //----
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
-            PrintText.ColorizeText("Digite o valor que deseja transferir: ", PrintText.TextColor.White);
+            PrintText.ColorizeText("Digite o valor que deseja transferir", PrintText.TextColor.White);
             PrintText.UserInputIndicator();
             decimal valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
             _valueToTransfer = Operation.ConfirmAction(valueToTransfer);

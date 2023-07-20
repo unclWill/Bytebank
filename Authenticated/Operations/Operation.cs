@@ -11,8 +11,10 @@ namespace Bytebank.Authenticated.Operations
             decimal transactionValue = 0m;
             int confirmation;
             PrintText.DecoratedTitleText(" Confirmar operação? ", '-', PrintText.TextColor.DarkRed, 0);
-            PrintText.ColorizeText("|0| NÃO  -  |1| SIM\n[>] ", PrintText.TextColor.White, 0);
-            while (!int.TryParse(Console.ReadLine(), out confirmation))
+            PrintText.ColorizeText("|0| NÃO  -  |1| SIM", PrintText.TextColor.Red, 2);
+            PrintText.UserInputIndicator();
+
+            while (!int.TryParse(Console.ReadLine(), out confirmation) || confirmation < 0 || confirmation > 1)
             {
                 PrintText.ColorizeText("[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
                 PrintText.UserInputIndicator();
@@ -43,7 +45,7 @@ namespace Bytebank.Authenticated.Operations
                 case 'D':
                     if (transactionValue == 0m)
                     {
-                        Console.WriteLine("[i] Nenhum valor foi depositado.");
+                        PrintText.ColorizeText("[i] Nenhum valor foi depositado.", PrintText.TextColor.Gray);
                     }
                     else
                     {
@@ -53,7 +55,7 @@ namespace Bytebank.Authenticated.Operations
                 case 'W':
                     if (transactionValue == 0m)
                     {
-                        Console.WriteLine("[i] Nenhum valor foi sacado.");
+                        PrintText.ColorizeText("[i] Nenhum valor foi sacado.", PrintText.TextColor.Gray);
                     }
                     else
                     {
@@ -63,11 +65,11 @@ namespace Bytebank.Authenticated.Operations
                 case 'T':
                     if (transactionValue == 0m)
                     {
-                        Console.WriteLine("[i] Nenhum valor foi transferido.");
+                        PrintText.ColorizeText("[i] Nenhum valor foi transferido.", PrintText.TextColor.Gray);
                     }
                     else
                     {
-                        PrintText.ColorizeText($"Valor transferido da conta!\nValor atualizado: {balance:C} | Valor na conta recebedora: {accountToTransferBalance:C}", PrintText.TextColor.DarkYellow);
+                        PrintText.ColorizeText($"Valor transferido da conta!\nValor atualizado: {balance:C}\nValor na conta recebedora: {accountToTransferBalance:C}", PrintText.TextColor.DarkYellow);
                     }
                     break;
             }
