@@ -14,7 +14,7 @@ namespace Bytebank.Authenticated.Operations
         internal decimal DepositOperation(CheckingAccount account)
         {
             HeaderTexts.BytebankOperationsHeader();
-            PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*');
+            PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen);
             PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
             PrintText.ColorizeText("Digite o valor que será depositado: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();

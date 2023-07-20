@@ -14,7 +14,7 @@ namespace Bytebank.Authenticated.Operations
         internal decimal WithdrawOperation(CheckingAccount account)
         {
             HeaderTexts.BytebankOperationsHeader();
-            PrintText.DecoratedTitleText("[-$] SAQUE ", '*');
+            PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
             PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
             PrintText.ColorizeText("Digite o valor que deseja sacar: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();

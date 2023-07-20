@@ -22,7 +22,7 @@ namespace Bytebank.Authenticated.Operations
         {
             //DEFININDO A CONTA QUE RECEBERÁ A TRASNFERÊNCIA
             HeaderTexts.BytebankOperationsHeader();
-            PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*');
+            PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
             PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
