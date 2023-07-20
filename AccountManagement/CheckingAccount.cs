@@ -42,7 +42,7 @@ namespace Bytebank.AccountManagement
         {
             if (value <= 0)
             {
-                Balance = 0m;
+                return;
             }
             else
             {

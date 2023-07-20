@@ -20,7 +20,7 @@ namespace Bytebank.Authenticated.Operations
 
         internal decimal TransferOperation(CheckingAccount account)
         {
-            //DEFININDO A CONTA QUE RECEBERÁ A TRASNFERÊNCIA
+            //DEFININDO A CONTA QUE RECEBERÁ A TRANSFERÊNCIA
             HeaderTexts.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
             PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);

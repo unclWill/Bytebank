@@ -176,7 +176,7 @@ namespace Bytebank.Utils
             string textEffect = string.Empty.PadLeft(charCount, character);
             ColorizeText(textEffect, color, 1);
             ColorizeText(text, color, 1);
-            ColorizeText(textEffect, TextColor.DarkGray, 1);
+            ColorizeText(textEffect, color, 1);
         }
 
         /// <summary>
