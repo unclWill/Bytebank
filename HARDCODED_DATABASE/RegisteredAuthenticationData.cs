@@ -25,7 +25,7 @@ namespace Bytebank.HARDCODED_DATABASE
 
         internal List<Authentication> RegisteredAuthData { get; set; }
 
-        internal void GetAccountInformation(string accountId)
+        internal void GetCheckingAccountInformation(string accountId)
         {
             RegisteredCheckingAccounts accounts = new RegisteredCheckingAccounts();
             var accountsList = accounts.CheckingAccounts;

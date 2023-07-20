@@ -7,6 +7,7 @@
 using System;
 using Bytebank.Utils;
 using Bytebank.AuthenticationComponents;
+using Bytebank.Authenticated;
 
 namespace Bytebank.StartScreenComponents
 {
@@ -30,13 +31,60 @@ namespace Bytebank.StartScreenComponents
         /// <summary>
         /// Método <code>EscapeFromScreenDialog</code>
         /// Diálogo que permite voltar à tela inicial ao pressionar uma determinada tecla.
-        /// Retorna uma ConsoleKey para ser usada como controle de execução.
+        /// <code>Retorna uma ConsoleKey para ser usada como controle de execução.</code>
+        /// <code>Aceita uma sobrecarga que recebe como parâmetros uma string screenType, que se refere à tela da qual o método irá retornar:
+        /// "Authentication" retorna para a tela inicial do terminal;
+        /// "Authenticated" retorna para a tela do menu de operações da área logada.</code>
         /// </summary>
-        internal static ConsoleKey EscapeFromScreenDialog(string? primaryText, ConsoleKey escapeKey, string? secondaryText)
+        internal static ConsoleKey EscapeFromScreenDialog(string screenType, string? primaryText, ConsoleKey escapeKey, string? secondaryText)
         {
             Console.Write($"\n[i] {primaryText} {escapeKey} {secondaryText}\n");
-            PrintText.UserInputIndicator();
             ConsoleKeyInfo keyPressed = Console.ReadKey();
+            switch (screenType)
+            {
+                case "Authentication":
+                    if (keyPressed.Key == escapeKey)
+                    {
+                        ReturningToStartScreenMessage();
+                    }
+                    break;
+                case "Authenticated":
+                    if (keyPressed.Key == escapeKey)
+                    {
+                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage();
+                    }
+                    break;
+            }
+            return escapeKey;
+        }
+
+        internal static ConsoleKey EscapeFromScreenDialog(string screenType, ConsoleKey escapeKey)
+        {
+            Console.Write($"\n[i] Pressione |{ConsoleKey.Escape}| para retornar à tela anterior ou pressione qualquer tecla para tentar novamente\n");
+            ConsoleKeyInfo keyPressed = Console.ReadKey();
+            switch (screenType)
+            {
+                case "Authentication":
+                    if (keyPressed.Key == escapeKey)
+                    {
+                        ReturningToStartScreenMessage();
+                    }
+                    break;
+                case "Authenticated":
+                    if (keyPressed.Key == escapeKey)
+                    {
+                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage();
+                    }
+                    break;
+            }
+            return escapeKey;
+        }
+
+        internal static ConsoleKey EscapeFromScreenDialog(ConsoleKey escapeKey)
+        {
+            Console.Write($"\n[i] Pressione |{ConsoleKey.Escape}| para retornar à tela anterior ou pressione qualquer tecla para tentar novamente\n");
+            ConsoleKeyInfo keyPressed = Console.ReadKey();
+
             if (keyPressed.Key == escapeKey)
             {
                 ReturningToStartScreenMessage();
@@ -86,7 +134,7 @@ namespace Bytebank.StartScreenComponents
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGray);
             PrintText.UserInputIndicator();
             //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
-            int menuOption = InputVerification.VerifyMenuOptionInput();
+            int menuOption = InputValidation.ValidateMenuOptionInput();
 
             if (menuOption < 1 | menuOption > 2)
             {

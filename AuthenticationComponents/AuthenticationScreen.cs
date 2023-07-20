@@ -13,65 +13,20 @@ namespace Bytebank.AuthenticationComponents
 {
     internal class AuthenticationScreen
     {
-        private static string RequireClientId(string clientIdInput)
+        private static string RequireAccountId()
         {
-            while (true)
-            {
-                PrintText.ColorizeText("\nInforme o nº da sua conta", PrintText.TextColor.Gray, " (no formato 0000-X)", PrintText.TextColor.DarkGray);
-                PrintText.UserInputIndicator(PrintText.TextColor.DarkGray);
-                clientIdInput = Console.ReadLine()!.Trim();
-                if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && char.IsLetterOrDigit(clientIdInput[^1]) && int.TryParse(clientIdInput.AsSpan(0, 4), out _)) // Uso do discard*
-                {
-                    RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
-                    registeredAuthenticationData.GetAccountInformation(clientIdInput);//Captura o número da Agência para realizar o login.
-                    break;
-                }
-                else
-                {
-                    PrintText.ColorizeText("\n[!] Número de conta inválido! O número de conta deve ter a formatação 0000-X.\n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua conta para tentar novamente: ");
-                }
-            }
-            return clientIdInput;
+            string accountId = InputValidation.ValidateAccountIdInput("Authentication");
+            return accountId;
         }
-        private static int RequireClientBankBranch(int clientBankBranchInput)
+        private static int RequireClientBankBranch()
         {
-            while (true)
-            {
-                PrintText.ColorizeText("\nInforme o nº da sua Agência", PrintText.TextColor.Gray, " (no formato 00)", PrintText.TextColor.DarkGray);
-                PrintText.UserInputIndicator(PrintText.TextColor.DarkGray);
-                //if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
-                if (!int.TryParse(Console.ReadLine()!.Trim(), out clientBankBranchInput))
-                {
-                    PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 00.\n", PrintText.TextColor.DarkRed, 0);
-                    StartScreen.EscapeFromScreenDialog("Pressione |", ConsoleKey.Escape, "| para retornar à tela incial ou digite sua agência para tentar novamente: ");
-                }
-                else
-                {
-                    break;
-                }
-            }
-            return clientBankBranchInput;
+            int bankBranch = InputValidation.ValidateBankBranchInput("Authentication");
+            return bankBranch;
         }
-        private static int RequireClientPinCode(int clientPinCode)
+        private static int RequireClientPinCode()
         {
-            string pinCodeInput;
-            while (true)
-            {
-                PrintText.ColorizeText("\nInforme sua senha", PrintText.TextColor.Gray, " (4 dígitos numéricos)", PrintText.TextColor.DarkGray);
-                PrintText.UserInputIndicator(PrintText.TextColor.DarkGray);
-                pinCodeInput = Console.ReadLine()!.Trim();
-                if (int.TryParse(pinCodeInput, out clientPinCode) && clientPinCode >= 0 && clientPinCode <= 9999)
-                {
-                    if (clientPinCode.ToString("D4") == pinCodeInput)
-                    {
-                        break; // A saída do loop ocorre quando uma senha válida é fornecida
-                    }
-                }
-                PrintText.ColorizeText("\n[i] Senha inválida! A senha deve ter 4 dígitos numéricos.", PrintText.TextColor.DarkRed);
-                Console.WriteLine("[i] Por favor, tente novamente.");
-            }
-            return int.Parse(pinCodeInput);
+            int pinCode = InputValidation.ValidatePinCodeInput();
+            return pinCode;
         }
 
         protected internal static void ShowAuthenticationDialog()
@@ -80,11 +35,7 @@ namespace Bytebank.AuthenticationComponents
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo", PrintText.TextColor.DarkGray);
 
-            string clientAccountId = string.Empty;
-            int clientBankBranch = 0;
-            int clientPinCode = 0;
-
-            Authentication clientAuthData = new Authentication(RequireClientId(clientAccountId), RequireClientBankBranch(clientBankBranch), RequireClientPinCode(clientPinCode));
+            Authentication clientAuthData = new Authentication(RequireAccountId(), RequireClientBankBranch(), RequireClientPinCode());
             Authentication.Authenticate(clientAuthData);
         }
     }

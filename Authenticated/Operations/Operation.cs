@@ -1,3 +1,8 @@
+/* Classe  : Operation
+ * Objetivo: Concentrar os métodos comuns a todas as operações.
+ * Autor   : unclWill (williamsilvajdf@gmail.com)
+ * Data    : 20/07/2023 (Criação) | Modificação: 20/07/2023
+ */
 
 using System.Collections;
 using Bytebank.Utils;

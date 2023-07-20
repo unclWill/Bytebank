@@ -30,7 +30,6 @@ namespace Bytebank.Authenticated
             ShowAuthenticatedMenu();
         }
 
-
         //Pega como parâmetro o número da conta do cliente no momento que os dados de autenticação são validados na classe Authentication.
         internal static void GetAccountData(Authentication accountData)
         {
@@ -86,7 +85,7 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.DarkGray);
             PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
             //----
-            int menuOption = InputVerification.VerifyMenuOptionInput();
+            int menuOption = InputValidation.ValidateMenuOptionInput();
             MenuAction(menuOption);
         }
 
@@ -126,6 +125,12 @@ namespace Bytebank.Authenticated
                     break;
 
             }
+        }
+        internal static void ReturningToAuthenticatedScreenMessage()
+        {
+            PrintText.ColorizeText("\n[i] Retornando ao menu de operações", PrintText.TextColor.Yellow, 0);
+            PrintTextAnimations.TreeDotsAnimation();
+            ShowAuthenticatedMenu();
         }
     }
 }

@@ -59,29 +59,6 @@ namespace Bytebank.AuthenticationComponents
             AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             AuthenticatedScreen.ShowAuthenticatedScreen();
-
-            /*
-            //Instanciando o cliente 
-            RegisteredCheckingAccounts rCA = new RegisteredCheckingAccounts();
-            var clientsAccountList = rCA.CheckingAccounts;
-
-            try
-            {
-                foreach (var client in clientsAccountList)
-                {
-                    if (client.AccountId is not null && client.AccountId.Equals(getClientAccountData.AuthClientAccountId))
-                    {
-                        CheckingAccount clientAccount = new CheckingAccount(client.AccountId, client.BankBranch, client.AccountHolder!, client.Balance);
-                        AuthenticatedScreen authenticatedScreen = new AuthenticatedScreen(clientAccount);
-                        AuthenticatedScreen.ShowAuthenticatedScreen();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                PrintText.ColorizeText($"[!] Ocorreu um erro: {ex.Message}", PrintText.TextColor.Red);
-            }*/
-
         }
         private static void InvalidClientData()
         {
