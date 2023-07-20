@@ -24,7 +24,6 @@ namespace Bytebank.Authenticated.Operations
             _valueToWithdraw = Operation.ConfirmAction(valueToWithdraw);
             account.Withdraw(_valueToWithdraw);
             Operation.AccountBalanceStatus('W', _valueToWithdraw, account.Balance);
-            PrintTextAnimations.TreeDotsAnimation(1000);
             //return valueToWithdraw;
         }
     }

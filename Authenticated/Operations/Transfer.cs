@@ -40,7 +40,6 @@ namespace Bytebank.Authenticated.Operations
             _valueToTransfer = Operation.ConfirmAction(valueToTransfer);
             account.Transfer(accountToTransfer, _valueToTransfer);
             Operation.AccountBalanceStatus('T', _valueToTransfer, _balance, accountToTransfer.Balance);
-            PrintTextAnimations.TreeDotsAnimation(1000);
             return _valueToTransfer;
         }
 

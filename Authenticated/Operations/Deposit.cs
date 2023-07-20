@@ -26,7 +26,6 @@ namespace Bytebank.Authenticated.Operations
             account.Deposit(_valueToDeposit);
             //
             Operation.AccountBalanceStatus('D', _valueToDeposit, account.Balance);
-            PrintTextAnimations.TreeDotsAnimation(1000);
             //return valueToDeposit;
         }
     }

@@ -71,6 +71,7 @@ namespace Bytebank.Authenticated.Operations
                     }
                     break;
             }
+            PrintTextAnimations.TreeDotsAnimation(1000);
         }
     }
 }
