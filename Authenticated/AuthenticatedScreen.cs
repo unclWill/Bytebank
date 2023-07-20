@@ -73,9 +73,9 @@ namespace Bytebank.Authenticated
         internal static void ShowAuthenticatedMenu()
         {
             HeaderText.BytebankOperationsHeader();
-            //
+            //----
             ShowClientAccountInfo();
-            //
+            //----
             PrintText.DecoratedTitleText(" Operações disponíveis neste terminal ", '-');
             PrintText.ColorizeText("|1| DEPÓSITO\n|2| SAQUE\n|3| TRANSFERÊNCIA", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
@@ -83,9 +83,9 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|4| CONSULTAR MEUS DADOS\n|5| CONSULTAR MEU HISTÓRICO FINANCEIRO\n|6| TROCAR MINHA SENHA DE ACESSO", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
             PrintText.DecoratedTitleText("          Finalizar atendimento       ", '-');
-            PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.DarkGray, 2);
-            PrintText.ColorizeText("|>| ", PrintText.TextColor.White, 0);
-            //
+            PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.DarkGray);
+            PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
+            //----
             int menuOption = InputVerification.VerifyMenuOptionInput();
             MenuAction(menuOption);
         }
