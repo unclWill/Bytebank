@@ -16,7 +16,6 @@ namespace Bytebank.Authenticated.Operations
     internal class Transfer
     {
         private static string? _accountId = string.Empty;
-        private static decimal _balance = 0m;
         private static decimal _valueToTransfer = 0m;
 
         internal decimal TransferOperation(CheckingAccount account)
@@ -39,7 +38,7 @@ namespace Bytebank.Authenticated.Operations
             decimal valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
             _valueToTransfer = Operation.ConfirmAction(valueToTransfer);
             account.Transfer(destination, _valueToTransfer); //<--
-            Operation.AccountBalanceStatus('T', _valueToTransfer, _balance, destination.Balance); //<--
+            Operation.AccountBalanceStatus('T', _valueToTransfer, account.Balance, destination.Balance); //<--
             return _valueToTransfer;
         }
 
