@@ -4,10 +4,8 @@
  * Data    : 19/07/2023 (Criação) | Modificação: 19/07/2023
  */
 
-using Bytebank.StartScreenComponents;
 using Bytebank.AccountManagement;
 using Bytebank.Utils;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Bytebank.Authenticated.Operations
 {

@@ -66,7 +66,7 @@ namespace Bytebank.AccountManagement
 
         internal bool Transfer(CheckingAccount transferDestination, decimal value)
         {
-            if (Balance <= value)
+            if (Balance < value)
             {
                 PrintText.ColorizeText("[!] O valor da transferência é maior que o saldo disponível!", PrintText.TextColor.Red);
                 return false;

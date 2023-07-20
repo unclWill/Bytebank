@@ -4,7 +4,6 @@
  * Data    : 19/07/2023 (Criação) | Modificação: 19/07/2023
  */
 
-using System;
 using Bytebank.AccountManagement;
 using Bytebank.Utils;
 

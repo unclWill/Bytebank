@@ -4,8 +4,6 @@
  * Data    : 19/07/2023 (Criação) | Modificação: 19/07/2023
  */
 
-using System;
-using System.Security;
 using Bytebank.AccountManagement;
 using Bytebank.HARDCODED_DATABASE;
 using Bytebank.Utils;
