@@ -26,10 +26,8 @@ namespace Bytebank.Authenticated.Operations
             VerifyBalance(account.Balance);
             //
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
-            PrintText.UserInputIndicator();
             string transferDestinationAccountId = InputValidation.ValidateAccountIdInput("Authenticated");
-            PrintText.ColorizeText("Digite o número da agência da conta de destino", PrintText.TextColor.White);
-            PrintText.UserInputIndicator();
+            PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
             int transferDestinationBankBranch = InputValidation.ValidateBankBranchInput("Authenticated");
             //Destino:
             CheckingAccount destination = VerifyAccountToTransfer(transferDestinationAccountId, transferDestinationBankBranch);
@@ -50,7 +48,7 @@ namespace Bytebank.Authenticated.Operations
                 Console.WriteLine("[!] Você não possui saldo disponível para realizar transferências!");
             }
         }
-        private CheckingAccount VerifyAccountToTransfer(string accountId, int bankBranch)
+        private static CheckingAccount VerifyAccountToTransfer(string accountId, int bankBranch)
         {
             RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
             var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
@@ -63,11 +61,6 @@ namespace Bytebank.Authenticated.Operations
                 {
                     if (client.AccountId is not null && client.AccountId.Equals(accountId) && client.BankBranch == bankBranch)
                     {
-                        /*_accountId = client.AccountId;
-                        _accountBankBranch = client.BankBranch;
-                        _accountHolder = client.AccountHolder;
-                        _balance = client.Balance;*/
-
                         accountTransferDestination = client;
                     }
                 }
