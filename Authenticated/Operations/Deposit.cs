@@ -20,7 +20,16 @@ namespace Bytebank.Authenticated.Operations
             PrintText.UserInteractionIndicator();
             decimal valueToDeposit = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
             account.Deposit(valueToDeposit);
-            PrintText.ColorizeText($"Valor adicionado à conta!\nValor atualizado: {account.Balance:C}", PrintText.TextColor.DarkGreen);
+            //
+            if (valueToDeposit == 0)
+            {
+                Console.WriteLine("[i] Nenhum valor foi depositado.");
+            }
+            else
+            {
+                PrintText.ColorizeText($"Valor adicionado à conta!\nValor atualizado: {account.Balance:C}", PrintText.TextColor.DarkGreen);
+            }
+
             PrintTextAnimations.TreeDotsAnimation(1000);
             return valueToDeposit;
         }

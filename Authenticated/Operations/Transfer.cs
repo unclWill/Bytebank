@@ -16,7 +16,8 @@ namespace Bytebank.Authenticated.Operations
         private static int _accountBankBranch;
         private static string? _accountHolder;
         private static decimal _balance;
-        private static decimal valueToTransfer;
+        private static decimal _valueToTransfer;
+
 
         internal decimal TransferOperation(CheckingAccount account)
         {
@@ -24,6 +25,7 @@ namespace Bytebank.Authenticated.Operations
             HeaderTexts.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
             PrintText.ColorizeText($"Seu saldo atual: {account.Balance:C}", PrintText.TextColor.DarkGray);
+            VerifyBalance(account.Balance);
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
             string transferDestination = Console.ReadLine()!;
@@ -33,14 +35,21 @@ namespace Bytebank.Authenticated.Operations
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
             PrintText.ColorizeText("Digite o valor que deseja transferir: ", PrintText.TextColor.White);
             PrintText.UserInteractionIndicator();
-            valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
+            _valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
             ConfirmAction();
-            account.Transfer(accountToTransfer, valueToTransfer);
+            account.Transfer(accountToTransfer, _valueToTransfer);
             PrintText.ColorizeText($"Valor transferido da conta!\nValor atualizado: {account.Balance:C} | Valor na conta recebedora: {accountToTransfer.Balance:C}", PrintText.TextColor.DarkYellow);
             PrintTextAnimations.TreeDotsAnimation(1000);
-            return valueToTransfer;
+            return _valueToTransfer;
         }
 
+        private static void VerifyBalance(decimal balance)
+        {
+            if (balance <= 0)
+            {
+                Console.WriteLine("[!] Você não possui saldo disponível para realizar transferências!");
+            }
+        }
         private static void VerifyAccountToTransfer(string accountId)
         {
             RegisteredCheckingAccounts rCA = new RegisteredCheckingAccounts();
@@ -78,7 +87,8 @@ namespace Bytebank.Authenticated.Operations
         private static void ConfirmAction()
         {
             int confirmation;
-            PrintText.ColorizeText("Confirma a operação?\n |0| NÃO  -  |1| SIM\n[>] ", PrintText.TextColor.White, 0);
+            PrintText.DecoratedTitleText("Confirmar operação?", '-', PrintText.TextColor.DarkRed);
+            PrintText.ColorizeText("|0| NÃO  -  |1| SIM\n[>] ", PrintText.TextColor.White, 0);
             while (!int.TryParse(Console.ReadLine(), out confirmation))
             {
                 PrintText.ColorizeText("[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
@@ -87,7 +97,7 @@ namespace Bytebank.Authenticated.Operations
 
             if (confirmation == 0)
             {
-                valueToTransfer = 0m;
+                _valueToTransfer = 0m;
                 PrintText.ColorizeText("[!] Transferência cancelada.", PrintText.TextColor.Red);
                 return;
             }
