@@ -146,7 +146,7 @@ namespace Bytebank.StartScreenComponents
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGray);
             PrintText.UserInputIndicator();
             //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
-            int menuOption = InputValidation.ValidateMenuOptionInput();
+            int menuOption = InputValidation.ValidateMenuOptionInput(2);
 
             if (menuOption < 1 | menuOption > 2)
             {

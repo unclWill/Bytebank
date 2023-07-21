@@ -11,10 +11,15 @@ namespace Bytebank.Utils
 {
     internal static class InputValidation
     {
-        internal static int ValidateMenuOptionInput()
+        /// <summary>
+        /// Valida as entradas do usuário nos menus que são exibidos no sistema.
+        /// </summary>
+        /// <param name="qtyOfOptions">Define a quantidade de opções que o menu exibe ao usuário. Deve ser passado para controlar de execução.</param>
+        /// <returns></returns>
+        internal static int ValidateMenuOptionInput(int qtyOfOptions)
         {
             int optionNumber;
-            while (!int.TryParse(Console.ReadLine(), out optionNumber))
+            while (!int.TryParse(Console.ReadLine(), out optionNumber) && optionNumber < 0 || optionNumber > qtyOfOptions)
             {
                 PrintText.ColorizeText("\n[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
                 PrintText.UserInputIndicator();

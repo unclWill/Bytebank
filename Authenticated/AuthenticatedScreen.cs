@@ -41,8 +41,8 @@ namespace Bytebank.Authenticated
          */
         private static void InitializeClientAccount(string accountId)
         {
-            RegisteredCheckingAccounts rCA = new RegisteredCheckingAccounts();
-            var clientsAccountList = rCA.CheckingAccounts;
+            RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
+            var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
 
             try
             {
@@ -85,7 +85,7 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.DarkGray);
             PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
             //----
-            int menuOption = InputValidation.ValidateMenuOptionInput();
+            int menuOption = InputValidation.ValidateMenuOptionInput(7);
             MenuAction(menuOption);
         }
 
@@ -115,21 +115,26 @@ namespace Bytebank.Authenticated
                     ShowAuthenticatedMenu();
                     break;
                 case 4:
+                    Console.WriteLine("NÃO IMPLEMENTADO.");
                     break;
                 case 5:
+                    //Console.WriteLine("NÃO IMPLEMENTADO.");
                     break;
                 case 6:
+                    //Console.WriteLine("NÃO IMPLEMENTADO.");
                     break;
                 case 7:
                     StartScreen.ReturningToStartScreenMessage();
                     break;
-
+                default:
+                    Console.WriteLine("NÃO IMPLEMENTADO.");
+                    break;
             }
         }
-        internal static void ReturningToAuthenticatedScreenMessage()
+        internal static void ReturningToAuthenticatedScreenMessage(int timer = 450)
         {
             PrintText.ColorizeText("\n[i] Retornando ao menu de operações", PrintText.TextColor.Yellow, 0);
-            PrintTextAnimations.TreeDotsAnimation();
+            PrintTextAnimations.TreeDotsAnimation(timer);
             ShowAuthenticatedMenu();
         }
     }
