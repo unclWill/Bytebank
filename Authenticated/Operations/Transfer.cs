@@ -1,7 +1,7 @@
 /* Classe  : Transfer
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 20/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 21/07/2023
  */
 
 using System.Linq;
