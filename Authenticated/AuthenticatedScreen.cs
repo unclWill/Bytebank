@@ -82,7 +82,7 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|4| CONSULTAR MEUS DADOS\n|5| CONSULTAR MEU HISTÓRICO FINANCEIRO\n|6| TROCAR MINHA SENHA DE ACESSO", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
             PrintText.DecoratedTitleText("          Finalizar atendimento       ", '-');
-            PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.DarkGray);
+            PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.White);
             PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
             //----
             int menuOption = InputValidation.ValidateMenuOptionInput(7);
@@ -118,10 +118,10 @@ namespace Bytebank.Authenticated
                     Console.WriteLine("NÃO IMPLEMENTADO.");
                     break;
                 case 5:
-                    //Console.WriteLine("NÃO IMPLEMENTADO.");
+                    Console.WriteLine("NÃO IMPLEMENTADO.");
                     break;
                 case 6:
-                    //Console.WriteLine("NÃO IMPLEMENTADO.");
+                    Console.WriteLine("NÃO IMPLEMENTADO.");
                     break;
                 case 7:
                     StartScreen.ReturningToStartScreenMessage();
