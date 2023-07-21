@@ -82,7 +82,7 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|4| CONSULTAR MEUS DADOS\n|5| CONSULTAR MEU HISTÓRICO FINANCEIRO\n|6| TROCAR MINHA SENHA DE ACESSO", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
             PrintText.DecoratedTitleText("          Finalizar atendimento       ", '-');
-            PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.White);
+            PrintText.ColorizeText("|7| ENCERRAR OPERAÇÃO", PrintText.TextColor.Gray);
             PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
             //----
             int menuOption = InputValidation.ValidateMenuOptionInput(7);
