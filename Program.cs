@@ -19,7 +19,6 @@ namespace Bytebank
             StartScreen.ShowStartScreen();
             //Ações para usuário autenticado.
             ExecuteCommands();
-            //Finalizar a execução.
         }
 
         public static void ExecuteCommands()
