@@ -127,7 +127,7 @@ namespace Bytebank.Authenticated
                     StartScreen.ReturningToStartScreenMessage();
                     break;
                 default:
-                    Console.WriteLine("NÃO IMPLEMENTADO.");
+                    ShowAuthenticatedMenu();
                     break;
             }
         }
