@@ -1,7 +1,7 @@
 ﻿/* Classe  : Program
  * Objetivo: Ponto de entrada do programa.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | última edição: 18/07/2023
+ * Data    : 21/06/2023 (Criação) | última edição: 21/07/2023
  */
 
 using Bytebank.AccountManagement;
