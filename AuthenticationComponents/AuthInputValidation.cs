@@ -7,8 +7,6 @@
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.HARDCODED_DATABASE;
-using System.Security.Cryptography;
-using System.Globalization;
 
 namespace Bytebank.AuthenticationComponents
 {
@@ -104,7 +102,7 @@ namespace Bytebank.AuthenticationComponents
                 else if (key.Key != ConsoleKey.Enter)
                 {
                     password += key.KeyChar;
-                    PrintText.ColorizeText(mask, PrintText.TextColor.DarkGreen, 0);
+                    PrintText.ColorizeText(mask, PrintText.TextColor.DarkMagenta, 0);
                 }
             } while (key.Key != ConsoleKey.Enter);
 

@@ -1,7 +1,7 @@
 /* Classe  : PrintTextAnimations
  * Objetivo: Imprime textos que sugerem animação e mudança de estado.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 26/06/2023 (Criação) | Modificação: 26/06/2023
+ * Data    : 26/06/2023 (Criação) | Modificação: 23/07/2023
  */
 
 using System;
@@ -26,7 +26,7 @@ namespace Bytebank.Utils
         internal static void AcessingSystemAnimation(string? text, int timer = 450)
         {
             ColorizeText($"\n[i] {text}", TextColor.DarkGray, 0);
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Thread.Sleep(timer);
                 ColorizeText(".", TextColor.DarkYellow, 0);

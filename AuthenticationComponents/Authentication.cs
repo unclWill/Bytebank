@@ -66,12 +66,12 @@ namespace Bytebank.AuthenticationComponents
             PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed);
             Console.Write("\n[i] Digite |1| para tentar novamente ou |2| para voltar à tela inicial\n");
             PrintText.UserInputIndicator();
-            string readKeyboard = Console.ReadLine()!;
-            if (readKeyboard == "1")
+            int readKeyboard = int.Parse(Console.ReadLine()!);
+            if (readKeyboard == 1)
             {
                 AuthenticationScreen.ShowAuthenticationDialog();
             }
-            else
+            else if (readKeyboard == 2)
             {
                 StartScreen.ReturningToStartScreenMessage();
             }
