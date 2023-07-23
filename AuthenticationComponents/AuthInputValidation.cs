@@ -8,6 +8,7 @@ using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.HARDCODED_DATABASE;
 using System.Security.Cryptography;
+using System.Globalization;
 
 namespace Bytebank.AuthenticationComponents
 {
@@ -83,7 +84,7 @@ namespace Bytebank.AuthenticationComponents
             return int.Parse(pinCodeInput);
         }
 
-        private static string MaskPassword()
+        private static string MaskPassword(char mask = '*')
         {
             string password = string.Empty;
             ConsoleKeyInfo key;
@@ -103,7 +104,7 @@ namespace Bytebank.AuthenticationComponents
                 else if (key.Key != ConsoleKey.Enter)
                 {
                     password += key.KeyChar;
-                    PrintText.ColorizeText("*", PrintText.TextColor.DarkGreen, 0);
+                    PrintText.ColorizeText(mask, PrintText.TextColor.DarkGreen, 0);
                 }
             } while (key.Key != ConsoleKey.Enter);
 
