@@ -1,7 +1,7 @@
 /* Classe  : StartScreenComponents
  * Objetivo: Concentra os métodos personalizados utilizados na tela inicial do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 20/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 23/07/2023
  */
 
 using System;
@@ -176,6 +176,7 @@ namespace Bytebank.StartScreenComponents
             {
                 Thread.Sleep(500);
                 PrintText.ColorizeText("|||", PrintText.TextColor.DarkMagenta, 0);
+
             }
         }
     }
