@@ -14,12 +14,13 @@ namespace Bytebank.Utils
         /// <summary>
         /// Valida as entradas do usuário nos menus que são exibidos no sistema.
         /// </summary>
-        /// <param name="qtyOfOptions">Define a quantidade de opções que o menu exibe ao usuário. Deve ser passado para controlar de execução.</param>
+        /// <param name="minOption">Define o número mínimo de opções que o menu contém.</param>
+        /// <param name="maxOption">Define o número máximo de opções que o menu contém.</param>
         /// <returns></returns>
-        internal static int ValidateMenuOptionInput(int qtyOfOptions)
+        internal static int ValidateMenuOptionInput(int minOption, int maxOption)
         {
             int optionNumber;
-            while (!int.TryParse(Console.ReadLine(), out optionNumber) && optionNumber < 0 || optionNumber > qtyOfOptions)
+            while (!int.TryParse(Console.ReadLine(), out optionNumber) && optionNumber < minOption || optionNumber > maxOption)
             {
                 PrintText.ColorizeText("\n[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
                 PrintText.UserInputIndicator();

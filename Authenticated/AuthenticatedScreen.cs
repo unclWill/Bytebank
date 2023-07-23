@@ -85,7 +85,7 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("|7| ENCERRAR ATENDIMENTO", PrintText.TextColor.Gray);
             PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
             //----
-            int menuOption = InputValidation.ValidateMenuOptionInput(7);
+            int menuOption = InputValidation.ValidateMenuOptionInput(1, 7);
             MenuAction(menuOption);
         }
 
@@ -95,15 +95,15 @@ namespace Bytebank.Authenticated
             {
                 case 1:
                     CheckingAccount accountToDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-                    //Deposit depositToAccount = new Deposit();
-                    Deposit.DepositOperation(accountToDeposit);
+                    Deposit depositToAccount = new Deposit();
+                    depositToAccount.DepositOperation(accountToDeposit);
                     _balance = accountToDeposit.Balance;
                     ShowAuthenticatedMenu();
                     break;
                 case 2:
                     CheckingAccount accountToWithdraw = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-                    //Withdraw withdrawFromAccount = new Withdraw();
-                    Withdraw.WithdrawOperation(accountToWithdraw);
+                    Withdraw withdrawFromAccount = new Withdraw();
+                    withdrawFromAccount.WithdrawOperation(accountToWithdraw);
                     _balance = accountToWithdraw.Balance;
                     ShowAuthenticatedMenu();
                     break;

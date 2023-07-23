@@ -5,26 +5,38 @@
  */
 
 using System.Collections;
+using Bytebank.AccountManagement;
+using Bytebank.HARDCODED_DATABASE;
 using Bytebank.Utils;
 
 namespace Bytebank.Authenticated.Operations
 {
     internal class Operation
     {
-        internal static decimal ConfirmAction(decimal value)
+        internal static decimal ConfirmAction(char operationType)
         {
             decimal transactionValue = 0m;
-            int confirmation;
+
+            switch (operationType)
+            {
+                case 'D':
+                    PrintText.ColorizeText("\nDigite o valor que deseja depositar", PrintText.TextColor.White);
+                    break;
+                case 'T':
+                    PrintText.ColorizeText("\nDigite o valor que deseja transferir", PrintText.TextColor.White);
+                    break;
+                case 'W':
+                    PrintText.ColorizeText("\nDigite o valor que deseja sacar", PrintText.TextColor.White);
+                    break;
+            }
+            PrintText.UserInputIndicator();
+            decimal valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
+            //
+            //---
             PrintText.DecoratedTitleText(" Confirmar operação? ", '-', PrintText.TextColor.DarkRed, 0);
             PrintText.ColorizeText("|0| NÃO  -  |1| SIM", PrintText.TextColor.Red, 2);
             PrintText.UserInputIndicator();
-
-            while (!int.TryParse(Console.ReadLine(), out confirmation) || confirmation < 0 || confirmation > 1)
-            {
-                PrintText.ColorizeText("[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
-                PrintText.UserInputIndicator();
-            }
-
+            int confirmation = InputValidation.ValidateMenuOptionInput(0, 1);
             switch (confirmation)
             {
                 case 0:
@@ -32,7 +44,7 @@ namespace Bytebank.Authenticated.Operations
                     PrintText.ColorizeText("[i] Operação cancelada.", PrintText.TextColor.Red);
                     break;
                 case 1:
-                    transactionValue = value;
+                    transactionValue = valueToTransfer;
                     break;
             }
             return transactionValue;
@@ -100,6 +112,35 @@ namespace Bytebank.Authenticated.Operations
                     break;
             }
             PrintTextAnimations.TreeDotsAnimation(1000);
+        }
+
+        internal static CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch)
+        {
+            RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
+            var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
+
+            CheckingAccount accountDestination = new CheckingAccount();
+
+            try
+            {
+                foreach (var client in clientsAccountList)
+                {
+                    if (client.AccountId is not null && client.AccountId.Equals(accountId) && client.BankBranch == bankBranch)
+                    {
+                        accountDestination = client;
+                    }
+                }
+                if (accountId != accountDestination.AccountId)
+                {
+                    PrintText.ColorizeText("[!] A conta informada não existe!", PrintText.TextColor.Red);
+                    AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1300);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocorreu um erro: " + ex.Message);
+            }
+            return accountDestination;
         }
     }
 }

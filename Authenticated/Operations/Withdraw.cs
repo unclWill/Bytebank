@@ -13,28 +13,16 @@ namespace Bytebank.Authenticated.Operations
     {
         private static decimal _valueToWithdraw;
 
-        internal static void WithdrawOperation(CheckingAccount account)
+        internal void WithdrawOperation(CheckingAccount account)
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
             Operation.ActualBalance(account.Balance);
             Operation.VerifyBalance('W', account.Balance);
-            PrintText.ColorizeText("Digite o valor que deseja sacar", PrintText.TextColor.White);
-            PrintText.UserInputIndicator();
-            decimal valueToWithdraw = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
-            _valueToWithdraw = Operation.ConfirmAction(valueToWithdraw);
+            _valueToWithdraw = Operation.ConfirmAction('W');
             account.Withdraw(_valueToWithdraw);
             Operation.AccountBalanceStatus('W', _valueToWithdraw, account.Balance);
             //return valueToWithdraw;
-        }
-
-        private static void VerifyBalance(decimal balance)
-        {
-            if (balance <= 0)
-            {
-                Console.WriteLine("[!] Você não possui saldo disponível para realizar saques!");
-                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1500);
-            }
         }
     }
 }

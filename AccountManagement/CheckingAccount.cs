@@ -38,7 +38,7 @@ namespace Bytebank.AccountManagement
         //Saldo
         public decimal Balance { get; set; }
 
-        internal void Deposit(decimal value)
+        internal void Deposit(CheckingAccount depositDestination, decimal value)
         {
             if (value <= 0)
             {
@@ -47,6 +47,8 @@ namespace Bytebank.AccountManagement
             else
             {
                 Balance += value;
+                depositDestination.Balance += value;
+                //return;
             }
         }
 
