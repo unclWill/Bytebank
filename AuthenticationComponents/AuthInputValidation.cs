@@ -7,6 +7,7 @@
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.HARDCODED_DATABASE;
+using System.Security.Cryptography;
 
 namespace Bytebank.AuthenticationComponents
 {
@@ -63,7 +64,7 @@ namespace Bytebank.AuthenticationComponents
             {
                 PrintText.ColorizeText("\nInforme sua senha", PrintText.TextColor.Gray, " (4 dígitos numéricos)", PrintText.TextColor.DarkGray);
                 PrintText.UserInputIndicator(PrintText.TextColor.DarkGray);
-                pinCodeInput = Console.ReadLine()!.Trim();
+                pinCodeInput = MaskPassword().Trim();
                 if (int.TryParse(pinCodeInput, out int clientPinCode) && clientPinCode >= 0 && clientPinCode <= 9999)
                 {
                     if (clientPinCode.ToString("D4") == pinCodeInput)
@@ -80,6 +81,33 @@ namespace Bytebank.AuthenticationComponents
                 //Console.WriteLine("[i] Por favor, tente novamente.");
             }
             return int.Parse(pinCodeInput);
+        }
+
+        private static string MaskPassword()
+        {
+            string password = string.Empty;
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true); //Indica que a tecla pressionada não será exibida no console.
+
+                if (key.Key == ConsoleKey.Backspace)
+                {
+                    if (password.Length > 0)
+                    {
+                        password = password.Substring(0, password.Length - 1);
+                        PrintText.ColorizeText("\b \b", PrintText.TextColor.White, 0); //Apaga o caractere do console.
+                    }
+                }
+                else if (key.Key != ConsoleKey.Enter)
+                {
+                    password += key.KeyChar;
+                    PrintText.ColorizeText("*", PrintText.TextColor.DarkGreen, 0);
+                }
+            } while (key.Key != ConsoleKey.Enter);
+
+            return password;
         }
     }
 }
