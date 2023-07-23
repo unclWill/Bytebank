@@ -1,7 +1,7 @@
 /* Classe  : Operation
  * Objetivo: Concentrar os métodos comuns a todas as operações.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 20/07/2023 (Criação) | Modificação: 20/07/2023
+ * Data    : 20/07/2023 (Criação) | Modificação: 23/07/2023
  */
 
 using System.Collections;
@@ -41,6 +41,27 @@ namespace Bytebank.Authenticated.Operations
         internal static void ActualBalance(decimal balance)
         {
             PrintText.DecoratedTitleText($"Seu saldo atual: {balance:C}", '-', PrintText.TextColor.DarkGray);
+        }
+
+        internal static void VerifyBalance(char operationType, decimal balance)
+        {
+            switch (operationType)
+            {
+                case 'W':
+                    if (balance <= 0)
+                    {
+                        PrintText.ColorizeText("[!] Você não possui saldo disponível para realizar saques!", PrintText.TextColor.DarkYellow);
+                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1500);
+                    }
+                    break;
+                case 'T':
+                    if (balance <= 0)
+                    {
+                        PrintText.ColorizeText("[!] Você não possui saldo disponível para realizar transferências!", PrintText.TextColor.DarkYellow);
+                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1500);
+                    }
+                    break;
+            }
         }
 
         internal static void AccountBalanceStatus(char operationType, decimal transactionValue, decimal balance, decimal accountToTransferBalance = 0m)

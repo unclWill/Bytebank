@@ -1,7 +1,7 @@
 /* Classe  : Transfer
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 21/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 23/07/2023
  */
 
 using System.Linq;
@@ -23,12 +23,12 @@ namespace Bytebank.Authenticated.Operations
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
             Operation.ActualBalance(account.Balance);
-            VerifyBalance(account.Balance);
+            Operation.VerifyBalance('T', account.Balance);
             //---
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
-            string transferDestinationAccountId = InputValidation.ValidateAccountIdInput("Authenticated");
+            string transferDestinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
             PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
-            int transferDestinationBankBranch = InputValidation.ValidateBankBranchInput("Authenticated");
+            int transferDestinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
             //Destino:
             CheckingAccount destination = DefineAccountToTransfer(transferDestinationAccountId, transferDestinationBankBranch);
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
@@ -41,14 +41,7 @@ namespace Bytebank.Authenticated.Operations
             return _valueToTransfer;
         }
 
-        private static void VerifyBalance(decimal balance)
-        {
-            if (balance <= 0)
-            {
-                Console.WriteLine("[!] Você não possui saldo disponível para realizar transferências!");
-                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1500);
-            }
-        }
+
         private static CheckingAccount DefineAccountToTransfer(string accountId, int bankBranch)
         {
             RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
