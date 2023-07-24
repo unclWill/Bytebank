@@ -1,7 +1,7 @@
 /* Classe  : AuthInputValidation
  * Objetivo: Contém os métodos que realizam as validações no processo de autenticação do usuário no sistema e também na operação de tranferência de recursos financeiros.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 23/07/2023 (Criação) | Modificação: 23/07/2023
+ * Data    : 23/07/2023 (Criação) | Modificação: 24/07/2023
  */
 
 using Bytebank.StartScreenComponents;
@@ -12,6 +12,12 @@ namespace Bytebank.AuthenticationComponents
 {
     internal class AuthInputValidation
     {
+
+        /// <summary>
+        /// Valida a entrada do número da Conta Corrente do cliente.
+        /// </summary>
+        /// <param name="validationScreenType">Determina se ao pressionar a tecla Esc o sistema deve retornar para a tela de AUtenticação ou para a tela Autenticada.</param>
+        /// <returns>Se o dado for inserido no format correto, retorna o número da Conta Corrente para o porcesso de autenticação.</returns>
         internal static string ValidateAccountIdInput(string validationScreenType)
         {
             string clientIdInput;
@@ -35,6 +41,11 @@ namespace Bytebank.AuthenticationComponents
             return clientIdInput;
         }
 
+        /// <summary>
+        /// Valida a entrada do número da agência bancária.
+        /// </summary>
+        /// <param name="validationScreenType">Determina se ao pressionar a tecla Esc o sistema deve retornar para a tela de AUtenticação ou para a tela Autenticada.</param>
+        /// <returns>Se o dado for inserido no format correto, retorna o número da agência para o processo de autenticação.</returns>
         internal static int ValidateBankBranchInput(string validationScreenType)
         {
             int clientBankBranchInput;
@@ -56,6 +67,10 @@ namespace Bytebank.AuthenticationComponents
             return clientBankBranchInput;
         }
 
+        /// <summary>
+        /// Valida a entrada do número da agência bancária.
+        /// </summary>
+        /// <returns>Se o formato for inserido corretamente, retorna a senha para o processo de autenticação.</returns>
         internal static int ValidatePinCodeInput()
         {
             string pinCodeInput;
@@ -82,6 +97,11 @@ namespace Bytebank.AuthenticationComponents
             return int.Parse(pinCodeInput);
         }
 
+        /// <summary>
+        /// Aplica uma máscara na senha digitada pelo usuário.
+        /// </summary>
+        /// <param name="mask">Determina o caractere que será utilizado no mascaramento da senha.</param>
+        /// <returns>Retorna os caracteres da senha e exibe os mesmos como o caractere de máscara definido.</returns>
         private static string MaskPassword(char mask = '*')
         {
             string password = string.Empty;
