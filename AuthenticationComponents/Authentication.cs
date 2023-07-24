@@ -1,7 +1,7 @@
 /* Classe  : Authentication
  * Objetivo: Concentra os métodos de autenticação para permitir que o usuário entre na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 20/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 24/07/2023
  */
 
 using Bytebank.HARDCODED_DATABASE;
@@ -12,18 +12,22 @@ using Bytebank.AccountManagement;
 
 namespace Bytebank.AuthenticationComponents
 {
-    public class Authentication
+    /// <summary>
+    /// Classe Authentication
+    ///<code>Recebe os dados de entrada com o formato validado e faz a verificação se os mesmos existem na base de dados.</code>
+    /// </summary>
+    internal class Authentication
     {
-        public string AuthClientAccountId { get; }
-        public int AuthClientBankBranch { get; }
-        public int AuthClientPinCode { get; }
-
-        public Authentication(string clientId, int clientBankBranch, int clientPinCode)
+        public Authentication(string clientAccountId, int clientBankBranch, int clientPinCode)
         {
-            AuthClientAccountId = clientId;
+            AuthClientAccountId = clientAccountId;
             AuthClientBankBranch = clientBankBranch;
             AuthClientPinCode = clientPinCode;
         }
+
+        public string AuthClientAccountId { get; set; }
+        public int AuthClientBankBranch { get; set; }
+        public int AuthClientPinCode { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -54,29 +58,6 @@ namespace Bytebank.AuthenticationComponents
             return HashCode.Combine(AuthClientAccountId, AuthClientCpf, AuthClientPinCode); */
         }
 
-        private static void ValidClientData(Authentication getClientAccountData)
-        {
-            AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
-            PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
-            AuthenticatedScreen.ShowAuthenticatedScreen();
-        }
-        private static void InvalidClientData()
-        {
-            PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
-            PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed);
-            Console.Write("\n[i] Digite |1| para tentar novamente ou |2| para voltar à tela inicial\n");
-            PrintText.UserInputIndicator();
-            int readKeyboard = int.Parse(Console.ReadLine()!);
-            if (readKeyboard == 1)
-            {
-                AuthenticationScreen.ShowAuthenticationDialog();
-            }
-            else if (readKeyboard == 2)
-            {
-                StartScreen.ReturningToStartScreenMessage();
-            }
-        }
-
         internal static void Authenticate(Authentication clientAuthInput)
         {
             RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
@@ -103,5 +84,29 @@ namespace Bytebank.AuthenticationComponents
             }*/
             //-------------------------------------------------------------------------------------------------------------------
         }
+
+        private static void ValidClientData(Authentication getClientAccountData)
+        {
+            AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
+            PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
+            AuthenticatedScreen.ShowAuthenticatedScreen();
+        }
+        private static void InvalidClientData()
+        {
+            PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
+            PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed);
+            Console.Write("\n[i] Digite |1| para tentar novamente ou |2| para voltar à tela inicial\n");
+            PrintText.UserInputIndicator();
+            int readKeyboard = int.Parse(Console.ReadLine()!);
+            if (readKeyboard == 1)
+            {
+                AuthenticationScreen.ShowAuthenticationDialog();
+            }
+            else if (readKeyboard == 2)
+            {
+                StartScreen.ReturningToStartScreenMessage();
+            }
+        }
+
     }
 }
