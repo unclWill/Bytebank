@@ -25,9 +25,9 @@ namespace Bytebank.AuthenticationComponents
             AuthClientPinCode = clientPinCode;
         }
 
-        public string AuthClientAccountId { get; set; }
-        public int AuthClientBankBranch { get; set; }
-        public int AuthClientPinCode { get; set; }
+        public string AuthClientAccountId { get; }
+        public int AuthClientBankBranch { get; }
+        public int AuthClientPinCode { get; }
 
         public override bool Equals(object? obj)
         {

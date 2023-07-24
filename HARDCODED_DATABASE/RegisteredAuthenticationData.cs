@@ -1,7 +1,7 @@
 /* Classe  : RegisteredAuthenticationData
  * Objetivo: Armazenar os dados de autenticação das contas existentes.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 18/07/2023 (Criação) | Modificação: 19/07/2023
+ * Data    : 18/07/2023 (Criação) | Modificação: 24/07/2023
  */
 
 using System;
@@ -23,7 +23,7 @@ namespace Bytebank.HARDCODED_DATABASE
             RegisteredAuthData = registeredAuthData;
         }
 
-        internal List<Authentication> RegisteredAuthData { get; set; }
+        internal List<Authentication> RegisteredAuthData { get; }
 
         internal void GetCheckingAccountInformation(string accountId)
         {
