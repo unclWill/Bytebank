@@ -8,8 +8,13 @@ using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.HARDCODED_DATABASE;
 
+
 namespace Bytebank.AuthenticationComponents
 {
+    /// <summary>
+    /// Classe AuthIputValidation
+    /// <code>Contém os métodos que realizam as validações no processo de autenticação do usuário no sistema e também na operação de tranferência de recursos financeiros.</code>
+    /// </summary>
     internal class AuthInputValidation
     {
 
