@@ -1,12 +1,12 @@
 ﻿/* Classe  : Program
  * Objetivo: Ponto de entrada do programa.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | última edição: 23/07/2023
+ * Data    : 21/06/2023 (Criação) | última edição: 24/07/2023
  */
 
 using Bytebank.AccountManagement;
 using Bytebank.StartScreenComponents;
-using Bytebank.Utils;
+
 using System;
 
 namespace Bytebank
