@@ -126,7 +126,7 @@ namespace Bytebank.Authenticated.Operations
                 {
                     if (client.AccountId is not null && client.AccountId.Equals(accountId) && client.BankBranch == bankBranch)
                     {
-                        accountDestination = client;
+                        accountDestination = new CheckingAccount(client.AccountId, client.BankBranch, client.AccountHolder!, client.Balance);
                     }
                 }
                 if (accountId != accountDestination.AccountId)
