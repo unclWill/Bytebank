@@ -1,25 +1,22 @@
 /* Classe  : CurrentAccount
  * Objetivo: Concentra as lógicas da Conta Corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 27/06/2023 (Criação) | Modificação: 20/07/2023
+ * Data    : 27/06/2023 (Criação) | Modificação: 26/07/2023
  */
 
-using System;
-using System.Text.Json;
 using Bytebank.Utils;
-using System.Text.Json.Serialization;
-using System.Reflection.Metadata;
 
 namespace Bytebank.AccountManagement
 {
-    public class CheckingAccount
+    internal class CheckingAccount
     {
+        //Construtor vazio para instanciação dos métodos em outras classes.
         public CheckingAccount()
         {
 
         }
 
-        //Construtor para criação de contas correntes.
+        //Construtor para criação de contas correntes, onde já são passados os dados da conta corrente do cliente.
         public CheckingAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
         {
             AccountId = accountId;
@@ -28,7 +25,6 @@ namespace Bytebank.AccountManagement
             Balance = balance;
         }
 
-        //public int DatabaseId { get; set; }
         //Conta
         public string? AccountId { get; set; }
         //Agência
