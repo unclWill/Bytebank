@@ -1,11 +1,9 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 20/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 26/07/2023
  */
 
-using Bytebank.HARDCODED_DATABASE;
-using Bytebank.AuthenticationComponents;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.AccountManagement;
@@ -15,12 +13,21 @@ namespace Bytebank.Authenticated
 {
     internal class AuthenticatedScreen
     {
-        private static string? _accountId;
-        private static int _accountBankBranch;
-        private static string? _accountHolder;
-        private static decimal _balance;
+        private static CheckingAccount _clientAccount;
 
-        public AuthenticatedScreen() { }
+        public AuthenticatedScreen(CheckingAccount clientAccount)
+        {
+            if (clientAccount == null)
+            {
+                throw new ArgumentNullException(nameof(clientAccount), "A instância de CheckingAccount não pode ser nula.");
+            }
+            _clientAccount = clientAccount;
+        }
+
+        public AuthenticatedScreen()// : this(new CheckingAccount())
+        {
+            // O construtor padrão agora chama o construtor parametrizado com uma nova instância de CheckingAccount.
+        }
 
         /// <summary>
         /// Exibe o menu da área logada do sistema.
@@ -30,50 +37,11 @@ namespace Bytebank.Authenticated
             ShowAuthenticatedMenu();
         }
 
-        //Pega como parâmetro o número da conta do cliente no momento que os dados de autenticação são validados na classe Authentication.
-        internal static void GetAccountData(Authentication accountData)
-        {
-            _accountId = accountData.AuthClientAccountId;
-            InitializeClientAccount(_accountId);
-        }
-
-        /* Instancia os dados do cliente com base na classe de clientes registrados (RegisteredClients).
-         */
-        private static void InitializeClientAccount(string accountId)
-        {
-            RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
-            var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
-
-            try
-            {
-                foreach (var client in clientsAccountList)
-                {
-                    if (client.AccountId is not null && client.AccountId.Equals(accountId))
-                    {
-                        _accountId = client.AccountId;
-                        _accountBankBranch = client.BankBranch;
-                        _accountHolder = client.AccountHolder;
-                        _balance = client.Balance;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ocorreu um erro: " + ex.Message);
-            }
-        }
-
-        private static void ShowClientAccountInfo()
-        {
-            CheckingAccount clientAccountInfo = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
-            clientAccountInfo.ShowClientAccountOverview();
-        }
-
         internal static void ShowAuthenticatedMenu()
         {
             HeaderText.BytebankOperationsHeader();
             //----
-            ShowClientAccountInfo();
+            _clientAccount.ShowClientAccountOverview();
             //----
             PrintText.DecoratedTitleText(" Operações disponíveis neste terminal ", '-');
             PrintText.ColorizeText("|1| DEPÓSITO\n|2| SAQUE\n|3| TRANSFERÊNCIA", PrintText.TextColor.Gray);
@@ -86,32 +54,27 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
             //----
             int menuOption = InputValidation.ValidateMenuOptionInput(1, 7);
-            MenuAction(menuOption);
+            AuthenticatedScreen authScreen = new AuthenticatedScreen();
+            authScreen.MenuAction(menuOption);
         }
 
-        private static void MenuAction(int selectedOption)
+        private void MenuAction(int selectedOption)
         {
             switch (selectedOption)
             {
                 case 1:
-                    CheckingAccount accountToDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
                     Deposit depositToAccount = new Deposit();
-                    depositToAccount.DepositOperation(accountToDeposit);
-                    //_balance = accountToDeposit.Balance;
+                    depositToAccount.DepositOperation(_clientAccount);
                     ShowAuthenticatedMenu();
                     break;
                 case 2:
-                    CheckingAccount accountToWithdraw = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
                     Withdraw withdrawFromAccount = new Withdraw();
-                    withdrawFromAccount.WithdrawOperation(accountToWithdraw);
-                    _balance = accountToWithdraw.Balance;
+                    withdrawFromAccount.WithdrawOperation(_clientAccount);
                     ShowAuthenticatedMenu();
                     break;
                 case 3:
-                    CheckingAccount accountToTransfer = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
                     Transfer transferToAccount = new Transfer();
-                    transferToAccount.TransferOperation(accountToTransfer);
-                    _balance = accountToTransfer.Balance;
+                    Transfer.TransferOperation(_clientAccount);
                     ShowAuthenticatedMenu();
                     break;
                 case 4:
