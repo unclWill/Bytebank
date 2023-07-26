@@ -104,7 +104,7 @@ namespace Bytebank.AuthenticationComponents
             {
                 Console.WriteLine("Ocorreu um erro: " + ex.Message);
             }
-            return null;
+            return null!;
         }
 
         private static void ValidClientData(Authentication getClientAccountData)

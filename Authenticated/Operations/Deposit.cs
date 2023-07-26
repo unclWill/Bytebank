@@ -50,7 +50,7 @@ namespace Bytebank.Authenticated.Operations
                 int destinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
                 return operation.DefineAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
             }
-            return null;
+            return null!;
         }
     }
 }

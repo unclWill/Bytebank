@@ -17,11 +17,7 @@ namespace Bytebank.Authenticated
 
         public AuthenticatedScreen(CheckingAccount clientAccount)
         {
-            if (clientAccount == null)
-            {
-                throw new ArgumentNullException(nameof(clientAccount), "A instância de CheckingAccount não pode ser nula.");
-            }
-            _clientAccount = clientAccount;
+            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância de CheckingAccount não pode ser nula.");
         }
 
         public AuthenticatedScreen()// : this(new CheckingAccount())
