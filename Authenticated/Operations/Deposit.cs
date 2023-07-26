@@ -16,9 +16,8 @@ namespace Bytebank.Authenticated.Operations
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen, 0);
-            Operation.ActualBalance(clientAccount.Balance);
+            clientAccount.ShowActualBalance();
             //---
-            Deposit deposit = new Deposit();
             CheckingAccount destination = DefineAccountToDeposit(clientAccount);
             //---
             decimal valueToDeposit = Operation.ConfirmAction('D');

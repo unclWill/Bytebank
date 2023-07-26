@@ -17,10 +17,10 @@ namespace Bytebank.Authenticated
 
         public AuthenticatedScreen(CheckingAccount clientAccount)
         {
-            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância de CheckingAccount não pode ser nula.");
+            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância da Conta Corrente está nula.");
         }
 
-        public AuthenticatedScreen()// : this(new CheckingAccount())
+        public AuthenticatedScreen() : this(new CheckingAccount())
         {
             // O construtor padrão agora chama o construtor parametrizado com uma nova instância de CheckingAccount.
         }

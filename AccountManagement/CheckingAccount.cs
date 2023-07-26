@@ -21,10 +21,7 @@ namespace Bytebank.AccountManagement
         }
 
         //Construtor vazio para instanciação dos métodos em outras classes.
-        public CheckingAccount()
-        {
-
-        }
+        public CheckingAccount() { }
 
         //Conta
         public string? AccountId { get; set; }
@@ -80,6 +77,11 @@ namespace Bytebank.AccountManagement
                 transferDestination.Balance += value;
                 return true;
             }
+        }
+
+        internal void ShowActualBalance()
+        {
+            PrintText.DecoratedTitleText($"Seu saldo atual: {Balance:C}", '-', PrintText.TextColor.DarkGray);
         }
 
         internal void ShowClientAccountOverview()

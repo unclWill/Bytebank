@@ -17,7 +17,7 @@ namespace Bytebank.Authenticated.Operations
             //DEFININDO A CONTA QUE RECEBERÁ A TRANSFERÊNCIA
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
-            Operation.ActualBalance(clientAccount.Balance);
+            clientAccount.ShowActualBalance();
             Operation.VerifyBalance('T', clientAccount.Balance);
             //Destino:
             CheckingAccount destination = DefineAccountToTransfer(clientAccount);

@@ -15,7 +15,7 @@ namespace Bytebank.Authenticated.Operations
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
-            Operation.ActualBalance(clientAccount.Balance);
+            clientAccount.ShowActualBalance();
             Operation.VerifyBalance('W', clientAccount.Balance);
             decimal valueToWithdraw = Operation.ConfirmAction('W');
             clientAccount.Withdraw(valueToWithdraw);

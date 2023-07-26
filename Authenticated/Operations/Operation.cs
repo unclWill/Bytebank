@@ -55,11 +55,6 @@ namespace Bytebank.Authenticated.Operations
             return transactionValue;
         }
 
-        internal static void ActualBalance(decimal balance)
-        {
-            PrintText.DecoratedTitleText($"Seu saldo atual: {balance:C}", '-', PrintText.TextColor.DarkGray);
-        }
-
         internal static void VerifyBalance(char operationType, decimal balance)
         {
             switch (operationType)
