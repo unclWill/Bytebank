@@ -13,15 +13,11 @@ namespace Bytebank.Authenticated
 {
     internal class AuthenticatedScreen
     {
-        private static CheckingAccount _clientAccount;
+        private static CheckingAccount? _clientAccount;
 
         public AuthenticatedScreen(CheckingAccount clientAccount)
         {
-            if (clientAccount == null)
-            {
-                throw new ArgumentNullException(nameof(clientAccount), "A instância de CheckingAccount não pode ser nula.");
-            }
-            _clientAccount = clientAccount;
+            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância de CheckingAccount não pode ser nula.");
         }
 
         public AuthenticatedScreen()// : this(new CheckingAccount())
@@ -41,7 +37,7 @@ namespace Bytebank.Authenticated
         {
             HeaderText.BytebankOperationsHeader();
             //----
-            _clientAccount.ShowClientAccountOverview();
+            _clientAccount!.ShowClientAccountOverview();
             //----
             PrintText.DecoratedTitleText(" Operações disponíveis neste terminal ", '-');
             PrintText.ColorizeText("|1| DEPÓSITO\n|2| SAQUE\n|3| TRANSFERÊNCIA", PrintText.TextColor.Gray);
@@ -54,28 +50,21 @@ namespace Bytebank.Authenticated
             PrintText.ColorizeText("\n|>| ", PrintText.TextColor.White, 0);
             //----
             int menuOption = InputValidation.ValidateMenuOptionInput(1, 7);
-            AuthenticatedScreen authScreen = new AuthenticatedScreen();
-            authScreen.MenuAction(menuOption);
+            MenuAction(menuOption);
         }
 
-        private void MenuAction(int selectedOption)
+        private static void MenuAction(int selectedOption)
         {
             switch (selectedOption)
             {
                 case 1:
-                    Deposit depositToAccount = new Deposit();
-                    depositToAccount.DepositOperation(_clientAccount);
-                    ShowAuthenticatedMenu();
+                    Deposit.DepositOperation(_clientAccount!);
                     break;
                 case 2:
-                    Withdraw withdrawFromAccount = new Withdraw();
-                    withdrawFromAccount.WithdrawOperation(_clientAccount);
-                    ShowAuthenticatedMenu();
+                    Withdraw.WithdrawOperation(_clientAccount!);
                     break;
                 case 3:
-                    Transfer transferToAccount = new Transfer();
-                    Transfer.TransferOperation(_clientAccount);
-                    ShowAuthenticatedMenu();
+                    Transfer.TransferOperation(_clientAccount!);
                     break;
                 case 4:
                     Console.WriteLine("NÃO IMPLEMENTADO.");
