@@ -123,11 +123,11 @@ namespace Bytebank.Authenticated.Operations
             PrintTextAnimations.TreeDotsAnimation(1000);
         }
 
-        internal CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch)
+        internal static CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch)
         {
             RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
             var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
-            CheckingAccount accountDestination = new CheckingAccount();
+            CheckingAccount destinationAccount = new CheckingAccount();
 
             try
             {
@@ -135,12 +135,12 @@ namespace Bytebank.Authenticated.Operations
                 {
                     if (client.AccountId is not null && client.AccountId.Equals(accountId) && client.BankBranch == bankBranch)
                     {
-                        accountDestination = client;
+                        destinationAccount = client;
                     }
                 }
-                if (accountId != accountDestination.AccountId)
+                if (accountId != destinationAccount.AccountId)
                 {
-                    PrintText.ColorizeText("[!] A conta informada não existe!", PrintText.TextColor.Red);
+                    PrintText.ColorizeText("[!] A conta informada não existe ou foi digitada incorretamente!", PrintText.TextColor.Red);
                     AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1300);
                 }
             }
@@ -148,7 +148,7 @@ namespace Bytebank.Authenticated.Operations
             {
                 Console.WriteLine("Ocorreu um erro: " + ex.Message);
             }
-            return accountDestination;
+            return destinationAccount;
         }
     }
 }
