@@ -4,11 +4,7 @@
  * Data    : 22/06/2023 (Criação) | Modificação: 26/07/2023
  */
 
-using Bytebank.HARDCODED_DATABASE;
-using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Bytebank.AuthenticationComponents
 {
