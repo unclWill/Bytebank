@@ -42,12 +42,14 @@ namespace Bytebank.Authenticated.Operations
 
         private CheckingAccount DefineAccountToTransfer(CheckingAccount myAccount)
         {
+            Operation operation = new Operation();
+
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
             string transferDestinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
             SelfTransferVerificator(transferDestinationAccountId, myAccount);
             PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
             int transferDestinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
-            CheckingAccount destination = Operation.DefineAccountToDepositOrTransfer(transferDestinationAccountId, transferDestinationBankBranch);
+            CheckingAccount destination = operation.DefineAccountToDepositOrTransfer(transferDestinationAccountId, transferDestinationBankBranch);
             return destination;
         }
     }
