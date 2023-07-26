@@ -114,7 +114,7 @@ namespace Bytebank.Authenticated.Operations
             PrintTextAnimations.TreeDotsAnimation(1000);
         }
 
-        internal static CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch)
+        internal CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch)
         {
             RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
             var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;

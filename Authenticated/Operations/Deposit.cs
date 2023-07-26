@@ -1,7 +1,7 @@
 /* Classe  : Deposit
  * Objetivo: Concentrar as operações de depósito na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 23/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 26/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -33,6 +33,7 @@ namespace Bytebank.Authenticated.Operations
         private CheckingAccount DefineAccountToDeposit(CheckingAccount myAccount)
         {
             CheckingAccount? destination = null;
+            Operation operation = new Operation();
 
             PrintText.DecoratedTitleText(" ONDE DESEJA REALIZAR O DEPÓSITO? ", '-');
             PrintText.ColorizeText("|1| NA MINHA CONTA\n|2| NA CONTA DE UM TERCEIRO", PrintText.TextColor.Gray);
@@ -41,7 +42,7 @@ namespace Bytebank.Authenticated.Operations
             int menuOption = InputValidation.ValidateMenuOptionInput(1, 2);
             if (menuOption == 1)
             {
-                destination = Operation.DefineAccountToDepositOrTransfer(myAccount.AccountId!, myAccount.BankBranch);
+                destination = operation.DefineAccountToDepositOrTransfer(myAccount.AccountId!, myAccount.BankBranch);
             }
             else if (menuOption == 2)
             {
@@ -49,7 +50,7 @@ namespace Bytebank.Authenticated.Operations
                 string destinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
                 PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
                 int destinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
-                destination = Operation.DefineAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
+                destination = operation.DefineAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
             }
             return destination!;
         }
