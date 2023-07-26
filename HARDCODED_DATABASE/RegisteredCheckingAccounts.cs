@@ -1,16 +1,12 @@
 /* Classe  : RegisteredCurrentAccounts
  * Objetivo: Armazenar as contas correntes registradas no sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 18/07/2023 (Criação) | Modificação: 19/07/2023
+ * Data    : 18/07/2023 (Criação) | Modificação: 26/07/2023
  */
 
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
 using Bytebank.Utils;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Bytebank.AccountManagement;
 
 namespace Bytebank.HARDCODED_DATABASE
