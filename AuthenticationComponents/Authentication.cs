@@ -85,10 +85,33 @@ namespace Bytebank.AuthenticationComponents
             //-------------------------------------------------------------------------------------------------------------------
         }
 
+        private static CheckingAccount InitializeClientAccount(string accountId)
+        {
+            RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
+            var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
+
+            try
+            {
+                foreach (var client in clientsAccountList)
+                {
+                    if (client.AccountId is not null && client.AccountId.Equals(accountId))
+                    {
+                        return client;//new CheckingAccount(client.AccountId,client.BankBranch, client.AccountHolder!, client.Balance);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocorreu um erro: " + ex.Message);
+            }
+            return null;
+        }
+
         private static void ValidClientData(Authentication getClientAccountData)
         {
-            AuthenticatedScreen.GetAccountData(getClientAccountData); //Passa os dados do cliente para a exibição na área logada.
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
+            CheckingAccount account = InitializeClientAccount(getClientAccountData.AuthClientAccountId);
+            _ = new AuthenticatedScreen(account);
             AuthenticatedScreen.ShowAuthenticatedScreen();
         }
         private static void InvalidClientData()
@@ -100,6 +123,7 @@ namespace Bytebank.AuthenticationComponents
             int readKeyboard = int.Parse(Console.ReadLine()!);
             if (readKeyboard == 1)
             {
+                AuthenticationScreen authenticationScreen = new AuthenticationScreen();
                 AuthenticationScreen.ShowAuthenticationDialog();
             }
             else if (readKeyboard == 2)

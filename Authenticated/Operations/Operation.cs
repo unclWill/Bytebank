@@ -30,8 +30,13 @@ namespace Bytebank.Authenticated.Operations
                     break;
             }
             PrintText.UserInputIndicator();
-            decimal valueToTransfer = decimal.Parse(Console.ReadLine()!.Replace('.', ','));
-            //
+            //---
+            decimal valueToTransfer;
+            while (!decimal.TryParse(Console.ReadLine()!.Replace('.', ','), out valueToTransfer))
+            {
+                PrintText.ColorizeText("[!] Por favor, digite corretamente o valor que deseja movimentar", PrintText.TextColor.Red);
+                PrintText.UserInputIndicator();
+            }
             //---
             PrintText.DecoratedTitleText(" Confirmar operação? ", '-', PrintText.TextColor.DarkRed, 0);
             PrintText.ColorizeText("|0| NÃO  -  |1| SIM", PrintText.TextColor.Red, 2);
@@ -73,6 +78,15 @@ namespace Bytebank.Authenticated.Operations
                         AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1500);
                     }
                     break;
+            }
+        }
+
+        internal static void SelfDepositOrTransferVerification(string destination, CheckingAccount clientAccount)
+        {
+            if (destination == clientAccount.AccountId)
+            {
+                PrintText.ColorizeText("[!] Não são permitidas movimentações onde a origem e o destino são os mesmos.", PrintText.TextColor.Red);
+                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(2000);
             }
         }
 
@@ -126,7 +140,7 @@ namespace Bytebank.Authenticated.Operations
                 {
                     if (client.AccountId is not null && client.AccountId.Equals(accountId) && client.BankBranch == bankBranch)
                     {
-                        accountDestination = new CheckingAccount(client.AccountId, client.BankBranch, client.AccountHolder!, client.Balance);
+                        accountDestination = client;
                     }
                 }
                 if (accountId != accountDestination.AccountId)

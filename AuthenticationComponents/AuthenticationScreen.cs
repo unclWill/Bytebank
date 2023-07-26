@@ -36,8 +36,8 @@ namespace Bytebank.AuthenticationComponents
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
             PrintText.ColorizeText("\n[i] Para acessar a sua conta informe seus dados logo abaixo", PrintText.TextColor.DarkGray);
             //
-            Authentication clientAuthData = new Authentication(RequireAccountId(), RequireBankBranch(), RequirePinCode());
-            Authentication.Authenticate(clientAuthData);
+            Authentication authenticationData = new Authentication(RequireAccountId(), RequireBankBranch(), RequirePinCode());
+            Authentication.Authenticate(authenticationData);
         }
     }
 }
