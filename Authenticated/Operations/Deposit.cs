@@ -12,25 +12,23 @@ namespace Bytebank.Authenticated.Operations
 {
     internal class Deposit
     {
-        private static decimal _valueToDeposit;
-
-        internal void DepositOperation(CheckingAccount account)
+        internal void DepositOperation(CheckingAccount clientAccount)
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen, 0);
-            Operation.ActualBalance(account.Balance);
+            Operation.ActualBalance(clientAccount.Balance);
             //---
             Deposit deposit = new Deposit();
-            CheckingAccount destination = deposit.DefineAccountToDeposit(account);
+            CheckingAccount destination = deposit.DefineAccountToDeposit(clientAccount);
             //---
-            _valueToDeposit = Operation.ConfirmAction('D');
+            decimal valueToDeposit = Operation.ConfirmAction('D');
             //
-            account.Deposit(destination, _valueToDeposit);
+            clientAccount.Deposit(destination, valueToDeposit);
             //
-            Operation.AccountBalanceStatus('D', _valueToDeposit, account.Balance);
+            Operation.AccountBalanceStatus('D', valueToDeposit, clientAccount.Balance);
         }
 
-        private CheckingAccount DefineAccountToDeposit(CheckingAccount myAccount)
+        private CheckingAccount DefineAccountToDeposit(CheckingAccount clientAccount)
         {
             CheckingAccount? destination = null;
             Operation operation = new Operation();
@@ -42,7 +40,7 @@ namespace Bytebank.Authenticated.Operations
             int menuOption = InputValidation.ValidateMenuOptionInput(1, 2);
             if (menuOption == 1)
             {
-                destination = operation.DefineAccountToDepositOrTransfer(myAccount.AccountId!, myAccount.BankBranch);
+                destination = operation.DefineAccountToDepositOrTransfer(clientAccount.AccountId!, clientAccount.BankBranch);
             }
             else if (menuOption == 2)
             {

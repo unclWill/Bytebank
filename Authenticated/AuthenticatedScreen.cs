@@ -97,7 +97,7 @@ namespace Bytebank.Authenticated
                     CheckingAccount accountToDeposit = new CheckingAccount(_accountId!, _accountBankBranch, _accountHolder!, _balance);
                     Deposit depositToAccount = new Deposit();
                     depositToAccount.DepositOperation(accountToDeposit);
-                    _balance = accountToDeposit.Balance;
+                    //_balance = accountToDeposit.Balance;
                     ShowAuthenticatedMenu();
                     break;
                 case 2:

@@ -1,7 +1,7 @@
 /* Classe  : Operation
  * Objetivo: Concentrar os métodos comuns a todas as operações.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 20/07/2023 (Criação) | Modificação: 23/07/2023
+ * Data    : 20/07/2023 (Criação) | Modificação: 26/07/2023
  */
 
 using System.Collections;
@@ -118,7 +118,6 @@ namespace Bytebank.Authenticated.Operations
         {
             RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
             var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
-
             CheckingAccount accountDestination = new CheckingAccount();
 
             try

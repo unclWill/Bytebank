@@ -1,7 +1,7 @@
 /* Classe  : Transfer
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 23/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 26/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -14,25 +14,25 @@ namespace Bytebank.Authenticated.Operations
     {
         private static decimal _valueToTransfer = 0m;
 
-        internal decimal TransferOperation(CheckingAccount account)
+        internal decimal TransferOperation(CheckingAccount clientAccount)
         {
             //DEFININDO A CONTA QUE RECEBERÁ A TRANSFERÊNCIA
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkBlue);
-            Operation.ActualBalance(account.Balance);
-            Operation.VerifyBalance('T', account.Balance);
+            Operation.ActualBalance(clientAccount.Balance);
+            Operation.VerifyBalance('T', clientAccount.Balance);
             //Destino:
-            CheckingAccount destination = DefineAccountToTransfer(account);
+            CheckingAccount destination = DefineAccountToTransfer(clientAccount);
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
             _valueToTransfer = Operation.ConfirmAction('T');
-            account.Transfer(destination, _valueToTransfer);
-            Operation.AccountBalanceStatus('T', _valueToTransfer, account.Balance, destination.Balance);
+            clientAccount.Transfer(destination, _valueToTransfer);
+            Operation.AccountBalanceStatus('T', _valueToTransfer, clientAccount.Balance, destination.Balance);
             return _valueToTransfer;
         }
 
-        private void SelfTransferVerificator(string destination, CheckingAccount myAccount)
+        private void SelfTransferVerificator(string destination, CheckingAccount clientAccount)
         {
-            if (destination == myAccount.AccountId)
+            if (destination == clientAccount.AccountId)
             {
                 PrintText.ColorizeText("[!] Não são permitidas transferências onde a origem e o destino são os mesmos,\n" +
                                        "para isso utilize a operação de Depósito.", PrintText.TextColor.Red);
@@ -40,13 +40,13 @@ namespace Bytebank.Authenticated.Operations
             }
         }
 
-        private CheckingAccount DefineAccountToTransfer(CheckingAccount myAccount)
+        private CheckingAccount DefineAccountToTransfer(CheckingAccount clientAccount)
         {
             Operation operation = new Operation();
 
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
             string transferDestinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
-            SelfTransferVerificator(transferDestinationAccountId, myAccount);
+            SelfTransferVerificator(transferDestinationAccountId, clientAccount);
             PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
             int transferDestinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
             CheckingAccount destination = operation.DefineAccountToDepositOrTransfer(transferDestinationAccountId, transferDestinationBankBranch);
