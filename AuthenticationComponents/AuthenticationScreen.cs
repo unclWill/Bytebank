@@ -1,7 +1,7 @@
 /* Classe  : AuthenticationScreen
  * Objetivo: Exibe a tela de autenticação de verificando se um Cliente existe no sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 24/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 26/07/2023
  */
 
 using Bytebank.HARDCODED_DATABASE;
@@ -34,7 +34,7 @@ namespace Bytebank.AuthenticationComponents
             return pinCode;
         }
 
-        protected internal static void ShowAuthenticationDialog()
+        internal static void ShowAuthenticationDialog()
         {
             HeaderText.BytebankLogoHeader();
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');
