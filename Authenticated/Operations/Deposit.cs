@@ -12,23 +12,25 @@ namespace Bytebank.Authenticated.Operations
 {
     internal class Deposit
     {
-        internal void DepositOperation(CheckingAccount clientAccount)
+        internal static void DepositOperation(CheckingAccount clientAccount)
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen, 0);
             Operation.ActualBalance(clientAccount.Balance);
             //---
             Deposit deposit = new Deposit();
-            CheckingAccount destination = deposit.DefineAccountToDeposit(clientAccount);
+            CheckingAccount destination = DefineAccountToDeposit(clientAccount);
             //---
             decimal valueToDeposit = Operation.ConfirmAction('D');
             //
             clientAccount.Deposit(destination, valueToDeposit);
             //
             Operation.AccountBalanceStatus('D', valueToDeposit, clientAccount.Balance);
+            //
+            AuthenticatedScreen.ShowAuthenticatedMenu();
         }
 
-        private CheckingAccount DefineAccountToDeposit(CheckingAccount clientAccount)
+        private static CheckingAccount DefineAccountToDeposit(CheckingAccount clientAccount)
         {
             Operation operation = new Operation();
 
@@ -43,7 +45,7 @@ namespace Bytebank.Authenticated.Operations
             }
             else if (menuOption == 2)
             {
-                PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
+                PrintText.ColorizeText("Digite o número da conta que receberá o depósito", PrintText.TextColor.White);
                 string destinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
                 Operation.SelfDepositOrTransferVerification(destinationAccountId, clientAccount);
                 PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);

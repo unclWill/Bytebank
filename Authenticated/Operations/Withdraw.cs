@@ -11,7 +11,7 @@ namespace Bytebank.Authenticated.Operations
 {
     internal class Withdraw
     {
-        internal void WithdrawOperation(CheckingAccount clientAccount)
+        internal static void WithdrawOperation(CheckingAccount clientAccount)
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
@@ -20,6 +20,8 @@ namespace Bytebank.Authenticated.Operations
             decimal valueToWithdraw = Operation.ConfirmAction('W');
             clientAccount.Withdraw(valueToWithdraw);
             Operation.AccountBalanceStatus('W', valueToWithdraw, clientAccount.Balance);
+            //
+            AuthenticatedScreen.ShowAuthenticatedMenu();
         }
     }
 }

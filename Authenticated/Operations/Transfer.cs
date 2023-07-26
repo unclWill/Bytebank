@@ -12,7 +12,7 @@ namespace Bytebank.Authenticated.Operations
 {
     internal class Transfer
     {
-        internal static decimal TransferOperation(CheckingAccount clientAccount)
+        internal static void TransferOperation(CheckingAccount clientAccount)
         {
             //DEFININDO A CONTA QUE RECEBERÁ A TRANSFERÊNCIA
             HeaderText.BytebankOperationsHeader();
@@ -25,7 +25,8 @@ namespace Bytebank.Authenticated.Operations
             decimal valueToTransfer = Operation.ConfirmAction('T');
             clientAccount.Transfer(destination, valueToTransfer);
             Operation.AccountBalanceStatus('T', valueToTransfer, clientAccount.Balance, destination.Balance);
-            return valueToTransfer;
+            //
+            AuthenticatedScreen.ShowAuthenticatedMenu();
         }
 
         private static CheckingAccount DefineAccountToTransfer(CheckingAccount clientAccount)
