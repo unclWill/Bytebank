@@ -17,7 +17,7 @@ namespace Bytebank
 
         private static void ExecuteCommands()
         {
-            StartScreen.ShowStartScreen();
+            _ = new StartScreen();
         }
     }
 }
