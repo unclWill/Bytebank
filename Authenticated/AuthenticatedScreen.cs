@@ -1,7 +1,7 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 26/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 27/07/2023
  */
 
 using Bytebank.StartScreenComponents;
@@ -30,6 +30,13 @@ namespace Bytebank.Authenticated
         /// </summary>
         internal static void ShowAuthenticatedScreen()
         {
+            ShowAuthenticatedMenu();
+        }
+
+        internal static void ReturningToAuthenticatedScreenMessage(int timer = 450)
+        {
+            PrintText.ColorizeText("\n[i] Retornando ao menu de operações", PrintText.TextColor.Yellow, 0);
+            PrintTextAnimations.TreeDotsAnimation(timer);
             ShowAuthenticatedMenu();
         }
 
@@ -82,12 +89,6 @@ namespace Bytebank.Authenticated
                     ShowAuthenticatedMenu();
                     break;
             }
-        }
-        internal static void ReturningToAuthenticatedScreenMessage(int timer = 450)
-        {
-            PrintText.ColorizeText("\n[i] Retornando ao menu de operações", PrintText.TextColor.Yellow, 0);
-            PrintTextAnimations.TreeDotsAnimation(timer);
-            ShowAuthenticatedMenu();
         }
     }
 }
