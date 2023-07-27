@@ -10,8 +10,16 @@ using Bytebank.Utils;
 
 namespace Bytebank.Authenticated.Operations
 {
+    /// <summary>
+    /// Concentra as lógicas que são comuns a todas as operações.
+    /// </summary>
     internal class Operation
     {
+        /// <summary>
+        /// Realiza a confirmação ou o cancelamento da operação que está sendo realizada.
+        /// </summary>
+        /// <param name="operationType">Recebe o tipo de operação: D (Deposit), T (Transfer) ou W (Withdraw) para determinar a mensagem que será retornada no início da operação.</param>
+        /// <returns>Retorna o valor que será movimentado na conta.</returns>
         internal static decimal ConfirmAction(char operationType)
         {
             decimal transactionValue = 0m;
@@ -54,6 +62,11 @@ namespace Bytebank.Authenticated.Operations
             return transactionValue;
         }
 
+        /// <summary>
+        /// Verifica o saldo disponível na Conta Corrente do cliente.
+        /// </summary>
+        /// <param name="operationType">Recebe o tipo de operação: T (Transfer) ou W (Withdraw) para determinar a mensagem que será retornada caso não haja saldo disponível para realizar as operações.</param>
+        /// <param name="balance">Recebe o saldo atual da conta.</param>
         internal static void VerifyBalance(char operationType, decimal balance)
         {
             switch (operationType)
@@ -75,7 +88,12 @@ namespace Bytebank.Authenticated.Operations
             }
         }
 
-        internal static void SelfDepositOrTransferVerification(string destination, CheckingAccount clientAccount)
+        /// <summary>
+        /// Verifica se a conta de Origem e a de Destino são a mesma e impede o prosseguimento da operação.
+        /// </summary>
+        /// <param name="clientAccount">Recebe a conta de origem da movimentação.</param>
+        /// <param name="destination">Recebe a conta que será o destino da movimentação.</param>
+        internal static void SelfDepositOrTransferVerification(CheckingAccount clientAccount, string destination)
         {
             if (destination == clientAccount.AccountId)
             {
@@ -84,6 +102,13 @@ namespace Bytebank.Authenticated.Operations
             }
         }
 
+        /// <summary>
+        /// Exibe uma mensagem que informa o status do saldo após a operação, se foi acrescido, subtraído, transferido ou se permanece inalterado.
+        /// </summary>
+        /// <param name="operationType">Recebe o tipo de operação: D (Deposit), T (Transfer) ou W (Withdraw) para determinar a mensagem que será retornada ao fim da operação.</param>
+        /// <param name="transactionValue">Recebe o valor que está sendo movimentado.</param>
+        /// <param name="balance">Recebe o saldo atual, pós operação.</param>
+        /// <param name="accountToTransferBalance">Recebe o saldo atualizado da conta de destino (utilizado para teste durante o desenvolvimento).</param>
         internal static void AccountBalanceStatus(char operationType, decimal transactionValue, decimal balance, decimal accountToTransferBalance = 0m)
         {
             switch (operationType)
@@ -122,6 +147,12 @@ namespace Bytebank.Authenticated.Operations
             PrintTextAnimations.TreeDotsAnimation(1000);
         }
 
+        /// <summary>
+        /// Busca pelas Contas Correntes na base de dados para determinar o destino de uma operação de Depósito tipo 2 ou uma Transferência.
+        /// </summary>
+        /// <param name="accountId">Recebe o número da Conta Corrente de destino.</param>
+        /// <param name="bankBranch">Recebe o número da Agência da Conta Corrente de destino.</param>
+        /// <returns>Retorna a Conta Corrente que será o destino da operação.</returns>
         internal static CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch)
         {
             RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
