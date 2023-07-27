@@ -10,7 +10,6 @@ namespace Bytebank.AccountManagement
 {
     internal class CheckingAccount
     {
-
         //Construtor para criação de contas correntes, onde já são passados os dados da conta corrente do cliente.
         public CheckingAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
         {
