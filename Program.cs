@@ -4,10 +4,7 @@
  * Data    : 21/06/2023 (Criação) | última edição: 27/07/2023
  */
 
-using Bytebank.AccountManagement;
 using Bytebank.StartScreenComponents;
-
-using System;
 
 namespace Bytebank
 {
@@ -18,7 +15,7 @@ namespace Bytebank
             ExecuteCommands();
         }
 
-        public static void ExecuteCommands()
+        private static void ExecuteCommands()
         {
             StartScreen.ShowStartScreen();
         }
