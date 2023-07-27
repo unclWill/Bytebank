@@ -14,6 +14,14 @@ namespace Bytebank.AuthenticationComponents
     /// </summary>
     internal class AuthenticationScreen
     {
+        /// <summary>
+        /// Construtor padrão da classe AuthenticationScreen.
+        /// </summary>
+        internal AuthenticationScreen()
+        {
+            ShowAuthenticationDialog();
+        }
+
         private static string RequireAccountId()
         {
             string accountId = AuthInputValidation.ValidateAccountIdInput("Authentication");
@@ -30,7 +38,7 @@ namespace Bytebank.AuthenticationComponents
             return pinCode;
         }
 
-        internal static void ShowAuthenticationDialog()
+        private static void ShowAuthenticationDialog()
         {
             HeaderText.BytebankLogoHeader();
             PrintText.DecoratedTitleText("           AUTENTICAÇÃO           ", '~');

@@ -28,7 +28,7 @@ namespace Bytebank.Authenticated
         /// </summary>
         /// <param name="clientAccount">Recebe os dados da Conta Corrente que foi autenticada no sistema.</param>
         /// <exception cref="ArgumentNullException">Lança uma exceção se a conta for nula.</exception>
-        public AuthenticatedScreen(CheckingAccount clientAccount)
+        internal AuthenticatedScreen(CheckingAccount clientAccount)
         {
             _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância da Conta Corrente está nula.");
             ShowAuthenticatedMenu();

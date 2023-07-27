@@ -150,7 +150,7 @@ namespace Bytebank.AuthenticationComponents
             int readKeyboard = InputValidation.ValidateMenuOptionInput(1, 2);
             if (readKeyboard == 1)
             {
-                AuthenticationScreen.ShowAuthenticationDialog();
+                _ = new AuthenticationScreen();
             }
             else if (readKeyboard == 2)
             {

@@ -17,7 +17,7 @@ namespace Bytebank.StartScreenComponents
     /// </summary>
     internal class StartScreen
     {
-        public StartScreen()
+        internal StartScreen()
         {
             ShowStartScreen();
         }
@@ -154,7 +154,7 @@ namespace Bytebank.StartScreenComponents
             }
             else if (menuOption == 1)
             {
-                AuthenticationScreen.ShowAuthenticationDialog();
+                _ = new AuthenticationScreen();
             }
             else if (menuOption == 2)
             {
