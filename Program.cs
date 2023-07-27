@@ -4,6 +4,7 @@
  * Data    : 21/06/2023 (Criação) | última edição: 27/07/2023
  */
 
+using System.Security.Cryptography.X509Certificates;
 using Bytebank.StartScreenComponents;
 
 namespace Bytebank
@@ -17,6 +18,7 @@ namespace Bytebank
 
         private static void ExecuteCommands()
         {
+            //Chama o construtor da classe StartScreen, que exibe a tela inicial do sistema.
             _ = new StartScreen();
         }
     }
