@@ -157,6 +157,5 @@ namespace Bytebank.AuthenticationComponents
                 StartScreen.ReturningToStartScreenMessage();
             }
         }
-
     }
 }
