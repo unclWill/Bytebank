@@ -1,7 +1,7 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 26/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 27/07/2023
  */
 
 using Bytebank.StartScreenComponents;
@@ -11,28 +11,43 @@ using Bytebank.Authenticated.Operations;
 
 namespace Bytebank.Authenticated
 {
+    /// <summary>
+    /// Define os comportamentos presentes na área logada do sistema.
+    /// </summary>
     internal class AuthenticatedScreen
     {
+        /// <summary>
+        /// Recebe os dados de uma instância de CheckingAccount (Conta Corrente), que é o cliente que foi autenticado no sistema.
+        /// Toda a operação dentro do sistema ocorre baseada nesta conta.
+        /// </summary>
         private static CheckingAccount? _clientAccount;
 
+        /// <summary>
+        /// Construtor da classe AuthenticatedScreen que recebe uma CheckingAccount (Conta Corrente) como parâmetro para que os dados da conta sejam passados para o campo _clientAccount.
+        /// <code>Após passar os dados da instância o construtor chama o método ShowAuthenticatedMenu que exibe as opções para utilização da Conta Corrente pelo cliente.</code>
+        /// </summary>
+        /// <param name="clientAccount">Recebe os dados da Conta Corrente que foi autenticada no sistema.</param>
+        /// <exception cref="ArgumentNullException">Lança uma exceção se a conta for nula.</exception>
         public AuthenticatedScreen(CheckingAccount clientAccount)
         {
-            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância de CheckingAccount não pode ser nula.");
-        }
-
-        public AuthenticatedScreen()// : this(new CheckingAccount())
-        {
-            // O construtor padrão agora chama o construtor parametrizado com uma nova instância de CheckingAccount.
-        }
-
-        /// <summary>
-        /// Exibe o menu da área logada do sistema.
-        /// </summary>
-        internal static void ShowAuthenticatedScreen()
-        {
+            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância da Conta Corrente está nula.");
             ShowAuthenticatedMenu();
         }
 
+        /// <summary>
+        /// Exibe uma mensagem com uma animação que indica que o sistema está retornando para a tela principal do menu de operações.
+        /// </summary>
+        /// <param name="timer">Recebe o tempo que levará cada ciclo até a o método ter sido completamente executado.</param>
+        internal static void ReturningToAuthenticatedScreenMessage(int timer = 450)
+        {
+            PrintText.ColorizeText("\n[i] Retornando ao menu de operações", PrintText.TextColor.Yellow, 0);
+            PrintTextAnimations.TreeDotsAnimation(timer);
+            ShowAuthenticatedMenu();
+        }
+
+        /// <summary>
+        /// Exibe o menu de operações com as opções disponíveis para o cliente.
+        /// </summary>
         internal static void ShowAuthenticatedMenu()
         {
             HeaderText.BytebankOperationsHeader();
@@ -53,18 +68,22 @@ namespace Bytebank.Authenticated
             MenuAction(menuOption);
         }
 
+        /// <summary>
+        /// Leva o cliente (usuário do sistema) para a tela da opção escolhida.
+        /// </summary>
+        /// <param name="selectedOption">Recebe o número da opção do menu que o cliente digitou.</param>
         private static void MenuAction(int selectedOption)
         {
             switch (selectedOption)
             {
                 case 1:
-                    Deposit.DepositOperation(_clientAccount!);
+                    DepositScreen.DepositOperation(_clientAccount!);
                     break;
                 case 2:
-                    Withdraw.WithdrawOperation(_clientAccount!);
+                    WithdrawScreen.WithdrawOperation(_clientAccount!);
                     break;
                 case 3:
-                    Transfer.TransferOperation(_clientAccount!);
+                    TransferScreen.TransferOperation(_clientAccount!);
                     break;
                 case 4:
                     Console.WriteLine("NÃO IMPLEMENTADO.");
@@ -82,12 +101,6 @@ namespace Bytebank.Authenticated
                     ShowAuthenticatedMenu();
                     break;
             }
-        }
-        internal static void ReturningToAuthenticatedScreenMessage(int timer = 450)
-        {
-            PrintText.ColorizeText("\n[i] Retornando ao menu de operações", PrintText.TextColor.Yellow, 0);
-            PrintTextAnimations.TreeDotsAnimation(timer);
-            ShowAuthenticatedMenu();
         }
     }
 }
