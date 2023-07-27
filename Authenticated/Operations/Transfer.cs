@@ -1,7 +1,7 @@
 /* Classe  : Transfer
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 26/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 27/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -31,8 +31,6 @@ namespace Bytebank.Authenticated.Operations
 
         private static CheckingAccount DefineAccountToTransfer(CheckingAccount clientAccount)
         {
-            Operation operation = new Operation();
-
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
             string transferDestinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
             Operation.SelfDepositOrTransferVerification(transferDestinationAccountId, clientAccount);

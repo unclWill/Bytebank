@@ -1,10 +1,9 @@
 /* Classe  : Operation
  * Objetivo: Concentrar os métodos comuns a todas as operações.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 20/07/2023 (Criação) | Modificação: 26/07/2023
+ * Data    : 20/07/2023 (Criação) | Modificação: 27/07/2023
  */
 
-using System.Collections;
 using Bytebank.AccountManagement;
 using Bytebank.HARDCODED_DATABASE;
 using Bytebank.Utils;

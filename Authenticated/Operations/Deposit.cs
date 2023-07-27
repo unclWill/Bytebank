@@ -1,7 +1,7 @@
 /* Classe  : Deposit
  * Objetivo: Concentrar as operações de depósito na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 26/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 27/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -31,8 +31,6 @@ namespace Bytebank.Authenticated.Operations
 
         private static CheckingAccount DefineAccountToDeposit(CheckingAccount clientAccount)
         {
-            Operation operation = new Operation();
-
             PrintText.DecoratedTitleText(" ONDE DESEJA REALIZAR O DEPÓSITO? ", '-');
             PrintText.ColorizeText("|1| NA MINHA CONTA\n|2| NA CONTA DE UM TERCEIRO", PrintText.TextColor.Gray);
             PrintText.UserInputIndicator();
