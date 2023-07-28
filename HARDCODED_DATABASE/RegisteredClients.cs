@@ -4,6 +4,11 @@
  * Data    : 18/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
+/* OBSERVAÇÕES: Este classe [TEMPORÁRIA] representa uma base de dados simples que armazena os dados de clientes (Client), incluindo suas Contas Correntes (CheckingAccount).
+ *              Está sendo utilizada apenas para desevolvimento, até que o sistema seja integrado a uma base de dados real.
+ *              Algumas alterações serão necessárias quando isto ocorrer.
+ */
+
 using System.Data.Common;
 using Bytebank.AccountManagement;
 
@@ -31,9 +36,10 @@ namespace Bytebank.HARDCODED_DATABASE
         /// <summary>
         /// Captura o Id da Conta Corrente no momento da Autenticação e compara a qual cliente esse Id está associado
         /// para carregar tanto os dados do Cliente quanto da Conta Corrente que está associado a este Cliente.
+        /// Além de evitar a necessidade de repetir 
         /// </summary>
         /// <param name="accountId">Recebe o Id da Conta Corrente para realizar a comparação.</param>
-        internal static void GetRegisteredClientsInfo(string accountId)
+        internal static void GetRegisteredClientsData(string accountId)
         {
             RegisteredClients clients = new RegisteredClients();
             var clientsList = clients.Clients.Where(clients => clients.CheckingAccount!.AccountId!.Equals(accountId))

@@ -4,6 +4,11 @@
  * Data    : 18/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
+/* OBSERVAÇÕES: Este classe [TEMPORÁRIA] representa uma base de dados simples, que armazena os dados para a autenticação de clientes.
+ *              Está sendo utilizada apenas para desevolvimento, até que o sistema seja integrado a uma base de dados real.
+ *              Algumas alterações serão necessárias quando isto ocorrer.
+ */
+
 using Bytebank.AuthenticationComponents;
 
 namespace Bytebank.HARDCODED_DATABASE

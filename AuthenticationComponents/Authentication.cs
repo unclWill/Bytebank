@@ -84,11 +84,13 @@ namespace Bytebank.AuthenticationComponents
         /// <param name="clientAuthInput">Recebe os dados de Autenticação do cliente.</param>
         internal static void Authenticate(Authentication clientAuthInput)
         {
+            // Populando a base de dados HARDCODED --------------------------------------------------------------------------------------------------
             //Captura o Id da Conta e o número da Agência para realizar o login.
             RegisteredAuthenticationData.GetCheckingAccountInformation(clientAuthInput.AuthClientAccountId, clientAuthInput.AuthClientBankBranch);
             //Captura o Id da Conta para carregar os dados do Cliente.
-            RegisteredClients.GetRegisteredClientsInfo(clientAuthInput.AuthClientAccountId);
-            //---
+            RegisteredClients.GetRegisteredClientsData(clientAuthInput.AuthClientAccountId);
+            //------------------------------------------------------------------------------------------------------------------------------------FIM
+
             RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
             var authDataList = registeredAuthenticationData.RegisteredAuthData;
 
@@ -96,7 +98,7 @@ namespace Bytebank.AuthenticationComponents
             {
                 if (clientAuthInput is not null && clientAuthInput.Equals(client))
                 {
-                    //Chama o método ValidClientData e passa os dados de Autenticação do cliente para a instanciação da sua Conta Corrente.
+                    //Chama o método ValidClientData e passa os dados de Autenticação do cliente para a instanciação da Conta Corrente do mesmo.
                     ValidClientData(clientAuthInput);
                 }
             }
