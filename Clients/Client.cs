@@ -12,9 +12,10 @@
  *              a Conta Corrente e seus dados, como Nº de Conta e Agência e o próprio Titular, além do Saldo estão contidos no registro do cliente.
  */
 
+using Bytebank.Accounts;
 using Bytebank.Utils;
 
-namespace Bytebank.Accounts
+namespace Bytebank.Clients
 {
     internal class Client
     {

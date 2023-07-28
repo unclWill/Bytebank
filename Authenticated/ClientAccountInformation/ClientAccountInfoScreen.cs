@@ -4,7 +4,7 @@
  * Data    : 28/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
-using Bytebank.Accounts;
+using Bytebank.Clients;
 using Bytebank.Utils;
 
 namespace Bytebank.Authenticated.ClientAccountInformation

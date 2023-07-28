@@ -23,7 +23,7 @@ using Bytebank.HARDCODED_DATABASE;
 using Bytebank.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
-using Bytebank.Accounts;
+using Bytebank.Clients;
 
 namespace Bytebank.AuthenticationComponents
 {

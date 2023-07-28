@@ -9,7 +9,7 @@
  *              Algumas alterações serão necessárias quando isto ocorrer.
  */
 
-using System.Data.Common;
+using Bytebank.Clients;
 using Bytebank.Accounts;
 
 namespace Bytebank.HARDCODED_DATABASE

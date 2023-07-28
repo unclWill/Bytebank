@@ -20,6 +20,7 @@
  */
 
 using Bytebank.Utils;
+using Bytebank.Clients;
 
 namespace Bytebank.Accounts
 {
