@@ -4,7 +4,7 @@
  * Data    : 19/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
-using Bytebank.AccountManagement;
+using Bytebank.Accounts;
 using Bytebank.AuthenticationComponents;
 using Bytebank.Utils;
 

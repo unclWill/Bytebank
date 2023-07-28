@@ -10,7 +10,7 @@
  */
 
 using System.Data.Common;
-using Bytebank.AccountManagement;
+using Bytebank.Accounts;
 
 namespace Bytebank.HARDCODED_DATABASE
 {

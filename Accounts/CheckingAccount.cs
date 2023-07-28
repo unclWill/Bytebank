@@ -21,7 +21,7 @@
 
 using Bytebank.Utils;
 
-namespace Bytebank.AccountManagement
+namespace Bytebank.Accounts
 {
     /// <summary>
     /// Determina o que é uma Conta Corrente no Bytebank.

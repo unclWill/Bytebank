@@ -6,7 +6,7 @@
 
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
-using Bytebank.AccountManagement;
+using Bytebank.Accounts;
 using Bytebank.Authenticated.Operations;
 using Bytebank.Authenticated.ClientAccountInformation;
 

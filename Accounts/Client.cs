@@ -14,7 +14,7 @@
 
 using Bytebank.Utils;
 
-namespace Bytebank.AccountManagement
+namespace Bytebank.Accounts
 {
     internal class Client
     {
