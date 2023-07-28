@@ -10,7 +10,7 @@ namespace Bytebank.Utils
 {
     internal static class HeaderText
     {
-        internal static void BytebankLogoHeader()
+        internal static void BytebankOnlyLogoHeader()
         {
             Console.Clear();
             string bytebankLogo = @"
@@ -27,7 +27,7 @@ namespace Bytebank.Utils
 
         internal static void BytebankOperationsHeader()
         {
-            BytebankLogoHeader();
+            BytebankOnlyLogoHeader();
             PrintText.DecoratedTitleText("  TERMINAL DE OPERAÇÕES FINANCEIRAS DO BYTEBANK  ", '~');
         }
     }

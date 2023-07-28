@@ -1,7 +1,7 @@
 /* Classe  : TransferScreen
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 27/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -29,7 +29,7 @@ namespace Bytebank.Authenticated.Operations
             //Destino:
             CheckingAccount destination = DefineAccountToTransfer(clientAccount);
             //DEFININDO O VALOR QUE SERÁ TRANSFERIDO
-            decimal valueToTransfer = Operation.ConfirmAction('T');
+            decimal valueToTransfer = Operation.InsertValueAndConfirmOperation('T');
             clientAccount.Transfer(destination, valueToTransfer);
             Operation.AccountBalanceStatus('T', valueToTransfer, clientAccount.Balance, destination.Balance);
             //
@@ -44,12 +44,12 @@ namespace Bytebank.Authenticated.Operations
         private static CheckingAccount DefineAccountToTransfer(CheckingAccount clientAccount)
         {
             PrintText.ColorizeText("Digite o número da conta que receberá a transferência", PrintText.TextColor.White);
-            string transferDestinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
-            Operation.SelfDepositOrTransferVerification(clientAccount, transferDestinationAccountId);
+            string destinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
+            Operation.SelfDepositOrTransferVerification(clientAccount, destinationAccountId);
             PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
-            int transferDestinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
-            CheckingAccount destination = Operation.DefineAccountToDepositOrTransfer(transferDestinationAccountId, transferDestinationBankBranch);
-            return destination;
+            int destinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
+            return Operation.DefineAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
+            //return destination;
         }
     }
 }

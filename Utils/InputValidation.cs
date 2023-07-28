@@ -20,7 +20,7 @@ namespace Bytebank.Utils
         internal static int ValidateMenuOptionInput(int minOption, int maxOption)
         {
             int optionNumber;
-            while (!int.TryParse(Console.ReadLine(), out optionNumber) && optionNumber < minOption || optionNumber > maxOption)
+            while (!int.TryParse(Console.ReadLine(), out optionNumber) && optionNumber < minOption || optionNumber > maxOption || optionNumber == 0)
             {
                 PrintText.ColorizeText("\n[!] Digite uma opção válida!", PrintText.TextColor.DarkRed);
                 PrintText.UserInputIndicator();

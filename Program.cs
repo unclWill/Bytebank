@@ -4,7 +4,6 @@
  * Data    : 21/06/2023 (Criação) | última edição: 27/07/2023
  */
 
-using System.Security.Cryptography.X509Certificates;
 using Bytebank.StartScreenComponents;
 
 namespace Bytebank

@@ -33,8 +33,6 @@ namespace Bytebank.AuthenticationComponents
                 clientIdInput = Console.ReadLine()!.Trim();
                 if (clientIdInput.Length == 6 && clientIdInput.Contains('-') && char.IsLetterOrDigit(clientIdInput[^1]) && int.TryParse(clientIdInput.AsSpan(0, 4), out _))
                 {
-                    RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
-                    registeredAuthenticationData.GetCheckingAccountInformation(clientIdInput);//Captura o Id da Conta e o número da Agência para realizar o login.
                     break;
                 }
                 else

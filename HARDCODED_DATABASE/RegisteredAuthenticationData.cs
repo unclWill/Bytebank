@@ -1,14 +1,9 @@
 /* Classe  : RegisteredAuthenticationData
  * Objetivo: Armazenar os dados de autenticação das contas existentes.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 18/07/2023 (Criação) | Modificação: 24/07/2023
+ * Data    : 18/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using Bytebank.AccountManagement;
 using Bytebank.AuthenticationComponents;
 
 namespace Bytebank.HARDCODED_DATABASE
@@ -25,16 +20,16 @@ namespace Bytebank.HARDCODED_DATABASE
 
         internal List<Authentication> RegisteredAuthData { get; }
 
-        internal void GetCheckingAccountInformation(string accountId)
+        internal static void GetCheckingAccountInformation(string accountId, int bankBranch)
         {
-            RegisteredCheckingAccounts accounts = new RegisteredCheckingAccounts();
-            var accountsList = accounts.CheckingAccounts;
-            foreach (var account in accountsList)
+            RegisteredClients clients = new RegisteredClients();
+            var clientsList = clients.Clients;
+            foreach (var client in clientsList)
             {
-                if (account.AccountId!.Equals(accountId))
+                if (client is not null && client.CheckingAccount!.AccountId!.Equals(accountId) && client.CheckingAccount.BankBranch == bankBranch)
                 {
-                    _accountId = account.AccountId;
-                    _bankBranch = account.BankBranch;
+                    _accountId = client.CheckingAccount.AccountId;
+                    _bankBranch = client.CheckingAccount.BankBranch;
                 }
             }
         }

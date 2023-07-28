@@ -1,7 +1,7 @@
 /* Classe  : WithdrawScreen
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 27/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -24,7 +24,7 @@ namespace Bytebank.Authenticated.Operations
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
             clientAccount.ShowActualBalance();
             Operation.VerifyBalance('W', clientAccount.Balance);
-            decimal valueToWithdraw = Operation.ConfirmAction('W');
+            decimal valueToWithdraw = Operation.InsertValueAndConfirmOperation('W');
             clientAccount.Withdraw(valueToWithdraw);
             Operation.AccountBalanceStatus('W', valueToWithdraw, clientAccount.Balance);
             //

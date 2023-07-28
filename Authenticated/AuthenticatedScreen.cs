@@ -8,6 +8,7 @@ using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.AccountManagement;
 using Bytebank.Authenticated.Operations;
+using Bytebank.Authenticated.ClientAccountInformation;
 
 namespace Bytebank.Authenticated
 {
@@ -20,17 +21,17 @@ namespace Bytebank.Authenticated
         /// Recebe os dados de uma instância de CheckingAccount (Conta Corrente), que é o cliente que foi autenticado no sistema.
         /// Toda a operação dentro do sistema ocorre baseada nesta conta.
         /// </summary>
-        private static CheckingAccount? _clientAccount;
+        private static Client? _clientAccount;
 
         /// <summary>
-        /// Construtor da classe AuthenticatedScreen que recebe uma CheckingAccount (Conta Corrente) como parâmetro para que os dados da conta sejam passados para o campo _clientAccount.
+        /// Construtor da classe AuthenticatedScreen que recebe um Client (Conta do Cliente) como parâmetro para que os dados da conta sejam passados para o campo _clientAccount.
         /// <code>Após passar os dados da instância o construtor chama o método ShowAuthenticatedMenu que exibe as opções para utilização da Conta Corrente pelo cliente.</code>
         /// </summary>
-        /// <param name="clientAccount">Recebe os dados da Conta Corrente que foi autenticada no sistema.</param>
+        /// <param name="clientAccount">Recebe os dados do cliente que foi autenticada no sistema.</param>
         /// <exception cref="ArgumentNullException">Lança uma exceção se a conta for nula.</exception>
-        internal AuthenticatedScreen(CheckingAccount clientAccount)
+        internal AuthenticatedScreen(Client clientAccount)
         {
-            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância da Conta Corrente está nula.");
+            _clientAccount = clientAccount ?? throw new ArgumentNullException(nameof(clientAccount), "A instância deste conta está nula.");
             ShowAuthenticatedMenu();
         }
 
@@ -52,7 +53,7 @@ namespace Bytebank.Authenticated
         {
             HeaderText.BytebankOperationsHeader();
             //----
-            _clientAccount!.ShowClientAccountOverview();
+            _clientAccount!.CheckingAccount!.ShowClientAccountOverview();
             //----
             PrintText.DecoratedTitleText(" Operações disponíveis neste terminal ", '-');
             PrintText.ColorizeText("|1| DEPÓSITO\n|2| SAQUE\n|3| TRANSFERÊNCIA", PrintText.TextColor.Gray);
@@ -77,16 +78,16 @@ namespace Bytebank.Authenticated
             switch (selectedOption)
             {
                 case 1:
-                    DepositScreen.DepositOperation(_clientAccount!);
+                    DepositScreen.DepositOperation(_clientAccount!.CheckingAccount!);
                     break;
                 case 2:
-                    WithdrawScreen.WithdrawOperation(_clientAccount!);
+                    WithdrawScreen.WithdrawOperation(_clientAccount!.CheckingAccount!);
                     break;
                 case 3:
-                    TransferScreen.TransferOperation(_clientAccount!);
+                    TransferScreen.TransferOperation(_clientAccount!.CheckingAccount!);
                     break;
                 case 4:
-                    Console.WriteLine("NÃO IMPLEMENTADO.");
+                    ClientAccountInfoScreen.ShowClientInformation(_clientAccount!);
                     break;
                 case 5:
                     Console.WriteLine("NÃO IMPLEMENTADO.");
