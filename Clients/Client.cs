@@ -17,8 +17,21 @@ using Bytebank.Utils;
 
 namespace Bytebank.Clients
 {
+    /// <summary>
+    /// Define as caractrísticas de um cliente e as lógicas associadas à sua implementação.
+    /// </summary>
     internal class Client
     {
+        /// <summary>
+        /// Construtor padrão da classe Client com todos os parâmateros que determinam as características de um cliente.
+        /// </summary>
+        /// <param name="clientId">Recebe o ID único, sequencial, do cliente, como seria na base de dados.</param>
+        /// <param name="clientName">Recebe o nome do cliente.</param>
+        /// <param name="cpf">Recebe o CPF do cliente.</param>
+        /// <param name="profession">Recebe a profissão do cliente.</param>
+        /// <param name="dateOfBirth">Recebe a data de nascimento do cliente.</param>
+        /// <param name="naturalFrom">Recebe a cidade, o estado e o país de origem do cliente.</param>
+        /// <param name="checkingAccount">Recebe a Conta Corrente do cliente.</param>
         internal Client(int clientId, string clientName, string cpf, string profession, DateTime dateOfBirth, string naturalFrom, CheckingAccount checkingAccount)
         {
             ClientId = clientId;
@@ -30,6 +43,9 @@ namespace Bytebank.Clients
             CheckingAccount = checkingAccount;
         }
 
+        /// <summary>
+        /// Construtor vazio da classe Client
+        /// </summary>
         internal Client() { }
 
         internal int ClientId { get; set; }
@@ -40,6 +56,9 @@ namespace Bytebank.Clients
         internal string? NaturalFrom { get; set; }
         internal CheckingAccount? CheckingAccount { get; set; }
 
+        /// <summary>
+        /// Exibe as informações do titular da conta (AccountHolder).
+        /// </summary>
         internal void ShowClientInfo()
         {
             PrintText.ColorizeText("Dados do cliente", PrintText.TextColor.Gray);
