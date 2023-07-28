@@ -13,18 +13,22 @@ using System.Data;
 namespace Bytebank.StartScreenComponents
 {
     /// <summary>
-    /// Classe <code>StartScreenComponents</code>
     /// Concentra os métodos personalizados utilizados na tela inicial do sistema.
     /// </summary>
     internal class StartScreen
     {
+        internal StartScreen()
+        {
+            ShowStartScreen();
+        }
+
         /// <summary>
         /// Exibe os itens que compõe a tela inicial do sistema.
         /// </summary>
-        internal static void ShowStartScreen()
+        private static void ShowStartScreen()
         {
             ShowAppWindowTitle();
-            HeaderText.BytebankLogoHeader();
+            HeaderText.BytebankOnlyLogoHeader();
             ShowGreetingAndDateTime();
             ShowStartServiceAtTerminalDialog();
         }
@@ -115,10 +119,6 @@ namespace Bytebank.StartScreenComponents
         }
 
         /// <summary>
-        /// Exibe o logo do Bytebank estilizado com caracteres ASCII.
-        /// </summary>
-
-        /// <summary>
         /// Exibe o título da janela.
         /// </summary>
         private static void ShowAppWindowTitle()
@@ -154,7 +154,7 @@ namespace Bytebank.StartScreenComponents
             }
             else if (menuOption == 1)
             {
-                AuthenticationScreen.ShowAuthenticationDialog();
+                _ = new AuthenticationScreen();
             }
             else if (menuOption == 2)
             {

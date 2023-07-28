@@ -4,24 +4,21 @@
  * Data    : 21/06/2023 (Criação) | última edição: 27/07/2023
  */
 
-using Bytebank.AccountManagement;
 using Bytebank.StartScreenComponents;
-
-using System;
 
 namespace Bytebank
 {
     public class Program
     {
-        [STAThread]
         public static void Main()
         {
             ExecuteCommands();
         }
 
-        public static void ExecuteCommands()
+        private static void ExecuteCommands()
         {
-            StartScreen.ShowStartScreen();
+            //Chama o construtor da classe StartScreen, que exibe a tela inicial do sistema.
+            _ = new StartScreen();
         }
     }
 }

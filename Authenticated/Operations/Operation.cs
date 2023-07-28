@@ -1,7 +1,7 @@
 /* Classe  : Operation
  * Objetivo: Concentrar os métodos comuns a todas as operações.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 20/07/2023 (Criação) | Modificação: 27/07/2023
+ * Data    : 20/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -15,15 +15,27 @@ namespace Bytebank.Authenticated.Operations
     /// </summary>
     internal class Operation
     {
+        internal static void ReturnToOperationsMenu()
+        {
+            PrintText.ColorizeText("[i] Para retornar ao menu de operações digite |1| ou |2| para continuar", PrintText.TextColor.DarkGray);
+            int selectedOption = InputValidation.ValidateMenuOptionInput(1, 2);
+            switch (selectedOption)
+            {
+                case 1:
+                    AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1000);
+                    break;
+                default:
+                    return;
+            }
+        }
+
         /// <summary>
-        /// Realiza a confirmação ou o cancelamento da operação que está sendo realizada.
+        /// Exibe os diálogos de inserção de valores para movimentação e confirmação da operação.
         /// </summary>
         /// <param name="operationType">Recebe o tipo de operação: D (Deposit), T (Transfer) ou W (Withdraw) para determinar a mensagem que será retornada no início da operação.</param>
         /// <returns>Retorna o valor que será movimentado na conta.</returns>
-        internal static decimal ConfirmAction(char operationType)
+        internal static decimal InsertValueAndConfirmOperation(char operationType)
         {
-            decimal transactionValue = 0m;
-
             switch (operationType)
             {
                 case 'D':
@@ -38,28 +50,18 @@ namespace Bytebank.Authenticated.Operations
             }
             PrintText.UserInputIndicator();
             //---
-            decimal valueToTransfer;
-            while (!decimal.TryParse(Console.ReadLine()!.Replace('.', ','), out valueToTransfer))
+            decimal operationValue = OperationInputValidation();
+            bool operationConfirmation = ConfirmOperation();
+
+            if (operationConfirmation == true)
             {
-                PrintText.ColorizeText("[!] Por favor, digite corretamente o valor que deseja movimentar", PrintText.TextColor.Red);
-                PrintText.UserInputIndicator();
+                return operationValue;
             }
-            //---
-            PrintText.DecoratedTitleText(" Confirmar operação? ", '-', PrintText.TextColor.DarkRed, 0);
-            PrintText.ColorizeText("|0| NÃO  -  |1| SIM", PrintText.TextColor.Red, 2);
-            PrintText.UserInputIndicator();
-            int confirmation = InputValidation.ValidateMenuOptionInput(0, 1);
-            switch (confirmation)
+            else if (operationConfirmation == false)
             {
-                case 0:
-                    transactionValue = 0m;
-                    PrintText.ColorizeText("[i] Operação cancelada.", PrintText.TextColor.Red);
-                    break;
-                case 1:
-                    transactionValue = valueToTransfer;
-                    break;
+                return 0m;
             }
-            return transactionValue;
+            return 0m;
         }
 
         /// <summary>
@@ -75,14 +77,14 @@ namespace Bytebank.Authenticated.Operations
                     if (balance <= 0)
                     {
                         PrintText.ColorizeText("[!] Você não possui saldo disponível para realizar saques!", PrintText.TextColor.DarkYellow);
-                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1500);
+                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
                     }
                     break;
                 case 'T':
                     if (balance <= 0)
                     {
                         PrintText.ColorizeText("[!] Você não possui saldo disponível para realizar transferências!", PrintText.TextColor.DarkYellow);
-                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1500);
+                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
                     }
                     break;
             }
@@ -98,7 +100,7 @@ namespace Bytebank.Authenticated.Operations
             if (destination == clientAccount.AccountId)
             {
                 PrintText.ColorizeText("[!] Não são permitidas movimentações onde a origem e o destino são os mesmos.", PrintText.TextColor.Red);
-                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(2000);
+                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
             }
         }
 
@@ -147,31 +149,40 @@ namespace Bytebank.Authenticated.Operations
             PrintTextAnimations.TreeDotsAnimation(1000);
         }
 
+        
         /// <summary>
-        /// Busca pelas Contas Correntes na base de dados para determinar o destino de uma operação de Depósito tipo 2 ou uma Transferência.
+        /// Busca pelas Contas Correntes na base de dados para determinar o destino de uma operação de Depósito ou uma Transferência.
         /// </summary>
         /// <param name="accountId">Recebe o número da Conta Corrente de destino.</param>
         /// <param name="bankBranch">Recebe o número da Agência da Conta Corrente de destino.</param>
+        /// <param name="clientAccount">Recebe a instância da Conta Corrente do cliente autenticado no sistema, se o depósito for do Tipo 1, senão o valor é nulo.</param>
         /// <returns>Retorna a Conta Corrente que será o destino da operação.</returns>
-        internal static CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch)
+        internal static CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch, CheckingAccount clientAccount = null!)
         {
-            RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
-            var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
+            RegisteredClients registeredClientAccounts = new RegisteredClients();
+            var clientsAccountList = registeredClientAccounts.Clients;
             CheckingAccount destinationAccount = new CheckingAccount();
 
             try
             {
                 foreach (var client in clientsAccountList)
                 {
-                    if (client.AccountId is not null && client.AccountId.Equals(accountId) && client.BankBranch == bankBranch)
+                    if (client.CheckingAccount!.AccountId is not null && client.CheckingAccount.AccountId.Equals(accountId) && client.CheckingAccount.BankBranch == bankBranch)
                     {
-                        destinationAccount = client;
+                        if (clientAccount is not null && client!.CheckingAccount.AccountId.Equals(clientAccount!.AccountId))
+                        {
+                            return clientAccount;
+                        }
+                        else
+                        {
+                            destinationAccount = client.CheckingAccount!;
+                        }
                     }
                 }
                 if (accountId != destinationAccount.AccountId)
                 {
                     PrintText.ColorizeText("[!] A conta informada não existe ou foi digitada incorretamente!", PrintText.TextColor.Red);
-                    AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1300);
+                    AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
                 }
             }
             catch (Exception ex)
@@ -179,6 +190,43 @@ namespace Bytebank.Authenticated.Operations
                 Console.WriteLine("Ocorreu um erro: " + ex.Message);
             }
             return destinationAccount;
+        }
+
+        /// <summary>
+        /// Realiza a validação da entrada do valor da operação que está sendo feita.
+        /// </summary>
+        /// <returns>Retorna o valor da operção validado.</returns>
+        private static decimal OperationInputValidation()
+        {
+            decimal operationValue;
+            while (!decimal.TryParse(Console.ReadLine()!.Replace('.', ','), out operationValue))
+            {
+                PrintText.ColorizeText("[!] Por favor, digite corretamente o valor que deseja movimentar", PrintText.TextColor.Red);
+                PrintText.UserInputIndicator();
+            }
+            return operationValue;
+        }
+
+        /// <summary>
+        /// Confirma ou cancela a operação, de acordo com a opção digitada pelo usuário.
+        /// </summary>
+        /// <returns>Retorna False se a operação for cancelada e True se for confirmada.</returns>
+        private static bool ConfirmOperation()
+        {
+            PrintText.DecoratedTitleText(" Confirmar operação? ", '-', PrintText.TextColor.DarkRed, 0);
+            PrintText.ColorizeText("|1| NÃO  -  |2| SIM", PrintText.TextColor.Red, 2);
+            PrintText.UserInputIndicator();
+
+            int confirmation = InputValidation.ValidateMenuOptionInput(1, 2);
+            switch (confirmation)
+            {
+                case 1:
+                    PrintText.ColorizeText("[i] Operação cancelada.", PrintText.TextColor.Red);
+                    return false;
+                case 2:
+                    return true;
+            }
+            return false;
         }
     }
 }

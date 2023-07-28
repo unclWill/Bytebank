@@ -1,7 +1,7 @@
 /* Classe  : Authentication
  * Objetivo: Concentra os métodos de autenticação para permitir que o usuário entre na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 27/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 28/07/2023
  */
 
 /* OBSERVAÇÃO: [ESTE COMENTÁRIO DEVE APARECER NO CABEÇALHO DAS CLASSES Authentication e CheckingAccount]
@@ -84,6 +84,11 @@ namespace Bytebank.AuthenticationComponents
         /// <param name="clientAuthInput">Recebe os dados de Autenticação do cliente.</param>
         internal static void Authenticate(Authentication clientAuthInput)
         {
+            //Captura o Id da Conta e o número da Agência para realizar o login.
+            RegisteredAuthenticationData.GetCheckingAccountInformation(clientAuthInput.AuthClientAccountId, clientAuthInput.AuthClientBankBranch);
+            //Captura o Id da Conta para carregar os dados do Cliente.
+            RegisteredClients.GetRegisteredClientsInfo(clientAuthInput.AuthClientAccountId);
+            //---
             RegisteredAuthenticationData registeredAuthenticationData = new RegisteredAuthenticationData();
             var authDataList = registeredAuthenticationData.RegisteredAuthData;
 
@@ -104,16 +109,16 @@ namespace Bytebank.AuthenticationComponents
         /// <param name="accountId">Recebe o número da Conta Corrente do cliente autenticado.</param>
         /// <param name="bankBranch">Recebe o número da Agência bancária do cliente autenticado.</param>
         /// <returns>Retorna a instância da Conta Corrente do cliente autenticado.</returns>
-        private static CheckingAccount InitializeClientAccount(string accountId, int bankBranch)
+        private static Client InitializeClientAccount(string accountId, int bankBranch)
         {
-            RegisteredCheckingAccounts registeredCheckingAccounts = new RegisteredCheckingAccounts();
-            var clientsAccountList = registeredCheckingAccounts.CheckingAccounts;
+            RegisteredClients registeredClients = new RegisteredClients();
+            var clientsAccountList = registeredClients.Clients;
 
             try
             {
                 foreach (var client in clientsAccountList)
                 {
-                    if (client.AccountId is not null && client.AccountId.Equals(accountId) && client.BankBranch == bankBranch)
+                    if (client.CheckingAccount!.AccountId is not null && client.CheckingAccount!.AccountId!.Equals(accountId) && client.CheckingAccount.BankBranch == bankBranch)
                     {
                         return client;
                     }
@@ -132,8 +137,9 @@ namespace Bytebank.AuthenticationComponents
         /// <param name="getClientAccountData">Recebe a instância dos dados de Autenticação do cliente.</param>
         private static void ValidClientData(Authentication getClientAccountData)
         {
+            PrintText.SetLineBreak(2);
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
-            CheckingAccount clientAccount = InitializeClientAccount(getClientAccountData.AuthClientAccountId, getClientAccountData.AuthClientBankBranch);
+            Client clientAccount = InitializeClientAccount(getClientAccountData.AuthClientAccountId, getClientAccountData.AuthClientBankBranch);
             //Passa os dados da Conta Corrente para o construtor da classe AuthenticatedScreen para que a mesma possa ser utilizada na área logada.
             _ = new AuthenticatedScreen(clientAccount);
         }
@@ -143,6 +149,7 @@ namespace Bytebank.AuthenticationComponents
         /// </summary>
         private static void InvalidClientData()
         {
+            PrintText.SetLineBreak(2);
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             PrintText.ColorizeText("\n\n[!] Dados inválidos!", PrintText.TextColor.DarkRed);
             Console.Write("\n[i] Digite |1| para tentar novamente ou |2| para voltar à tela inicial\n");
@@ -150,7 +157,7 @@ namespace Bytebank.AuthenticationComponents
             int readKeyboard = InputValidation.ValidateMenuOptionInput(1, 2);
             if (readKeyboard == 1)
             {
-                AuthenticationScreen.ShowAuthenticationDialog();
+                _ = new AuthenticationScreen();
             }
             else if (readKeyboard == 2)
             {

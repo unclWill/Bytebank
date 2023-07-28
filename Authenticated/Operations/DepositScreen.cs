@@ -1,7 +1,7 @@
 /* Classe  : DepositScreen
  * Objetivo: Concentrar as operações de depósito na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 27/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
 using Bytebank.AccountManagement;
@@ -27,7 +27,7 @@ namespace Bytebank.Authenticated.Operations
             //---
             CheckingAccount destination = DefineAccountToDeposit(clientAccount);
             //---
-            decimal valueToDeposit = Operation.ConfirmAction('D');
+            decimal valueToDeposit = Operation.InsertValueAndConfirmOperation('D');
             //
             clientAccount.Deposit(destination, valueToDeposit);
             //
@@ -46,21 +46,18 @@ namespace Bytebank.Authenticated.Operations
             PrintText.DecoratedTitleText(" ONDE DESEJA REALIZAR O DEPÓSITO? ", '-');
             PrintText.ColorizeText("|1| NA MINHA CONTA\n|2| NA CONTA DE UM TERCEIRO", PrintText.TextColor.Gray);
             PrintText.UserInputIndicator();
-
             int menuOption = InputValidation.ValidateMenuOptionInput(1, 2);
-            if (menuOption == 1)
+            switch (menuOption)
             {
-                return Operation.DefineAccountToDepositOrTransfer(clientAccount.AccountId!, clientAccount.BankBranch);
-            }
-            else if (menuOption == 2)
-            {
-                PrintText.ColorizeText("Digite o número da conta que receberá o depósito", PrintText.TextColor.White);
-                string destinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
-                Operation.SelfDepositOrTransferVerification(clientAccount, destinationAccountId);
-                PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
-                int destinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
-                //---
-                return Operation.DefineAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
+                case 1:
+                    return Operation.DefineAccountToDepositOrTransfer(clientAccount.AccountId!, clientAccount.BankBranch, clientAccount);
+                case 2:
+                    PrintText.ColorizeText("Digite o número da conta que receberá o depósito", PrintText.TextColor.White);
+                    string destinationAccountId = AuthInputValidation.ValidateAccountIdInput("Authenticated");
+                    Operation.SelfDepositOrTransferVerification(clientAccount, destinationAccountId);
+                    PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
+                    int destinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
+                    return Operation.DefineAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
             }
             return null!;
         }

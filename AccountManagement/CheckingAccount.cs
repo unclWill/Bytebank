@@ -1,7 +1,7 @@
 /* Classe  : CheckingAccount
  * Objetivo: Concentra as lógicas da Conta Corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 27/06/2023 (Criação) | Modificação: 27/07/2023
+ * Data    : 27/06/2023 (Criação) | Modificação: 28/07/2023
  */
 
 /* OBSERVAÇÃO: [ESTE COMENTÁRIO DEVE APARECER NO CABEÇALHO DAS CLASSES Authentication e CheckingAccount]
@@ -35,7 +35,7 @@ namespace Bytebank.AccountManagement
         /// <param name="bankBranch">Recebe o número da Agência do cliente, que serve como uma chave de confirmação para o accountId.</param>
         /// <param name="accountHolder">Recebe o nome do Titular da conta.</param>
         /// <param name="balance">Recebe o saldo da conta.</param>
-        public CheckingAccount(string accountId, int bankBranch, string accountHolder, decimal balance)
+        public CheckingAccount(string accountId, int bankBranch, Client accountHolder, decimal balance)
         {
             AccountId = accountId;
             BankBranch = bankBranch;
@@ -53,7 +53,7 @@ namespace Bytebank.AccountManagement
         //Agência
         public int BankBranch { get; set; }
         //Titular
-        public string? AccountHolder { get; set; }
+        public Client? AccountHolder { get; }
         //Saldo
         public decimal Balance { get; internal set; }
 
@@ -61,35 +61,34 @@ namespace Bytebank.AccountManagement
         /// Realiza a operação de Depósito, que pode ser na própria conta do cliente ou na conta de outro correntista do Bytebank.
         /// </summary>
         /// <param name="depositDestination">Recebe a conta de destino do depósito.</param>
-        /// <param name="value">Recebe o valor que será depositado.</param>
-        internal void Deposit(CheckingAccount depositDestination, decimal value)
+        /// <param name="valueToDeposit">Recebe o valor que será depositado.</param>
+        internal void Deposit(CheckingAccount depositDestination, decimal valueToDeposit)
         {
-            if (value <= 0)
+            if (valueToDeposit <= 0)
             {
                 return;
             }
             else
             {
-                Balance += value;
-                depositDestination.Balance += value;
+                depositDestination.Balance += valueToDeposit;
             }
         }
 
         /// <summary>
         /// Realiza o procedimento de Saque na Conta Corrente do cliente.
         /// </summary>
-        /// <param name="value">Recebe o valor que será sacado da conta.</param>
+        /// <param name="valueToWithdraw">Recebe o valor que será sacado da conta.</param>
         /// <returns>Retorna TRUE se a operação for válida e FALSE se o saldo não for compatível com o valor que o cliente está tentando sacar.</returns>
-        internal bool Withdraw(decimal value) //Não está sendo utilizado o retorno do método por conveniência.
+        internal bool Withdraw(decimal valueToWithdraw) //Não está sendo utilizado o retorno do método por conveniência.
         {
-            if (Balance <= 0 || value > Balance)
+            if (Balance <= 0 || valueToWithdraw > Balance)
             {
                 PrintText.ColorizeText("[!] Não existe saldo disponível para ser sacado!", PrintText.TextColor.Red);
                 return false;
             }
             else
             {
-                Balance -= value;
+                Balance -= valueToWithdraw;
                 return true;
             }
         }
@@ -98,24 +97,24 @@ namespace Bytebank.AccountManagement
         /// Realiza o procedimento de Transferência de recursos financeiros entre Contas de correntistas do Bytebank.
         /// </summary>
         /// <param name="transferDestination">Recebe a conta de destino da transferência.</param>
-        /// <param name="value">Recebe o valor que será transferido entre contas.</param>
+        /// <param name="valueToTransfer">Recebe o valor que será transferido entre contas.</param>
         /// <returns>Retorna TRUE se a operação for válida e FALSE se o valor das transferência exceder ou saldo disponível ou se o saldo for 0.</returns>
-        internal bool Transfer(CheckingAccount transferDestination, decimal value) //Não está sendo utilizado o retorno do método por conveniência,
-        {                                                                          //já que a classe Operation faz essa verificação antes de o método Transfer ser chamado,
-            if (Balance < value)                                                   //mas foi mantido mesmo assim para servir como dupla verificação.
+        internal bool Transfer(CheckingAccount transferDestination, decimal valueToTransfer) //Não está sendo utilizado o retorno do método por conveniência,
+        {                                                                                    //já que a classe Operation faz essa verificação antes de o método Transfer ser chamado,
+            if (Balance < valueToTransfer)                                                   //mas foi mantido mesmo assim para servir como dupla verificação.
             {
                 PrintText.ColorizeText("[!] O valor da transferência é maior que o saldo disponível!", PrintText.TextColor.Red);
                 return false;
             }
-            else if (value < 0)
+            else if (valueToTransfer < 0)
             {
                 PrintText.ColorizeText("[!] Não existe saldo disponível para realizar a transferência!", PrintText.TextColor.Red);
                 return false;
             }
             else
             {
-                Balance -= value;
-                transferDestination.Balance += value;
+                Balance -= valueToTransfer;
+                transferDestination.Balance += valueToTransfer;
                 return true;
             }
         }
@@ -136,10 +135,9 @@ namespace Bytebank.AccountManagement
             PrintText.ColorizeText("Dados da conta", PrintText.TextColor.DarkMagenta);
             PrintText.ColorizeText($"Conta  : {AccountId}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Agência: {BankBranch}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"Titular: {AccountHolder}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"Titular: {AccountHolder!.ClientName}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Saldo  : {Balance:C}", PrintText.TextColor.Gray);
             PrintText.SetLineBreak(1);
         }
-
     }
 }
