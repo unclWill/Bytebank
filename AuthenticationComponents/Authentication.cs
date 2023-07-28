@@ -51,11 +51,13 @@ namespace Bytebank.AuthenticationComponents
 
         public override bool Equals(object? obj)
         {
-            if (obj == null || GetType() != obj.GetType()) //Verifica se o objeto é NULO ou diferente do tipo Authentication
+            // Verifica se o objeto é NULO ou diferente do tipo Authentication
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
-            Authentication otherObj = (Authentication)obj; //É feita a conversão do objeto otherObj para Authentication, já que a verificação anterior garante que obj é do mesmo tipo.
+            // É feita a conversão do objeto otherObj para Authentication, já que a verificação anterior garante que obj é do mesmo tipo.
+            Authentication otherObj = (Authentication)obj;
 
             return AuthClientAccountId == otherObj.AuthClientAccountId &&
                    AuthClientBankBranch == otherObj.AuthClientBankBranch &&
@@ -63,9 +65,11 @@ namespace Bytebank.AuthenticationComponents
         }
         public override int GetHashCode()
         {
-            unchecked // Desabilita o overflow da operação
+            // Desabilita o overflow da operação
+            unchecked
             {
-                int hash = 17; // Número primo inicial
+                // Número primo inicial
+                int hash = 17;
 
                 // Combina o hash das propriedades com o hash atual
                 hash = hash * 23 + AuthClientAccountId.GetHashCode();
@@ -85,9 +89,9 @@ namespace Bytebank.AuthenticationComponents
         internal static void Authenticate(Authentication clientAuthInput)
         {
             // Populando a base de dados HARDCODED --------------------------------------------------------------------------------------------------
-            //Captura o Id da Conta e o número da Agência para realizar o login.
+            // Captura o Id da Conta e o número da Agência para realizar o login.
             RegisteredAuthenticationData.GetCheckingAccountInformation(clientAuthInput.AuthClientAccountId, clientAuthInput.AuthClientBankBranch);
-            //Captura o Id da Conta para carregar os dados do Cliente.
+            // Captura o Id da Conta para carregar os dados do Cliente.
             RegisteredClients.GetRegisteredClientsData(clientAuthInput.AuthClientAccountId);
             //------------------------------------------------------------------------------------------------------------------------------------FIM
 
@@ -98,7 +102,7 @@ namespace Bytebank.AuthenticationComponents
             {
                 if (clientAuthInput is not null && clientAuthInput.Equals(client))
                 {
-                    //Chama o método ValidClientData e passa os dados de Autenticação do cliente para a instanciação da Conta Corrente do mesmo.
+                    // Chama o método ValidClientData e passa os dados de Autenticação do cliente para a instanciação da Conta Corrente do mesmo.
                     ValidClientData(clientAuthInput);
                 }
             }
@@ -120,7 +124,7 @@ namespace Bytebank.AuthenticationComponents
             {
                 foreach (var client in clientsAccountList)
                 {
-                    if (client.CheckingAccount!.AccountId is not null && client.CheckingAccount!.AccountId!.Equals(accountId) && client.CheckingAccount.BankBranch == bankBranch)
+                    if (client.CheckingAccount!.AccountId is not null && client.CheckingAccount!.AccountId!.Equals(accountId) && (client.CheckingAccount.BankBranch == bankBranch))
                     {
                         return client;
                     }
@@ -142,7 +146,7 @@ namespace Bytebank.AuthenticationComponents
             PrintText.SetLineBreak(2);
             PrintTextAnimations.AcessingSystemAnimation("Validando os dados da sua conta");
             Client clientAccount = InitializeClientAccount(getClientAccountData.AuthClientAccountId, getClientAccountData.AuthClientBankBranch);
-            //Passa os dados da Conta Corrente para o construtor da classe AuthenticatedScreen para que a mesma possa ser utilizada na área logada.
+            // Passa os dados da Conta Corrente para o construtor da classe AuthenticatedScreen para que a mesma possa ser utilizada na área logada.
             _ = new AuthenticatedScreen(clientAccount);
         }
 

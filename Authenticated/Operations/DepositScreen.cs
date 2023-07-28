@@ -24,15 +24,15 @@ namespace Bytebank.Authenticated.Operations
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen, 0);
             clientAccount.ShowActualBalance();
-            //---
+
             CheckingAccount destination = DefineAccountToDeposit(clientAccount);
-            //---
+
             decimal valueToDeposit = Operation.InsertValueAndConfirmOperation('D');
-            //
+
             clientAccount.Deposit(destination, valueToDeposit);
-            //
+
             Operation.AccountBalanceStatus('D', valueToDeposit, clientAccount.Balance);
-            //
+
             AuthenticatedScreen.ShowAuthenticatedMenu();
         }
 

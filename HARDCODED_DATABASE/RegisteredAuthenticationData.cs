@@ -31,7 +31,7 @@ namespace Bytebank.HARDCODED_DATABASE
             var clientsList = clients.Clients;
             foreach (var client in clientsList)
             {
-                if (client is not null && client.CheckingAccount!.AccountId!.Equals(accountId) && client.CheckingAccount.BankBranch == bankBranch)
+                if (client is not null && client.CheckingAccount!.AccountId!.Equals(accountId) && (client.CheckingAccount.BankBranch == bankBranch))
                 {
                     _accountId = client.CheckingAccount.AccountId;
                     _bankBranch = client.CheckingAccount.BankBranch;
@@ -39,7 +39,7 @@ namespace Bytebank.HARDCODED_DATABASE
             }
         }
 
-        //Lista de dados de autenticação cadastrados.
+        // Lista de dados de autenticação cadastrados.
         private List<Authentication> registeredAuthData = new List<Authentication>()
         {
             { new Authentication(_accountId!, _bankBranch, 1234) },

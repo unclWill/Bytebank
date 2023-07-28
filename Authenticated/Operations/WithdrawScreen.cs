@@ -24,10 +24,13 @@ namespace Bytebank.Authenticated.Operations
             PrintText.DecoratedTitleText("[-$] SAQUE ", '*', PrintText.TextColor.DarkYellow);
             clientAccount.ShowActualBalance();
             Operation.VerifyBalance('W', clientAccount.Balance);
+
             decimal valueToWithdraw = Operation.InsertValueAndConfirmOperation('W');
+
             clientAccount.Withdraw(valueToWithdraw);
+
             Operation.AccountBalanceStatus('W', valueToWithdraw, clientAccount.Balance);
-            //
+
             AuthenticatedScreen.ShowAuthenticatedMenu();
         }
     }

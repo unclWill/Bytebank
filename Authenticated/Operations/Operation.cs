@@ -149,7 +149,7 @@ namespace Bytebank.Authenticated.Operations
             PrintTextAnimations.TreeDotsAnimation(1000);
         }
 
-        
+
         /// <summary>
         /// Busca pelas Contas Correntes na base de dados para determinar o destino de uma operação de Depósito ou uma Transferência.
         /// </summary>
@@ -167,7 +167,7 @@ namespace Bytebank.Authenticated.Operations
             {
                 foreach (var client in clientsAccountList)
                 {
-                    if (client.CheckingAccount!.AccountId is not null && client.CheckingAccount.AccountId.Equals(accountId) && client.CheckingAccount.BankBranch == bankBranch)
+                    if (client.CheckingAccount!.AccountId is not null && client.CheckingAccount.AccountId.Equals(accountId) && (client.CheckingAccount.BankBranch == bankBranch))
                     {
                         if (clientAccount is not null && client!.CheckingAccount.AccountId.Equals(clientAccount!.AccountId))
                         {

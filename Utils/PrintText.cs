@@ -1,7 +1,7 @@
 /* Classe  : PrintText
  * Objetivo: Imprime textos na tela. Contém métodos que permitem imprimir textos de forma personalizada utilizando a classe System.Console.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 21/06/2023 (Criação) | Modificação: 23/07/2023
+ * Data    : 21/06/2023 (Criação) | Modificação: 28/07/2023
  */
 
 using System;
@@ -37,7 +37,8 @@ namespace Bytebank.Utils
         }
         private static void SetTextColor(ConsoleColor color)
         {
-            ConsoleColor consoleColor = ConsoleColor.Gray; // cor padrão, caso não seja reconhecida
+            // Cor padrão, caso não seja definida nenhuma.
+            ConsoleColor consoleColor = ConsoleColor.Gray;
 
             switch (color)
             {
@@ -160,7 +161,8 @@ namespace Bytebank.Utils
             SetTextColor((ConsoleColor)color);
             Console.Write(text);
             SetLineBreak(lineBreak);
-            ResetTextColor(); //Define a cor padrão do terminal para Cinza, caso o método ColorizeText não esteja sendo utilizado.
+            // Define a cor padrão do terminal para Cinza, caso o método ColorizeText não esteja sendo utilizado.
+            ResetTextColor();
         }
         internal static void ColorizeText(char? character, TextColor color, sbyte lineBreak = 1)
         {
@@ -196,6 +198,5 @@ namespace Bytebank.Utils
         {
             ColorizeText("|>| ", color, 0);
         }
-
     }
 }

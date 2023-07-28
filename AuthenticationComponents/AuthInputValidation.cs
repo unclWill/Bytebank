@@ -1,13 +1,11 @@
 /* Classe  : AuthInputValidation
  * Objetivo: Contém os métodos que realizam as validações no processo de autenticação do usuário no sistema e também na operação de tranferência de recursos financeiros.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 23/07/2023 (Criação) | Modificação: 24/07/2023
+ * Data    : 23/07/2023 (Criação) | Modificação: 28/07/2023
  */
 
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
-using Bytebank.HARDCODED_DATABASE;
-
 
 namespace Bytebank.AuthenticationComponents
 {
@@ -86,7 +84,8 @@ namespace Bytebank.AuthenticationComponents
                 {
                     if (clientPinCode.ToString("D4") == pinCodeInput)
                     {
-                        break; // A saída do loop ocorre quando uma senha válida é fornecida
+                        // A saída do loop ocorre quando uma senha válida é fornecida
+                        break;
                     }
                 }
                 else
@@ -94,8 +93,8 @@ namespace Bytebank.AuthenticationComponents
                     PrintText.ColorizeText("\n[!] A senha informada não é válida! A senha deve conter 4 dígitos numéricos.\n", PrintText.TextColor.DarkRed, 0);
                     StartScreen.EscapeFromScreenDialog(ConsoleKey.Escape);
                 }
-                //PrintText.ColorizeText("\n[i] Senha inválida! A senha deve ter 4 dígitos numéricos.", PrintText.TextColor.DarkRed);
-                //Console.WriteLine("[i] Por favor, tente novamente.");
+                // PrintText.ColorizeText("\n[i] Senha inválida! A senha deve ter 4 dígitos numéricos.", PrintText.TextColor.DarkRed);
+                // Console.WriteLine("[i] Por favor, tente novamente.");
             }
             return int.Parse(pinCodeInput);
         }
@@ -112,14 +111,16 @@ namespace Bytebank.AuthenticationComponents
 
             do
             {
-                key = Console.ReadKey(true); //Indica que a tecla pressionada não será exibida no console.
+                // Indica que a tecla pressionada não será exibida no console.
+                key = Console.ReadKey(true);
 
                 if (key.Key == ConsoleKey.Backspace)
                 {
                     if (password.Length > 0)
                     {
                         password = password.Substring(0, password.Length - 1);
-                        PrintText.ColorizeText("\b \b", PrintText.TextColor.White, 0); //Apaga o caractere do console.
+                        // Apaga o caractere do console.
+                        PrintText.ColorizeText("\b \b", PrintText.TextColor.White, 0);
                     }
                 }
                 else if (key.Key != ConsoleKey.Enter)

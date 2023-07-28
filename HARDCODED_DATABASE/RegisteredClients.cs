@@ -25,7 +25,7 @@ namespace Bytebank.HARDCODED_DATABASE
 
         internal List<Client> Clients { get; }
 
-        //Lista de Clientes cadastrados.
+        // Lista de Clientes cadastrados.
         private List<Client> clients = new List<Client>()
         {
             new Client(1,"André Souza","12345678900","Programador", new DateTime(1995,05,25),"Belo Horizonte - MG, Brasil", new CheckingAccount("1010-X", 15, _accountHolder!, 100m)),

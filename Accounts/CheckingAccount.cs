@@ -49,13 +49,13 @@ namespace Bytebank.Accounts
         /// </summary>
         public CheckingAccount() { }
 
-        //Conta
+        // Conta
         public string? AccountId { get; set; }
-        //Agência
+        // Agência
         public int BankBranch { get; set; }
-        //Titular
+        // Titular
         public Client? AccountHolder { get; }
-        //Saldo
+        // Saldo
         public decimal Balance { get; internal set; }
 
         /// <summary>

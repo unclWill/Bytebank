@@ -1,7 +1,7 @@
 /* Classe  : StartScreenComponents
  * Objetivo: Concentra os métodos personalizados utilizados na tela inicial do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 23/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 28/07/2023
  */
 
 using System;
@@ -17,20 +17,12 @@ namespace Bytebank.StartScreenComponents
     /// </summary>
     internal class StartScreen
     {
+        /// <summary>
+        /// Construtor padrão da classe StartScreen.
+        /// </summary>
         internal StartScreen()
         {
             ShowStartScreen();
-        }
-
-        /// <summary>
-        /// Exibe os itens que compõe a tela inicial do sistema.
-        /// </summary>
-        private static void ShowStartScreen()
-        {
-            ShowAppWindowTitle();
-            HeaderText.BytebankOnlyLogoHeader();
-            ShowGreetingAndDateTime();
-            ShowStartServiceAtTerminalDialog();
         }
 
         /// <summary>
@@ -119,6 +111,17 @@ namespace Bytebank.StartScreenComponents
         }
 
         /// <summary>
+        /// Exibe os itens que compõe a tela inicial do sistema.
+        /// </summary>
+        private static void ShowStartScreen()
+        {
+            ShowAppWindowTitle();
+            HeaderText.BytebankOnlyLogoHeader();
+            ShowGreetingAndDateTime();
+            ShowStartServiceAtTerminalDialog();
+        }
+
+        /// <summary>
         /// Exibe o título da janela.
         /// </summary>
         private static void ShowAppWindowTitle()
@@ -145,7 +148,7 @@ namespace Bytebank.StartScreenComponents
             PrintText.ColorizeText("\n|1| ENTRAR NA MINHA CONTA  ", PrintText.TextColor.Gray, 0);
             PrintText.ColorizeText("|2| ENCERRAR TERMINAL\n", PrintText.TextColor.DarkGray);
             PrintText.UserInputIndicator();
-            //Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
+            // Lê e valida o campo selectedOption, SE NÃO for um valor inteiro entra no loop, exibe um erro e aguarda uma entrada válida.
             int menuOption = InputValidation.ValidateMenuOptionInput(1, 2);
 
             if (menuOption < 1 | menuOption > 2)
