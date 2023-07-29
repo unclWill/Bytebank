@@ -36,7 +36,7 @@ namespace Bytebank.Accounts
         /// <param name="bankBranch">Recebe o número da Agência do cliente, que serve como uma chave de confirmação para o accountId.</param>
         /// <param name="accountHolder">Recebe o nome do Titular da conta.</param>
         /// <param name="balance">Recebe o saldo da conta.</param>
-        public CheckingAccount(string accountId, int bankBranch, Client accountHolder, decimal balance)
+        internal CheckingAccount(string accountId, int bankBranch, Client accountHolder, decimal balance)
         {
             AccountId = accountId;
             BankBranch = bankBranch;
@@ -47,16 +47,16 @@ namespace Bytebank.Accounts
         /// <summary>
         /// Construtor vazio da classe CheckingAccount, utilizado em casos onde só é necessário criar uma variável temporária que armazena uma Conta Corrente.
         /// </summary>
-        public CheckingAccount() { }
+        internal CheckingAccount() { }
 
         // Conta
-        public string? AccountId { get; set; }
+        internal string? AccountId { get; set; }
         // Agência
-        public int BankBranch { get; set; }
+        internal int BankBranch { get; set; }
         // Titular
-        public Client? AccountHolder { get; }
+        internal Client? AccountHolder { get; }
         // Saldo
-        public decimal Balance { get; private set; }
+        internal decimal Balance { get; private set; }
 
         /// <summary>
         /// Realiza a operação de Depósito, que pode ser na própria conta do cliente ou na conta de outro correntista do Bytebank.
