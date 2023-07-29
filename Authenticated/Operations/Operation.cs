@@ -149,7 +149,6 @@ namespace Bytebank.Authenticated.Operations
             PrintTextAnimations.TreeDotsAnimation(1000);
         }
 
-
         /// <summary>
         /// Busca pelas Contas Correntes na base de dados para determinar o destino de uma operação de Depósito ou uma Transferência.
         /// </summary>
@@ -157,7 +156,7 @@ namespace Bytebank.Authenticated.Operations
         /// <param name="bankBranch">Recebe o número da Agência da Conta Corrente de destino.</param>
         /// <param name="clientAccount">Recebe a instância da Conta Corrente do cliente autenticado no sistema, se o depósito for do Tipo 1, senão o valor é nulo.</param>
         /// <returns>Retorna a Conta Corrente que será o destino da operação.</returns>
-        internal static CheckingAccount DefineAccountToDepositOrTransfer(string accountId, int bankBranch, CheckingAccount clientAccount = null!)
+        internal static CheckingAccount SetAccountToDepositOrTransfer(string accountId, int bankBranch, CheckingAccount clientAccount = null!)
         {
             RegisteredClients registeredClientAccounts = new RegisteredClients();
             var clientsAccountList = registeredClientAccounts.Clients;

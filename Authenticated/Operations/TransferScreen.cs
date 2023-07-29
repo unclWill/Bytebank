@@ -47,7 +47,7 @@ namespace Bytebank.Authenticated.Operations
             Operation.SelfDepositOrTransferVerification(clientAccount, destinationAccountId);
             PrintText.ColorizeText("\nDigite o número da agência da conta de destino", PrintText.TextColor.White);
             int destinationBankBranch = AuthInputValidation.ValidateBankBranchInput("Authenticated");
-            return Operation.DefineAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
+            return Operation.SetAccountToDepositOrTransfer(destinationAccountId, destinationBankBranch);
         }
     }
 }
