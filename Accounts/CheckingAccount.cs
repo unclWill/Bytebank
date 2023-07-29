@@ -56,7 +56,7 @@ namespace Bytebank.Accounts
         // Titular
         public Client? AccountHolder { get; }
         // Saldo
-        public decimal Balance { get; internal set; }
+        public decimal Balance { get; private set; }
 
         /// <summary>
         /// Realiza a operação de Depósito, que pode ser na própria conta do cliente ou na conta de outro correntista do Bytebank.
