@@ -100,9 +100,9 @@ namespace Bytebank.Accounts
         /// <param name="transferDestination">Recebe a conta de destino da transferência.</param>
         /// <param name="valueToTransfer">Recebe o valor que será transferido entre contas.</param>
         /// <returns>Retorna TRUE se a operação for válida e FALSE se o valor das transferência exceder ou saldo disponível ou se o saldo for 0.</returns>
-        internal bool Transfer(CheckingAccount transferDestination, decimal valueToTransfer) //Não está sendo utilizado o retorno do método por conveniência,
-        {                                                                                    //já que a classe Operation faz essa verificação antes de o método Transfer ser chamado,
-            if (Balance < valueToTransfer)                                                   //mas foi mantido mesmo assim para servir como dupla verificação.
+        internal bool Transfer(CheckingAccount transferDestination, decimal valueToTransfer)
+        {
+            if (Balance < valueToTransfer)
             {
                 PrintText.ColorizeText("[!] O valor da transferência é maior que o saldo disponível!", PrintText.TextColor.Red);
                 return false;
