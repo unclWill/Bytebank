@@ -14,6 +14,7 @@
 
 using Bytebank.Accounts;
 using Bytebank.Utils;
+using Bytebank.Clients.Extensions;
 
 namespace Bytebank.Clients
 {
@@ -64,7 +65,7 @@ namespace Bytebank.Clients
             PrintText.ColorizeText("Dados do cliente", PrintText.TextColor.Gray);
             PrintText.ColorizeText($"ID          : {ClientId}", PrintText.TextColor.DarkGray);
             PrintText.ColorizeText($"Titular     : {ClientName}", PrintText.TextColor.White);
-            PrintText.ColorizeText($"CPF         : {Cpf}", PrintText.TextColor.White);
+            PrintText.ColorizeText($"CPF         : {ClientDataFormat.CpfFormat(Cpf!)}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Profissão   : {Profession}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Nascimento  : {DateOfBirth.Date:dd/MM/yyyy}", PrintText.TextColor.White);
             PrintText.ColorizeText($"Naturalidade: {NaturalFrom}", PrintText.TextColor.White);

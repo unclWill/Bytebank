@@ -1,13 +1,13 @@
 /* Classe  : AuthInputValidation
  * Objetivo: Contém os métodos que realizam as validações no processo de autenticação do usuário no sistema e também na operação de tranferência de recursos financeiros.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 23/07/2023 (Criação) | Modificação: 28/07/2023
+ * Data    : 23/07/2023 (Criação) | Modificação: 30/07/2023
  */
 
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 
-namespace Bytebank.AuthenticationComponents
+namespace Bytebank.AuthenticationComponents.Extensions
 {
     /// <summary>
     /// Classe AuthIputValidation

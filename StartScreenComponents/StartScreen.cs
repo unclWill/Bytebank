@@ -1,12 +1,12 @@
 /* Classe  : StartScreenComponents
  * Objetivo: Concentra os métodos personalizados utilizados na tela inicial do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 28/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 30/07/2023
  */
 
 using System;
 using Bytebank.Utils;
-using Bytebank.AuthenticationComponents;
+using Bytebank.AuthenticationComponents.Extensions;
 using Bytebank.Authenticated;
 using System.Data;
 

@@ -24,6 +24,7 @@ using Bytebank.Authenticated;
 using Bytebank.StartScreenComponents;
 using Bytebank.Utils;
 using Bytebank.Clients;
+using Bytebank.AuthenticationComponents.Extensions;
 
 namespace Bytebank.AuthenticationComponents
 {
