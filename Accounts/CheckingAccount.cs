@@ -52,12 +52,12 @@ namespace Bytebank.Accounts
         internal CheckingAccount() { }
 
         // Conta
-        internal string? AccountId { get; set; }
+        internal string? AccountId { get; private set; }
         // Agência
         internal int BankBranch
         {
             get => this.bankBranch;
-            set
+            private set
             {
                 if (this.bankBranch.ToString().Length == 4 && (value > 0))
                 {
