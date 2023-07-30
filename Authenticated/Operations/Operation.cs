@@ -15,20 +15,6 @@ namespace Bytebank.Authenticated.Operations
     /// </summary>
     internal class Operation
     {
-        internal static void ReturnToOperationsMenu()
-        {
-            PrintText.ColorizeText("[i] Para retornar ao menu de operações digite |1| ou |2| para continuar", PrintText.TextColor.DarkGray);
-            int selectedOption = InputValidation.ValidateMenuOptionInput(1, 2);
-            switch (selectedOption)
-            {
-                case 1:
-                    AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1000);
-                    break;
-                default:
-                    return;
-            }
-        }
-
         /// <summary>
         /// Exibe os diálogos de inserção de valores para movimentação e confirmação da operação.
         /// </summary>
