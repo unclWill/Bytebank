@@ -1,7 +1,7 @@
 /* Classe  : CheckingAccount
  * Objetivo: Concentra as lógicas da Conta Corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 27/06/2023 (Criação) | Modificação: 28/07/2023
+ * Data    : 27/06/2023 (Criação) | Modificação: 30/07/2023
  */
 
 /* OBSERVAÇÃO: [ESTE COMENTÁRIO DEVE APARECER NO CABEÇALHO DAS CLASSES Authentication e CheckingAccount]
@@ -29,6 +29,8 @@ namespace Bytebank.Accounts
     /// </summary>
     internal class CheckingAccount
     {
+        private int bankBranch;
+
         /// <summary>
         /// Construtor de uma Conta Corrente.
         /// </summary>
@@ -39,7 +41,7 @@ namespace Bytebank.Accounts
         internal CheckingAccount(string accountId, int bankBranch, Client accountHolder, decimal balance)
         {
             AccountId = accountId;
-            BankBranch = bankBranch;
+            this.bankBranch = bankBranch;
             AccountHolder = accountHolder;
             Balance = balance;
         }
@@ -52,7 +54,21 @@ namespace Bytebank.Accounts
         // Conta
         internal string? AccountId { get; set; }
         // Agência
-        internal int BankBranch { get; set; }
+        internal int BankBranch
+        {
+            get => this.bankBranch;
+            set
+            {
+                if (this.bankBranch.ToString().Length == 4 && (value > 0))
+                {
+                    this.bankBranch = value;
+                }
+                else
+                {
+                    Console.Write("[!] Erro: o número da agência bancária deve ser maior que zero e conter 4 dígitos.");
+                }
+            }
+        }
         // Titular
         internal Client? AccountHolder { get; }
         // Saldo

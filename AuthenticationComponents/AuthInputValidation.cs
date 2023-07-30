@@ -52,12 +52,12 @@ namespace Bytebank.AuthenticationComponents
             int clientBankBranchInput;
             while (true)
             {
-                PrintText.ColorizeText("\nInforme o Nº da Agência", PrintText.TextColor.Gray, " (no formato 00)", PrintText.TextColor.DarkGray);
+                PrintText.ColorizeText("\nInforme o Nº da Agência", PrintText.TextColor.Gray, " (no formato 0000)", PrintText.TextColor.DarkGray);
                 PrintText.UserInputIndicator(PrintText.TextColor.DarkGray);
                 //if (clientBankBranchInput.Length == 6 && clientBankBranchInput.Contains('-') && clientBankBranchInput.EndsWith('A') && int.TryParse(clientBankBranchInput.AsSpan(0, 4), out _))
                 if (!int.TryParse(Console.ReadLine()!.Trim(), out clientBankBranchInput))
                 {
-                    PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 00.\n", PrintText.TextColor.DarkRed, 0);
+                    PrintText.ColorizeText("\n[!] A agência informada não é válida! O número da Agência deve ter a formatação 0000.\n", PrintText.TextColor.DarkRed, 0);
                     StartScreen.EscapeFromScreenDialog(validationScreenType, ConsoleKey.Escape);
                 }
                 else
