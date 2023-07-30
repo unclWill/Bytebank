@@ -4,6 +4,8 @@
  * Data    : 30/06/2023 (Criação) | Modificação: 30/07/2023
  */
 
+using System.Linq.Expressions;
+
 namespace Bytebank.Clients.Extensions;
 internal struct ClientDataFormat
 {
@@ -15,12 +17,15 @@ internal struct ClientDataFormat
     /// <exception cref="ArgumentException">Lança uma exceção que informa que o argumento passado deve ter 11 caracteres.</exception>
     internal static string CpfFormat(string cpfNumber)
     {
-        if (cpfNumber.Length != 11) throw new ArgumentException($"[!] Erro: O tamanho da string deve ser 11.", nameof(cpfNumber));
+        try
         {
             ReadOnlySpan<char> span = stackalloc char[cpfNumber.Length];
             span = cpfNumber.AsSpan();
-            //var offset = 14 - cpfNumber.Length;
-            return $"{span[0..3]}.{span[0..3]}.{span[0..3]}-{span[0..2]}";
+            return $"{span[0..3]}.{span[3..6]}.{span[6..9]}-{span[9..11]}";
+        }
+        catch (Exception)
+        {
+            throw new ArgumentException($"[!] Erro: O tamanho da string deve ser 11.", nameof(cpfNumber));
         }
     }
 }
