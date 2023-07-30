@@ -28,9 +28,9 @@ namespace Bytebank.HARDCODED_DATABASE
         // Lista de Clientes cadastrados.
         private List<Client> clients = new List<Client>()
         {
-            new Client(1,"André Souza","12345678900","Programador", new DateTime(1995,05,25),"Belo Horizonte - MG, Brasil", new CheckingAccount("1010-X", 0015, _accountHolder!, 100m)),
-            new Client(2,"Marisa Santos","00987654321","Arquiteta", new DateTime(1996,09,17),"Curitiba - PR, Brasil", new CheckingAccount("1018-5", 0016, _accountHolder!, 200m)),
-            new Client(3,"Carlos Sodré","11223344556","Economista", new DateTime(1970,12,25),"São Paulo - SP, Brasil", new CheckingAccount("8594-6", 0017, _accountHolder!, 300m)),
+            new Client(1,"André Souza","12345678900","Programador", new DateTime(1995,05,25),"Belo Horizonte - MG, Brasil", new CheckingAccount("1010-X", 15, _accountHolder!, 100m)),
+            new Client(2,"Marisa Santos","00987654321","Arquiteta", new DateTime(1996,09,17),"Curitiba - PR, Brasil", new CheckingAccount("1018-5", 16, _accountHolder!, 200m)),
+            new Client(3,"Carlos Sodré","11223344556","Economista", new DateTime(1970,12,25),"São Paulo - SP, Brasil", new CheckingAccount("8594-6", 17, _accountHolder!, 300m)),
         };
 
         /// <summary>
