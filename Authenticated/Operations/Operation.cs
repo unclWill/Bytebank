@@ -1,7 +1,7 @@
 /* Classe  : Operation
  * Objetivo: Concentrar os métodos comuns a todas as operações.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 20/07/2023 (Criação) | Modificação: 28/07/2023
+ * Data    : 20/07/2023 (Criação) | Modificação: 29/07/2023
  */
 
 using Bytebank.Accounts;
@@ -69,7 +69,7 @@ namespace Bytebank.Authenticated.Operations
         /// </summary>
         /// <param name="operationType">Recebe o tipo de operação: T (Transfer) ou W (Withdraw) para determinar a mensagem que será retornada caso não haja saldo disponível para realizar as operações.</param>
         /// <param name="balance">Recebe o saldo atual da conta.</param>
-        internal static void VerifyBalance(char operationType, decimal balance)
+        internal static void GetBalanceStatus(char operationType, decimal balance)
         {
             switch (operationType)
             {
@@ -111,7 +111,7 @@ namespace Bytebank.Authenticated.Operations
         /// <param name="transactionValue">Recebe o valor que está sendo movimentado.</param>
         /// <param name="balance">Recebe o saldo atual, pós operação.</param>
         /// <param name="accountToTransferBalance">Recebe o saldo atualizado da conta de destino (utilizado para teste durante o desenvolvimento).</param>
-        internal static void AccountBalanceStatus(char operationType, decimal transactionValue, decimal balance, decimal accountToTransferBalance = 0m)
+        internal static void ShowOperationResult(char operationType, decimal transactionValue, decimal balance, decimal accountToTransferBalance = 0m)
         {
             switch (operationType)
             {

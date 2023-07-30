@@ -1,7 +1,7 @@
 /* Classe  : TransferScreen
  * Objetivo: Concentrar as operações de saque na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 28/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 29/07/2023
  */
 
 using Bytebank.Accounts;
@@ -24,13 +24,13 @@ namespace Bytebank.Authenticated.Operations
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkCyan);
             clientAccount.ShowActualBalance();
-            Operation.VerifyBalance('T', clientAccount.Balance);
+            Operation.GetBalanceStatus('T', clientAccount.Balance);
 
             CheckingAccount destination = DefineAccountToTransfer(clientAccount);
 
             decimal valueToTransfer = Operation.InsertValueAndConfirmOperation('T');
             clientAccount.Transfer(destination, valueToTransfer);
-            Operation.AccountBalanceStatus('T', valueToTransfer, clientAccount.Balance, destination.Balance);
+            Operation.ShowOperationResult('T', valueToTransfer, clientAccount.Balance, destination.Balance);
 
             AuthenticatedScreen.ShowAuthenticatedMenu();
         }

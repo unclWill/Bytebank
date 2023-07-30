@@ -1,7 +1,7 @@
 /* Classe  : DepositScreen
  * Objetivo: Concentrar as operações de depósito na conta corrente.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 19/07/2023 (Criação) | Modificação: 28/07/2023
+ * Data    : 19/07/2023 (Criação) | Modificação: 29/07/2023
  */
 
 using Bytebank.Accounts;
@@ -31,7 +31,7 @@ namespace Bytebank.Authenticated.Operations
 
             clientAccount.Deposit(destination, valueToDeposit);
 
-            Operation.AccountBalanceStatus('D', valueToDeposit, clientAccount.Balance);
+            Operation.ShowOperationResult('D', valueToDeposit, clientAccount.Balance);
 
             AuthenticatedScreen.ShowAuthenticatedMenu();
         }
