@@ -6,6 +6,7 @@
 
 using Bytebank.Accounts;
 using Bytebank.AuthenticationComponents.Extensions;
+using Bytebank.Clients;
 using Bytebank.Utils;
 
 namespace Bytebank.Authenticated.Operations
@@ -19,21 +20,21 @@ namespace Bytebank.Authenticated.Operations
         /// Exibe os diálogos responsáveis por capturar a entrada dos dados fornecidos pelo cliente para a realização da operação de Depósito.
         /// </summary>
         /// <param name="clientAccount">Recebe a Conta Corrente do cliente que foi autenticado no sistema.</param>
-        internal static void DepositOperation(CheckingAccount clientAccount)
+        internal static void DepositOperation(Client clientAccount)
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[+$] DEPÓSITO ", '*', PrintText.TextColor.DarkGreen, 0);
-            clientAccount.ShowActualBalance();
+            clientAccount.CheckingAccount.ShowActualBalance();
 
-            CheckingAccount destination = SetAccountToDeposit(clientAccount);
+            CheckingAccount destination = SetAccountToDeposit(clientAccount.CheckingAccount);
 
             decimal valueToDeposit = Operation.InsertValueAndConfirmOperation('D');
 
-            clientAccount.Deposit(destination, valueToDeposit);
+            clientAccount.CheckingAccount.Deposit(destination, valueToDeposit);
 
-            Operation.ShowOperationResult('D', valueToDeposit, clientAccount.Balance);
+            Operation.ShowOperationResult('D', valueToDeposit, clientAccount.CheckingAccount.Balance);
 
-            AuthenticatedScreen.ShowAuthenticatedMenu();
+            _ = new AuthenticatedScreen(clientAccount);
         }
 
         /// <summary>

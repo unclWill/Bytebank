@@ -6,6 +6,7 @@
 
 using Bytebank.Accounts;
 using Bytebank.AuthenticationComponents.Extensions;
+using Bytebank.Clients;
 using Bytebank.Utils;
 
 namespace Bytebank.Authenticated.Operations
@@ -19,20 +20,20 @@ namespace Bytebank.Authenticated.Operations
         /// Exibe os diálogos responsáveis por capturar a entrada dos dados fornecidos pelo cliente para a realização de transferências entre contas.
         /// </summary>
         /// <param name="clientAccount">Recebe a conta do cliente autenticado no sistema.</param>
-        internal static void TransferOperation(CheckingAccount clientAccount)
+        internal static void TransferOperation(Client clientAccount)
         {
             HeaderText.BytebankOperationsHeader();
             PrintText.DecoratedTitleText("[$->] TRANSFERÊNCIA ", '*', PrintText.TextColor.DarkCyan);
-            clientAccount.ShowActualBalance();
-            Operation.GetBalanceStatus('T', clientAccount.Balance);
+            clientAccount.CheckingAccount.ShowActualBalance();
+            Operation.GetBalanceStatus('T', clientAccount.CheckingAccount.Balance);
 
-            CheckingAccount destination = DefineAccountToTransfer(clientAccount);
+            CheckingAccount destination = DefineAccountToTransfer(clientAccount.CheckingAccount);
 
             decimal valueToTransfer = Operation.InsertValueAndConfirmOperation('T');
-            clientAccount.Transfer(destination, valueToTransfer);
-            Operation.ShowOperationResult('T', valueToTransfer, clientAccount.Balance, destination.Balance);
+            clientAccount.CheckingAccount.Transfer(destination, valueToTransfer);
+            Operation.ShowOperationResult('T', valueToTransfer, clientAccount.CheckingAccount.Balance, destination.Balance);
 
-            AuthenticatedScreen.ShowAuthenticatedMenu();
+            _ = new AuthenticatedScreen(clientAccount);
         }
 
         /// <summary>

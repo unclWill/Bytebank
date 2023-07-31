@@ -27,7 +27,8 @@ namespace Bytebank.Authenticated.ClientAccountInformation
             int selectedOption = InputValidation.ValidateMenuOptionInput(1, 1);
             if (selectedOption == 1)
             {
-                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(500);
+                AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                authScreen.ReturningToAuthenticatedScreenMessage(1200);
             }
             else
             {

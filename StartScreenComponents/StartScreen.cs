@@ -48,7 +48,8 @@ namespace Bytebank.StartScreenComponents
                 case "Authenticated":
                     if (keyPressed.Key == escapeKey)
                     {
-                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage();
+                        AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                        authScreen.ReturningToAuthenticatedScreenMessage(1200);
                     }
                     break;
             }
@@ -70,7 +71,8 @@ namespace Bytebank.StartScreenComponents
                 case "Authenticated":
                     if (keyPressed.Key == escapeKey)
                     {
-                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage();
+                        AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                        authScreen.ReturningToAuthenticatedScreenMessage(1200);
                     }
                     break;
             }
@@ -83,7 +85,8 @@ namespace Bytebank.StartScreenComponents
             ConsoleKeyInfo keyPressed = Console.ReadKey();
             if (keyPressed.Key == escapeKey)
             {
-                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage();
+                AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                authScreen.ReturningToAuthenticatedScreenMessage(1200);
             }
             return escapeKey;
         }

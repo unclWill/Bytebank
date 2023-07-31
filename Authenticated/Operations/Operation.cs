@@ -63,14 +63,16 @@ namespace Bytebank.Authenticated.Operations
                     if (balance <= 0)
                     {
                         PrintText.ColorizeText("[!] Você não possui saldo disponível para realizar saques!", PrintText.TextColor.DarkYellow);
-                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
+                        AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                        authScreen.ReturningToAuthenticatedScreenMessage(1200);
                     }
                     break;
                 case 'T':
                     if (balance <= 0)
                     {
                         PrintText.ColorizeText("[!] Você não possui saldo disponível para realizar transferências!", PrintText.TextColor.DarkYellow);
-                        AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
+                        AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                        authScreen.ReturningToAuthenticatedScreenMessage(1200);
                     }
                     break;
             }
@@ -86,7 +88,8 @@ namespace Bytebank.Authenticated.Operations
             if (destination == clientAccount.AccountId)
             {
                 PrintText.ColorizeText("[!] Não são permitidas movimentações onde a origem e o destino são os mesmos.", PrintText.TextColor.Red);
-                AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
+                AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                authScreen.ReturningToAuthenticatedScreenMessage(1200);
             }
         }
 
@@ -167,7 +170,8 @@ namespace Bytebank.Authenticated.Operations
                 if (accountId != destinationAccount.AccountId)
                 {
                     PrintText.ColorizeText("[!] A conta informada não existe ou foi digitada incorretamente!", PrintText.TextColor.Red);
-                    AuthenticatedScreen.ReturningToAuthenticatedScreenMessage(1200);
+                    AuthenticatedScreen authScreen = new AuthenticatedScreen();
+                    authScreen.ReturningToAuthenticatedScreenMessage(1200);
                 }
             }
             catch (Exception ex)

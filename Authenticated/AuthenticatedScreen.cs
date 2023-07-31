@@ -1,7 +1,7 @@
 /* Classe  : AuthenticatedScreen
  * Objetivo: Concentra os métodos utilizados na área logada do sistema.
  * Autor   : unclWill (williamsilvajdf@gmail.com)
- * Data    : 22/06/2023 (Criação) | Modificação: 28/07/2023
+ * Data    : 22/06/2023 (Criação) | Modificação: 30/07/2023
  */
 
 using Bytebank.StartScreenComponents;
@@ -21,7 +21,7 @@ namespace Bytebank.Authenticated
         /// Recebe os dados de uma instância de CheckingAccount (Conta Corrente), que é o cliente que foi autenticado no sistema.
         /// Toda a operação dentro do sistema ocorre baseada nesta conta.
         /// </summary>
-        private static Client? _clientAccount;
+        private Client? _clientAccount;
 
         /// <summary>
         /// Construtor da classe AuthenticatedScreen que recebe um Client (Conta do Cliente) como parâmetro para que os dados da conta sejam passados para o campo _clientAccount.
@@ -35,21 +35,24 @@ namespace Bytebank.Authenticated
             ShowAuthenticatedMenu();
         }
 
+        internal AuthenticatedScreen() { }
+
         /// <summary>
         /// Exibe uma mensagem com uma animação que indica que o sistema está retornando para a tela principal do menu de operações.
         /// </summary>
         /// <param name="timer">Recebe o tempo que levará cada ciclo até a o método ter sido completamente executado.</param>
-        internal static void ReturningToAuthenticatedScreenMessage(int timer = 450)
+        internal void ReturningToAuthenticatedScreenMessage(int timer = 450)
         {
             PrintText.ColorizeText("\n[i] Retornando ao menu de operações", PrintText.TextColor.Yellow, 0);
             PrintTextAnimations.TreeDotsAnimation(timer);
-            ShowAuthenticatedMenu();
+            AuthenticatedScreen authScreen = new AuthenticatedScreen();
+            authScreen.ShowAuthenticatedMenu();
         }
 
         /// <summary>
         /// Exibe o menu de operações com as opções disponíveis para o cliente.
         /// </summary>
-        internal static void ShowAuthenticatedMenu()
+        internal void ShowAuthenticatedMenu()
         {
             HeaderText.BytebankOperationsHeader();
             //----
@@ -73,18 +76,18 @@ namespace Bytebank.Authenticated
         /// Leva o cliente (usuário do sistema) para a tela da opção escolhida.
         /// </summary>
         /// <param name="selectedOption">Recebe o número da opção do menu que o cliente digitou.</param>
-        private static void MenuAction(int selectedOption)
+        private void MenuAction(int selectedOption)
         {
             switch (selectedOption)
             {
                 case 1:
-                    DepositScreen.DepositOperation(_clientAccount!.CheckingAccount!);
+                    DepositScreen.DepositOperation(_clientAccount!);
                     break;
                 case 2:
-                    WithdrawScreen.WithdrawOperation(_clientAccount!.CheckingAccount!);
+                    WithdrawScreen.WithdrawOperation(_clientAccount!);
                     break;
                 case 3:
-                    TransferScreen.TransferOperation(_clientAccount!.CheckingAccount!);
+                    TransferScreen.TransferOperation(_clientAccount!);
                     break;
                 case 4:
                     ClientAccountInfoScreen.ShowClientInformation(_clientAccount!);
