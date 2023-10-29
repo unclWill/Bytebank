@@ -43,11 +43,11 @@ namespace Bytebank.Authenticated.Operations
             {
                 return operationValue;
             }
-            else if (operationConfirmation == false)
+            else
             {
                 return 0m;
             }
-            return 0m;
+
         }
 
         /// <summary>
@@ -214,8 +214,9 @@ namespace Bytebank.Authenticated.Operations
                     return false;
                 case 2:
                     return true;
+                default:
+                    return false;
             }
-            return false;
         }
     }
 }

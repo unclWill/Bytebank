@@ -33,7 +33,6 @@ D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Apli
 D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\bin\Debug\net7.0\Bytebank.runtimeconfig.json
 D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\bin\Debug\net7.0\Bytebank.dll
 D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\bin\Debug\net7.0\Bytebank.pdb
-D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\obj\Debug\net7.0\Bytebank.csproj.AssemblyReference.cache
 D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\obj\Debug\net7.0\Bytebank.GeneratedMSBuildEditorConfig.editorconfig
 D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\obj\Debug\net7.0\Bytebank.AssemblyInfoInputs.cache
 D:\Development\PROJETOS\_ProjetosDeCursos\Projetos_Alura\FormacaoCSharp\2.0_Aplicando a Orientação a Objetos\Bytebank_Project\Bytebank\obj\Debug\net7.0\Bytebank.AssemblyInfo.cs
